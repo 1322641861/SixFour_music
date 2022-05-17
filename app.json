@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/cloud/cloud",
+    "pages/index/index",
+    "pages/profile/profile",
+    "pages/auth/login/login"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "SixFour",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "发现",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home_active.png"
+      },
+      {
+        "pagePath": "pages/cloud/cloud",
+        "text": "云村",
+        "iconPath": "static/images/tabbar/cloud.png",
+        "selectedIconPath": "static/images/tabbar/cloud_active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "static/images/tabbar/me.png",
+        "selectedIconPath": "static/images/tabbar/me_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

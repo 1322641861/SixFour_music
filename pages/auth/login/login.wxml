@@ -1,0 +1,19 @@
+<view class="login-wrap">
+  <!-- <image class="login-background" src="/static/images/auth/login_background.jpg"></image> -->
+  <view class="login-title">SixFour</view>
+  <view class="login-body">
+    <view class="login-content login-phone">
+      <text>手机号码</text>
+      <input id="phone" class="login-input" type="number" bindinput="handleInput" placeholder="请输入手机号码"/>
+    </view>
+    <view>
+      <text>密码</text>
+      <input id="password" class="login-input" type="password" bindinput="handleInput" placeholder="请输入密码"/>
+    </view>
+  </view>
+  <button class="login" bindtap="login" disabled="{{disabled}}" loading="{{disabled}}">登录</button>
+  <view class="forget-psd">忘记密码?</view>
+  <view class="to-register">还没有账号?
+    <text class="register">马上注册</text>
+  </view>
+</view>

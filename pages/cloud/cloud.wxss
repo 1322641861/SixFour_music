@@ -1,0 +1,129 @@
+/* pages/cloud/cloud.wxss */
+.cloud-wrap {
+  height: calc(100vh - 100rpx);
+  background: #f5f5f5;
+}
+.cloud-wrap .search {
+  display: flex;
+  padding: 5rpx 24rpx;
+  background: #fff;
+}
+.cloud-wrap .search image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.search-content {
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  background: #eee;
+  color: #999;
+  margin: 0 24rpx;
+  flex: 1;
+  text-align: center;
+}
+.search .icon-sousuo {
+  font-size: 30rpx;
+  vertical-align: bottom;
+  margin-right: 10rpx;
+}
+
+.cloud-scroll-view {
+  display: flex;
+  white-space: nowrap;
+  background: #fff;
+}
+.cloud-scroll-view .tab-item {
+  display: inline-block;
+  margin: 0 30rpx 30rpx;
+  font-size: 30rpx;
+  color: #666;
+  padding-top: 30rpx;
+}
+.cloud-tab .active {
+  color: #333;
+  border-bottom: 1px solid #d81e06;
+  font-weight: bold;
+}
+
+.cloud-content {
+  padding: 2vw;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  margin-bottom: 100rpx;
+}
+.cloud-content .video-wrap {
+  width: 47vw;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.cloud-content .video-wrap:nth-child(2n-1) {
+  float: left;
+}
+.cloud-content .video-wrap:nth-child(2n) {
+  float: right;
+}
+.cloud-content .video-info {
+  padding: 20rpx;
+}
+.cloud-content .video-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-bottom: 10rpx;
+}
+.cloud-content .video-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cloud-content .video-content{
+  width: 100%;
+}
+.cloud-content .icon-dianzan {
+  font-size: 28rpx;
+  margin-right: 4rpx;
+}
+.cloud-content .user {
+  display: flex;
+  align-items: center;
+  color: #666;
+  width: 60%;
+}
+.cloud-content .praised {
+  width: 40%;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cloud-content .video-title {
+  margin-bottom: 10rpx;
+}
+.cloud-content .user image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+.cloud-content .user text {
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cloud-content .icon-single-play {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 3;
+  color: #fff;
+  font-size: 20rpx;
+  width: 44rpx;
+  height: 44rpx;
+  background: rgba(0, 0, 0, .7);
+  text-align: center;
+  line-height: 44rpx;
+  border-radius: 50%;
+}

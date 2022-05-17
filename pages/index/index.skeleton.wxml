@@ -1,0 +1,407 @@
+<!--
+此文件为开发者工具生成，生成时间: 2022/5/15 下午6:22:38
+使用方法：
+在 F:\WeChat\sixFour_music\pages\index\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 F:\WeChat\sixFour_music\pages\index\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="sk-container">
+      <view class="sk-container">
+        <view class="sk-container">
+          <view class="home-wrap">
+            <view class="swiper-wrap">
+              <swiper autoplay="false" class="home-swiper" current="0" indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .2)" indicator-dots="true" interval="5000">
+                <swiper-item class="home-swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                  <image class="sk-image"></image>
+                </swiper-item>
+              </swiper>
+            </view>
+            <view class="home-tab">
+              <view class="home-tab-item">
+                <text class="iconfont icon-day-recommend sk-pseudo sk-pseudo-circle"></text>
+                <text class="sk-transparent sk-text-14-2857-410 sk-text sk-image sk-text-14-2857-785 sk-text-14-2857-859">每日推荐</text>
+              </view>
+              <view class="home-tab-item">
+                <text class="iconfont icon-gedan sk-pseudo sk-pseudo-circle"></text>
+                <text class="sk-transparent sk-text-14-2857-628 sk-text sk-image sk-text-14-2857-231 sk-text-14-2857-910">歌单</text>
+              </view>
+              <view class="home-tab-item">
+                <text class="iconfont icon-paihangbang ranking-btn sk-pseudo sk-pseudo-circle"></text>
+                <text class="sk-transparent sk-text-14-2857-486 sk-text sk-image sk-text-14-2857-173 sk-text-14-2857-979">排行榜</text>
+              </view>
+              <view class="home-tab-item">
+                <text class="iconfont icon-a-tupianyihuifu-10 sk-pseudo sk-pseudo-circle"></text>
+                <text class="sk-transparent sk-text-14-2857-330 sk-text sk-image sk-text-14-2857-347 sk-text-14-2857-178">私人FM</text>
+              </view>
+              <view class="home-tab-item">
+                <text class="iconfont icon-zhibo sk-pseudo sk-pseudo-circle"></text>
+                <text class="sk-transparent sk-text-14-2857-648 sk-text sk-image sk-text-14-2857-713 sk-text-14-2857-175">直播</text>
+              </view>
+            </view>
+            <view class="recommend">
+              <view>
+                <view class="re-title navHeader--re-title">
+                  <text class="sk-transparent sk-text-14-2857-415 sk-text sk-image sk-text-14-2857-734 sk-text-14-2857-901">推荐歌单</text>
+                  <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-487 sk-text sk-image sk-text-14-2857-165 sk-text-14-2857-954">更多</text>
+                  <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+                </view>
+              </view>
+              <view>
+                <scroll-view class="re-list songListSlider--re-list" scroll-x="true">
+                  <view class="album songListSlider--album">
+                    <view class="album-avatar songListSlider--album-avatar">
+                      <image class="album-image songListSlider--album-image sk-image"></image>
+                    </view>
+                    <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-851 sk-text sk-image sk-text-14-2857-667 sk-text-14-2857-101">[一周欧美上新] 西海岸之王降临！Lamar时隔五年重磅力作！</text>
+                  </view>
+                  <view class="album songListSlider--album">
+                    <view class="album-avatar songListSlider--album-avatar">
+                      <image class="album-image songListSlider--album-image sk-image"></image>
+                    </view>
+                    <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-942 sk-text sk-image sk-text-14-2857-320 sk-text-14-2857-665">来得及 考的上 何以惧 你可以</text>
+                  </view>
+                  <view class="album songListSlider--album">
+                    <view class="album-avatar songListSlider--album-avatar">
+                      <image class="album-image songListSlider--album-image sk-image"></image>
+                    </view>
+                    <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-373 sk-text sk-image sk-text-14-2857-87 sk-text-14-2857-987">颓废 不想学习时听的歌【逆袭专用】</text>
+                  </view>
+                  <view class="album songListSlider--album">
+                    <view class="album-avatar songListSlider--album-avatar">
+                      <image class="album-image songListSlider--album-image sk-image"></image>
+                    </view>
+                    <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-191 sk-text sk-image sk-text-14-2857-588 sk-text-14-2857-511">一些听了会开心快乐的歌</text>
+                  </view>
+                </scroll-view>
+              </view>
+            </view>
+            <view class="ranking">
+              <view>
+                <view class="re-title navHeader--re-title">
+                  <text class="sk-transparent sk-text-14-2857-709 sk-text sk-image sk-text-14-2857-762 sk-text-14-2857-173">排行榜</text>
+                  <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-142 sk-text sk-image sk-text-14-2857-994 sk-text-14-2857-391">更多</text>
+                  <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+                </view>
+              </view>
+              <swiper autoplay="false" class="top-list" current="0" next-margin="50rpx" previous-margin="24rpx">
+                <swiper-item class="top-list-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                  <view class="top-item-wrap">
+                    <view class="top-title">
+                      <view class="title">
+                        <text class="sk-transparent sk-text-14-2857-761 sk-text sk-image sk-text-14-2857-235 sk-text-14-2857-45">飙升榜</text>
+                        <text class="iconfont icon-more sk-pseudo sk-pseudo-circle"></text>
+                      </view>
+                      <text class="top-tag sk-transparent sk-text-18-7500-729 sk-text sk-image sk-text-18-7500-140 sk-text-18-7500-307">云音乐中每天热度上升最快的100首单曲，每日更新。</text>
+                    </view>
+                    <view class="top-desc"></view>
+                  </view>
+                </swiper-item>
+              </swiper>
+            </view>
+          </view>
+        </view>
+        <view class="home-wrap">
+          <view class="swiper-wrap">
+            <swiper autoplay="false" class="home-swiper" current="0" indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .2)" indicator-dots="true" interval="5000">
+              <swiper-item class="home-swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                <image class="sk-image"></image>
+              </swiper-item>
+            </swiper>
+          </view>
+          <view class="home-tab">
+            <view class="home-tab-item">
+              <text class="iconfont icon-day-recommend sk-pseudo sk-pseudo-circle"></text>
+              <text class="sk-transparent sk-text-14-2857-876 sk-text sk-image sk-text-14-2857-822">每日推荐</text>
+            </view>
+            <view class="home-tab-item">
+              <text class="iconfont icon-gedan sk-pseudo sk-pseudo-circle"></text>
+              <text class="sk-transparent sk-text-14-2857-976 sk-text sk-image sk-text-14-2857-609">歌单</text>
+            </view>
+            <view class="home-tab-item">
+              <text class="iconfont icon-paihangbang ranking-btn sk-pseudo sk-pseudo-circle"></text>
+              <text class="sk-transparent sk-text-14-2857-112 sk-text sk-image sk-text-14-2857-488">排行榜</text>
+            </view>
+            <view class="home-tab-item">
+              <text class="iconfont icon-a-tupianyihuifu-10 sk-pseudo sk-pseudo-circle"></text>
+              <text class="sk-transparent sk-text-14-2857-903 sk-text sk-image sk-text-14-2857-1000">私人FM</text>
+            </view>
+            <view class="home-tab-item">
+              <text class="iconfont icon-zhibo sk-pseudo sk-pseudo-circle"></text>
+              <text class="sk-transparent sk-text-14-2857-695 sk-text sk-image sk-text-14-2857-344">直播</text>
+            </view>
+          </view>
+          <view class="recommend">
+            <view>
+              <view class="re-title navHeader--re-title">
+                <text class="sk-transparent sk-text-14-2857-87 sk-text sk-image sk-text-14-2857-920">推荐歌单</text>
+                <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-945 sk-text sk-image sk-text-14-2857-218">更多</text>
+                <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+              </view>
+            </view>
+            <view>
+              <scroll-view class="re-list songListSlider--re-list" scroll-x="true">
+                <view class="album songListSlider--album">
+                  <view class="album-avatar songListSlider--album-avatar">
+                    <image class="album-image songListSlider--album-image sk-image"></image>
+                  </view>
+                  <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-215 sk-text sk-image sk-text-14-2857-819">有一首歌叫日出时让恋爱终结</text>
+                </view>
+                <view class="album songListSlider--album">
+                  <view class="album-avatar songListSlider--album-avatar">
+                    <image class="album-image songListSlider--album-image sk-image"></image>
+                  </view>
+                  <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-708 sk-text sk-image sk-text-14-2857-860">人越浑浊就越喜欢干净的东西.</text>
+                </view>
+                <view class="album songListSlider--album">
+                  <view class="album-avatar songListSlider--album-avatar">
+                    <image class="album-image songListSlider--album-image sk-image"></image>
+                  </view>
+                  <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-489 sk-text sk-image sk-text-14-2857-630">九级的网易云不会为了你而注销</text>
+                </view>
+                <view class="album songListSlider--album">
+                  <view class="album-avatar songListSlider--album-avatar">
+                    <image class="album-image songListSlider--album-image sk-image"></image>
+                  </view>
+                  <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-579 sk-text sk-image sk-text-14-2857-329">一些听了会开心快乐的歌</text>
+                </view>
+              </scroll-view>
+            </view>
+          </view>
+          <view class="ranking">
+            <view>
+              <view class="re-title navHeader--re-title">
+                <text class="sk-transparent sk-text-14-2857-657 sk-text sk-image sk-text-14-2857-264">排行榜</text>
+                <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-975 sk-text sk-image sk-text-14-2857-530">更多</text>
+                <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+              </view>
+            </view>
+            <swiper autoplay="false" class="top-list" current="0" next-margin="50rpx" previous-margin="24rpx">
+              <swiper-item class="top-list-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                <view class="top-item-wrap">
+                  <view class="top-title">
+                    <view class="title">
+                      <text class="sk-transparent sk-text-14-2857-356 sk-text sk-image sk-text-14-2857-187">飙升榜</text>
+                      <text class="iconfont icon-more sk-pseudo sk-pseudo-circle"></text>
+                    </view>
+                    <text class="top-tag sk-transparent sk-text-18-7500-942 sk-text sk-image sk-text-18-7500-620">云音乐中每天热度上升最快的100首单曲，每日更新。</text>
+                  </view>
+                  <view class="top-desc"></view>
+                </view>
+              </swiper-item>
+            </swiper>
+          </view>
+        </view>
+      </view>
+      <view class="home-wrap">
+        <view class="home-tab">
+          <view class="home-tab-item">
+            <text class="iconfont icon-day-recommend sk-pseudo sk-pseudo-circle"></text>
+            <text class="sk-transparent sk-text-14-2857-890 sk-text sk-image">每日推荐</text>
+          </view>
+          <view class="home-tab-item">
+            <text class="iconfont icon-gedan sk-pseudo sk-pseudo-circle"></text>
+            <text class="sk-transparent sk-text-14-2857-419 sk-text sk-image">歌单</text>
+          </view>
+          <view class="home-tab-item">
+            <text class="iconfont icon-paihangbang ranking-btn sk-pseudo sk-pseudo-circle"></text>
+            <text class="sk-transparent sk-text-14-2857-153 sk-text sk-image">排行榜</text>
+          </view>
+          <view class="home-tab-item">
+            <text class="iconfont icon-a-tupianyihuifu-10 sk-pseudo sk-pseudo-circle"></text>
+            <text class="sk-transparent sk-text-14-2857-885 sk-text sk-image">私人FM</text>
+          </view>
+          <view class="home-tab-item">
+            <text class="iconfont icon-zhibo sk-pseudo sk-pseudo-circle"></text>
+            <text class="sk-transparent sk-text-14-2857-29 sk-text sk-image">直播</text>
+          </view>
+        </view>
+        <view class="recommend">
+          <view>
+            <view class="re-title navHeader--re-title">
+              <text class="sk-transparent sk-text-14-2857-355 sk-text sk-image">推荐歌单</text>
+              <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-42 sk-text sk-image">更多</text>
+              <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+            </view>
+          </view>
+          <view>
+            <scroll-view class="re-list songListSlider--re-list" scroll-x="true">
+              <view class="album songListSlider--album">
+                <view class="album-avatar songListSlider--album-avatar">
+                  <image class="album-image songListSlider--album-image sk-image"></image>
+                </view>
+                <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-771 sk-text sk-image">有一首歌叫日出时让恋爱终结</text>
+              </view>
+              <view class="album songListSlider--album">
+                <view class="album-avatar songListSlider--album-avatar">
+                  <image class="album-image songListSlider--album-image sk-image"></image>
+                </view>
+                <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-332 sk-text sk-image">人越浑浊就越喜欢干净的东西.</text>
+              </view>
+              <view class="album songListSlider--album">
+                <view class="album-avatar songListSlider--album-avatar">
+                  <image class="album-image songListSlider--album-image sk-image"></image>
+                </view>
+                <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-733 sk-text sk-image">九级的网易云不会为了你而注销</text>
+              </view>
+              <view class="album songListSlider--album">
+                <view class="album-avatar songListSlider--album-avatar">
+                  <image class="album-image songListSlider--album-image sk-image"></image>
+                </view>
+                <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-336 sk-text sk-image">一些听了会开心快乐的歌</text>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <view class="ranking">
+          <view>
+            <view class="re-title navHeader--re-title">
+              <text class="sk-transparent sk-text-14-2857-959 sk-text sk-image">排行榜</text>
+              <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-94 sk-text sk-image">更多</text>
+              <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+            </view>
+          </view>
+          <swiper autoplay="false" class="top-list" current="0" next-margin="50rpx" previous-margin="24rpx">
+            <swiper-item class="top-list-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+              <view class="top-item-wrap">
+                <view class="top-title">
+                  <view class="title">
+                    <text class="sk-transparent sk-text-14-2857-729 sk-text sk-image">飙升榜</text>
+                    <text class="iconfont icon-more sk-pseudo sk-pseudo-circle"></text>
+                  </view>
+                  <text class="top-tag sk-transparent sk-text-18-7500-490 sk-text sk-image">云音乐中每天热度上升最快的100首单曲，每日更新。</text>
+                </view>
+                <view class="top-desc">
+                  <image class="top-image sk-image"></image>
+                  <text class="top-index sk-transparent sk-text-34-5238-606 sk-text sk-image" style="background-position-x: 50%;">1</text>
+                  <view class="song-title">
+                    <text class="sk-transparent sk-text-14-2857-124 sk-text sk-image">玫瑰少年</text>
+                    <text class="sk-transparent sk-text-14-2857-923 sk-text sk-image">Strictlyviolin荀博</text>
+                  </view>
+                </view>
+                <view class="top-desc">
+                  <image class="top-image sk-image"></image>
+                  <text class="top-index sk-transparent sk-text-34-5238-999 sk-text sk-image" style="background-position-x: 50%;">2</text>
+                  <view class="song-title">
+                    <text class="sk-transparent sk-text-14-2857-671 sk-text sk-image">苦茶子</text>
+                    <text class="sk-transparent sk-text-14-2857-374 sk-text sk-image">Starling8</text>
+                  </view>
+                </view>
+                <view class="top-desc">
+                  <image class="top-image sk-image"></image>
+                  <text class="top-index sk-transparent sk-text-34-5238-719 sk-text sk-image" style="background-position-x: 50%;">3</text>
+                  <view class="song-title">
+                    <text class="sk-transparent sk-text-14-2857-531 sk-text sk-image">兄妹</text>
+                    <text class="sk-transparent sk-text-14-2857-796 sk-text sk-image">刘大拿</text>
+                  </view>
+                </view>
+              </view>
+            </swiper-item>
+          </swiper>
+        </view>
+      </view>
+    </view>
+    <view class="home-wrap">
+      <view class="swiper-wrap" hidden="{{banners.length > 0}}">
+        <swiper autoplay="false" class="home-swiper" indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .2)" indicator-dots="true" interval="5000" current="0">
+          <swiper-item class="home-swiper-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+            <image class="sk-image"></image>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="home-tab">
+        <view class="home-tab-item">
+          <text class="iconfont icon-day-recommend sk-pseudo sk-pseudo-circle"></text>
+          <text class="sk-transparent sk-text-14-2857-338 sk-text">每日推荐</text>
+        </view>
+        <view class="home-tab-item">
+          <text class="iconfont icon-gedan sk-pseudo sk-pseudo-circle"></text>
+          <text class="sk-transparent sk-text-14-2857-475 sk-text">歌单</text>
+        </view>
+        <view class="home-tab-item">
+          <text class="iconfont icon-paihangbang ranking-btn sk-pseudo sk-pseudo-circle"></text>
+          <text class="sk-transparent sk-text-14-2857-646 sk-text">排行榜</text>
+        </view>
+        <view class="home-tab-item">
+          <text class="iconfont icon-a-tupianyihuifu-10 sk-pseudo sk-pseudo-circle"></text>
+          <text class="sk-transparent sk-text-14-2857-577 sk-text">私人FM</text>
+        </view>
+        <view class="home-tab-item">
+          <text class="iconfont icon-zhibo sk-pseudo sk-pseudo-circle"></text>
+          <text class="sk-transparent sk-text-14-2857-417 sk-text">直播</text>
+        </view>
+      </view>
+      <view class="recommend">
+        <view is="components/common/navHeader/navHeader">
+          <view class="re-title navHeader--re-title">
+            <text class="sk-transparent sk-text-14-2857-373 sk-text">推荐歌单</text>
+            <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-868 sk-text">更多</text>
+            <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+          </view>
+        </view>
+        <view is="components/custom/songListSlider">
+          <scroll-view class="re-list songListSlider--re-list" scroll-x="true">
+            <view class="album songListSlider--album">
+              <view class="album-avatar songListSlider--album-avatar">
+                <image class="album-image songListSlider--album-image sk-image"></image>
+              </view>
+              <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-343 sk-text">有一首歌叫日出时让恋爱终结</text>
+            </view>
+            <view class="album songListSlider--album">
+              <view class="album-avatar songListSlider--album-avatar">
+                <image class="album-image songListSlider--album-image sk-image"></image>
+              </view>
+              <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-299 sk-text">人越浑浊就越喜欢干净的东西.</text>
+            </view>
+            <view class="album songListSlider--album">
+              <view class="album-avatar songListSlider--album-avatar">
+                <image class="album-image songListSlider--album-image sk-image"></image>
+              </view>
+              <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-579 sk-text">九级的网易云不会为了你而注销</text>
+            </view>
+            <view class="album songListSlider--album">
+              <view class="album-avatar songListSlider--album-avatar">
+                <image class="album-image songListSlider--album-image sk-image"></image>
+              </view>
+              <text class="album-desc songListSlider--album-desc sk-transparent sk-text-14-2857-698 sk-text">一些听了会开心快乐的歌</text>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+      <view class="ranking">
+        <view is="components/common/navHeader/navHeader">
+          <view class="re-title navHeader--re-title">
+            <text class="sk-transparent sk-text-14-2857-659 sk-text">排行榜</text>
+            <text class="more navHeader--more"><text class="sk-transparent sk-text-14-2857-954 sk-text">更多</text>
+            <text class="iconfont navHeader--iconfont icon-more navHeader--icon-more sk-pseudo sk-pseudo-circle"></text></text>
+          </view>
+        </view>
+        <swiper class="top-list" next-margin="50rpx" previous-margin="24rpx" current="0" autoplay="false">
+          <swiper-item class="top-list-item" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+            <view class="top-item-wrap">
+              <view class="top-title">
+                <view class="title">
+                  <text class="sk-transparent sk-text-14-2857-915 sk-text">飙升榜</text>
+                  <text class="iconfont icon-more sk-pseudo sk-pseudo-circle"></text>
+                </view>
+                <text class="top-tag sk-transparent sk-text-18-7500-402 sk-text">云音乐中每天热度上升最快的100首单曲，每日更新。</text>
+              </view>
+              <view class="top-desc"></view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</template>

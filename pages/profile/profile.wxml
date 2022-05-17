@@ -1,0 +1,25 @@
+<view class="profile">
+  <view class="avatar-wrap" bindtap="toLogin" wx:if="{{!userInfo.nickname}}">
+    <text class="iconfont icon-avatar profile-avatar "></text>
+    <view class="avatar-name">
+      <text>立即登录</text>
+      <text class="iconfont icon-more"></text>
+    </view>
+  </view>
+  <view class="avatar-wrap" wx:else>
+    <view class="profile-avatar">
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="avatar-name">
+      <text>{{userInfo.nickname}}</text>
+      <!-- <text class="iconfont icon-more"></text> -->
+    </view>
+  </view>
+
+  <view class="action-list">
+    <view class="action-item" wx:for="{{actionList}}" wx:key="index" data-name="{{item.name}}" bindtap="actionNavigate">
+      <text class="iconfont {{item.icon}}"></text>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+</view>

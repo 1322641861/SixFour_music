@@ -1,0 +1,39 @@
+.album {
+  width: 28vw;
+}
+.album-avatar {
+  width: 28vw;
+  height: 28vw;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 6rpx;
+}
+.album-avatar .album-image {
+  width: 100%;
+  height: 100%;
+}
+.album-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  letter-spacing: 1rpx;
+  white-space: normal;
+}
+.re-list {
+  display: flex;
+  white-space: nowrap;
+}
+.re-list .album:first-child {
+  margin-left: 24rpx;
+}
+.re-list .album:last-child {
+  margin-right: 24rpx;
+}
+.re-list .album {
+  margin: 0 10rpx;
+}
+.album {
+  display: inline-block;
+}

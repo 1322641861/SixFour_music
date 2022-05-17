@@ -1,0 +1,12 @@
+<scroll-view class="re-list" scroll-x="true">
+  <view class="album" wx:for="{{list}}" wx:key="id">
+    <view class="album-avatar">
+      <image class="album-image" src="{{item.picUrl}}"></image>
+      <!-- <view>
+            <image></image>
+            <text>{{item.playCount}}</text>
+          </view> -->
+    </view>
+    <text class="album-desc">{{item.name}}</text>
+  </view>
+</scroll-view>

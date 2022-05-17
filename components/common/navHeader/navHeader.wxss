@@ -1,0 +1,17 @@
+.re-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 30rpx 24rpx 20rpx;
+}
+.more {
+  font-size: 28rpx;
+  font-weight: normal;
+  float: right;
+  border: 1px solid #ddd;
+  padding: 4rpx 14rpx;
+  border-radius: 30rpx;
+}
+.icon-more {
+  font-size: 32rpx;
+  vertical-align: bottom;
+}

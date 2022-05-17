@@ -1,0 +1,37 @@
+<view class="cloud-wrap">
+  <view class="search">
+    <image src="/static/images/home/music.png"></image>
+    <view class="search-content">
+      <text class="iconfont icon-sousuo"></text>
+      <text>新人必听</text>
+    </view>
+    <image src="/static/images/home/add.png"></image>
+  </view>
+
+  <scroll-view scroll-x class="cloud-tab cloud-scroll-view">
+    <view class="tab-item {{activedId === item.id ? 'active' : ''}}" wx:for="{{groupList}}" wx:key="id" data-id="{{item.id}}" bindtap="changeTab">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y class="cloud-content" show-scrollbar="{{false}}">
+    <view wx:for="{{videoList}}" wx:key="id" class="video-wrap">
+      <video class="video-content" style="height: {{47 * item.data.height / item.data.width}}vw;" src="{{item.videoUrl}}" controls="{{true}}" poster="{{item.data.coverUrl}}" muted show-fullscreen-btn="{{false}}"	show-play-btn="{{false}}" show-center-play-btn="{{false}}">
+        <text class="iconfont icon-single-play"></text>
+      </video>
+      <view class="video-info">
+        <view class="video-title">{{item.data.title}}</view>
+        <view class="video-user">
+          <view class="user">
+            <image src="{{item.data.creator.avatarUrl}}"></image>
+            <text>{{item.data.creator.nickname}}</text>
+          </view>
+          <view class="praised">
+            <text class="iconfont icon-dianzan"></text>
+            <text>{{item.data.praisedCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
