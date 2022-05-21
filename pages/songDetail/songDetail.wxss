@@ -1,0 +1,108 @@
+
+.song-detail {
+  height: 100vh;
+  background: #ccc;
+}
+.song-detail .title-wrap {
+  text-align: center;
+  color: #fff;
+}
+.song-detail .icon-back {
+  height: 40px;
+  line-height: 40px;
+  font-size: 40rpx;
+  float: left;
+  padding-left: 20rpx;
+}
+.song-detail .title {
+  display: inline-block;
+  height: 40px;
+  line-height: 20px;
+  font-size: 32rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200rpx;
+}
+.song-detail .title .author {
+  font-size: 24rpx;
+  color: #eee;
+}
+.song-detail .music-disc {
+  text-align: center;
+  width: 66vw;
+  height: 66vw;
+  padding: 140rpx 10vw 0;
+  position: relative;
+  z-index: 0;
+  margin: auto;
+}
+.music-disc .single-cover {
+  width: 66vw;
+  height: 66vw;    
+  position: relative;
+}
+.single-cover-rotate {
+  animation: disc 8s linear .5s infinite;
+  animation-play-state: paused;
+}
+@keyframes disc {
+  from {
+    /* transform: rotate(0deg); */
+  } to {
+    transform: rotate(360deg);
+  }
+}
+.music-disc .needle {
+  width: 21vw;
+  position: absolute;
+  height: 35vw;
+  top: 0;
+  transform: rotate(-26deg);
+  transform-origin: 40rpx 0;
+  left: 50%;
+  z-index: 2;
+  transition: transform .5s;
+}
+.music-disc .needle-play {
+  transform: rotate(0deg);
+}
+.music-disc .author-url {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+.music-disc .play {
+  width: 16vw;
+  height: 16vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  margin-top: 70rpx;
+  z-index: 3;
+}
+
+.music-control {
+  position: fixed;
+  bottom: 26rpx;
+  left: 0;
+  right: 0;
+}
+.music-control .control {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.music-control .control .iconfont {
+  font-size: 40rpx;
+  color: #fff;
+}
+.music-control .control .control-play {
+  font-size: 90rpx;
+}

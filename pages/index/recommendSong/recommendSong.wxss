@@ -1,0 +1,110 @@
+.recommend-wrap {
+  height: 100vh;
+}
+.recommend-wrap .header {
+  height: 30vh;
+  position: relative;
+}
+.recommend-wrap .header image {
+  width: 100%;
+  height: 100%;
+}
+.recommend-wrap .date {
+  position: absolute;
+  bottom: 90rpx;
+  left: 30rpx;
+  font-size: 40rpx;
+  color: #fff;
+}
+.recommend-wrap .date .day {
+  font-size: 66rpx;
+  font-weight: bold;
+}
+.recommend-wrap .date .month {
+  font-weight: bold;
+}
+.recommend-wrap .date .line {
+  font-size: 31rpx;
+  margin-right: 3rpx;
+}
+.recommend-wrap .play-more {
+  height: 80rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 25rpx 25rpx 0 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  align-items: center;
+}
+.play-more .icon-play {
+  vertical-align: middle;
+  margin-right: 24rpx;
+  font-size: 42rpx;
+  color: #f91473;
+}
+.play-more .play {
+  vertical-align: text-top;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.play-more .icon-check {
+  font-size: 53rpx;
+  color: #333;
+}
+
+.recommend-body {
+  height: 70vh;
+}
+.recommend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15rpx 24rpx;
+}
+.recommend-item .avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+  margin-right: 18rpx;
+}
+.recommend-item .item-message {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recommend-item .right-btn {
+  color: #999;
+}
+.recommend-item .right-btn text {
+  padding: 10rpx;
+}
+.recommend-item .title {
+  font-size: 30rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.recommend-item .avatar-name {
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.recommend-item .repeat-title {
+  color: #999;
+}
+
+.recommend-no-data {
+  text-align: center;
+  margin-top: 30%;
+  color: #999;
+}
+.border-10 {
+  height: 20rpx;
+}

@@ -8,30 +8,74 @@
     <image src="/static/images/home/add.png"></image>
   </view>
 
-  <scroll-view scroll-x class="cloud-tab cloud-scroll-view">
-    <view class="tab-item {{activedId === item.id ? 'active' : ''}}" wx:for="{{groupList}}" wx:key="id" data-id="{{item.id}}" bindtap="changeTab">
+  <scroll-view 
+    scroll-x 
+    scroll-into-view="{{'scroll' + activedId}}" 
+    scroll-with-animation 
+    class="cloud-tab cloud-scroll-view"
+  >
+    <view id="{{'scroll' + item.id}}" class="tab-item {{activedId === item.id ? 'active' : ''}}" wx:for="{{groupList}}" wx:key="id" data-id="{{item.id}}" bindtap="changeTab">
       {{item.name}}
     </view>
   </scroll-view>
 
-  <scroll-view scroll-y class="cloud-content" show-scrollbar="{{false}}">
-    <view wx:for="{{videoList}}" wx:key="id" class="video-wrap">
-      <video class="video-content" style="height: {{47 * item.data.height / item.data.width}}vw;" src="{{item.videoUrl}}" controls="{{true}}" poster="{{item.data.coverUrl}}" muted show-fullscreen-btn="{{false}}"	show-play-btn="{{false}}" show-center-play-btn="{{false}}">
-        <text class="iconfont icon-single-play"></text>
-      </video>
-      <view class="video-info">
-        <view class="video-title">{{item.data.title}}</view>
-        <view class="video-user">
-          <view class="user">
-            <image src="{{item.data.creator.avatarUrl}}"></image>
-            <text>{{item.data.creator.nickname}}</text>
-          </view>
-          <view class="praised">
-            <text class="iconfont icon-dianzan"></text>
-            <text>{{item.data.praisedCount}}</text>
+  <scroll-view
+    scroll-y
+    class="cloud-content" 
+    show-scrollbar="{{false}}"
+    enhanced
+    refresher-enabled
+    bindrefresherrefresh="refreshPulling"
+    refresher-triggered="{{triggered}}"
+    bindscrolltolower="refreshPullUp"
+    scroll-top="{{scrollTop}}"
+  >
+    <view class="cloud-video-wrap" wx:if="{{videoList.length}}">
+      <view wx:for="{{videoList}}" wx:key="id" class="video-wrap">
+        <video wx:if="{{currentVid === item.data.vid}}"
+          class="video-content" 
+          src="{{item.videoUrl}}" 
+          controls 
+          poster="{{item.data.coverUrl}}" 
+          muted 
+          show-fullscreen-btn="{{false}}" 
+          show-play-btn="{{false}}" 
+          show-center-play-btn="{{false}}"
+          bindtouchend="handleTouchEnd" 
+          id="{{item.data.vid}}"
+          autoplay
+          binderror="handleError"
+        ></video>
+        <!-- 性能优化 图片替换video -->
+        <image wx:else bindtouchend="handleTouchEnd" class="video-content" src="{{item.data.coverUrl}}" id="{{item.data.vid}}">
+          <text class="iconfont icon-single-play"></text>
+        </image>
+        <view class="video-info">
+          <view class="video-title">{{item.data.title}}</view>
+          <view class="video-user">
+            <view class="user">
+              <view class="avatar">
+                <image src="{{item.data.creator.avatarUrl}}"></image>
+              </view>
+              <text>{{item.data.creator.nickname}}</text>
+            </view>
+            
+            <view class="praised">
+              <text class="iconfont icon-dianzan"></text>
+              <text>{{item.data.praisedCount}}</text>
+            </view>
+            <view class="praised">
+              <text class="iconfont icon-comments"></text>
+              <text>{{item.data.commentCount}}</text>
+            </view>
+            <view class="praised" data-vid="{{item.data.vid}}" bindtap="shareVideoMessage">
+              <text class="iconfont icon-31zhuanfa"></text>
+              <text>{{item.data.shareCount}}</text>
+            </view>
           </view>
         </view>
       </view>
     </view>
+    <view wx:else class="not-more">暂无视频推荐</view>
   </scroll-view>
 </view>

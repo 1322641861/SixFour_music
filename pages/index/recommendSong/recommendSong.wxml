@@ -1,0 +1,37 @@
+<view class="recommend-wrap">
+  <view class="header">
+    <image src="/static/images/home/recommend_bg.png" mode="aspectFill"></image>
+    <view class="date">
+      <text class="day">{{day}}</text>
+      <text class="line">/</text>
+      <text class="month">{{month}}</text>
+    </view>
+    <view class="play-more">
+      <view class="play-left">
+        <text class="iconfont icon-play"></text>
+        <text class="play">播放全部</text>
+      </view>
+      <text class="iconfont icon-check"></text>
+    </view>
+  </view>
+  <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body">
+    <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-musicId="{{item.id}}" bindtap="navigatePage">
+      <image class="avatar" src="{{item.al.picUrl}}"></image>
+      <view class="item-message">
+        <view class="title">
+          <text>{{item.name}}</text>
+          <!-- <text class="repeat-title">(删了吧)</text> -->
+        </view>
+        <view class="avatar-name">
+          <text>{{item.ar[0].name}} - {{item.al.name}}</text>
+        </view>
+      </view>
+      <view class="right-btn">
+        <text class="iconfont icon-music_play"></text>
+        <text class="iconfont icon-more_point"></text>
+      </view>
+    </view>
+    <view class="border-10"></view>
+  </scroll-view>
+  <view wx:else class="recommend-body recommend-no-data">暂无数据</view>
+</view>

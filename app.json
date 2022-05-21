@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/cloud/cloud",
+    "pages/index/recommendSong/recommendSong",
     "pages/index/index",
+    "pages/songDetail/songDetail",
+    "pages/cloud/cloud",
     "pages/profile/profile",
     "pages/auth/login/login"
   ],
@@ -34,5 +36,6 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"]
 }

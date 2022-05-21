@@ -12,23 +12,23 @@
   </view>
 
   <view class="home-tab">
-    <view class="home-tab-item">
+    <view class="home-tab-item" data-index="0" bindtap="navigateToPage">
       <text class="iconfont icon-day-recommend"></text>
       <text>每日推荐</text>
     </view>
-    <view class="home-tab-item">
+    <view class="home-tab-item" data-index="1" bindtap="navigateToPage">
       <text class="iconfont icon-gedan"></text>
       <text>歌单</text>
     </view>
-    <view class="home-tab-item">
+    <view class="home-tab-item" data-index="2" bindtap="navigateToPage">
       <text class="iconfont icon-paihangbang ranking-btn"></text>
       <text>排行榜</text>
     </view>
-    <view class="home-tab-item">
+    <view class="home-tab-item" data-index="3" bindtap="navigateToPage">
       <text class="iconfont icon-a-tupianyihuifu-10"></text>
       <text>私人FM</text>
     </view>
-    <view class="home-tab-item">
+    <view class="home-tab-item" data-index="4" bindtap="navigateToPage">
       <text class="iconfont icon-zhibo"></text>
       <text>直播</text>
     </view>

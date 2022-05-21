@@ -14,6 +14,20 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+const redirectToLogin = () => {
+  wx.showModal({
+    content: '请先登录',
+    success(res) {
+      if (res.confirm) {
+        wx.redirectTo({
+          url: '/pages/auth/login/login',
+        })
+      }
+    }
+  })
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  redirectToLogin
 }

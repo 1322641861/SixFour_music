@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3393598 */
-  src: url('//at.alicdn.com/t/font_3393598_cxgspxqlrom.woff2?t=1652801590187') format('woff2'),
-       url('//at.alicdn.com/t/font_3393598_cxgspxqlrom.woff?t=1652801590187') format('woff'),
-       url('//at.alicdn.com/t/font_3393598_cxgspxqlrom.ttf?t=1652801590187') format('truetype');
+  src: url('//at.alicdn.com/t/font_3393598_a5y9zx5u12s.woff2?t=1652960564126') format('woff2'),
+       url('//at.alicdn.com/t/font_3393598_a5y9zx5u12s.woff?t=1652960564126') format('woff'),
+       url('//at.alicdn.com/t/font_3393598_a5y9zx5u12s.ttf?t=1652960564126') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,58 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-play1:before {
+  content: "\e621";
+}
+
+.icon-pause:before {
+  content: "\e629";
+}
+
+.icon-downloaded:before {
+  content: "\e61a";
+}
+
+.icon-last-song:before {
+  content: "\e78a";
+}
+
+.icon-next-song:before {
+  content: "\e7a5";
+}
+
+.icon-music-list:before {
+  content: "\ea72";
+}
+
+.icon-replay:before {
+  content: "\e6e0";
+}
+
+.icon-back:before {
+  content: "\e679";
+}
+
+.icon-share_light:before {
+  content: "\e7e0";
+}
+
+.icon-more_point:before {
+  content: "\e7e3";
+}
+
+.icon-yinpin:before {
+  content: "\e614";
+}
+
+.icon-check:before {
+  content: "\e601";
+}
+
+.icon-music_play:before {
+  content: "\e628";
 }
 
 .icon-single-play:before {

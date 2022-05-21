@@ -62,6 +62,19 @@ Page({
     }
     console.log('topList ==> ', topList);
   },
+  navigateToPage(event) {
+    let index = parseInt(event.currentTarget.dataset.index);
+    switch (index) {
+      case 0:
+        wx.navigateTo({
+          url: '/pages/index/recommendSong/recommendSong',
+        })
+        break;
+    
+      default:
+        break;
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
