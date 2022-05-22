@@ -15,7 +15,7 @@
     </view>
   </view>
   <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body">
-    <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-musicId="{{item.id}}" bindtap="navigatePage">
+    <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
       <image class="avatar" src="{{item.al.picUrl}}"></image>
       <view class="item-message">
         <view class="title">

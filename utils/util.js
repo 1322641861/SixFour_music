@@ -14,12 +14,12 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-const redirectToLogin = () => {
+const navigateToLogin = () => {
   wx.showModal({
     content: '请先登录',
     success(res) {
       if (res.confirm) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '/pages/auth/login/login',
         })
       }
@@ -29,5 +29,5 @@ const redirectToLogin = () => {
 
 module.exports = {
   formatTime,
-  redirectToLogin
+  navigateToLogin
 }

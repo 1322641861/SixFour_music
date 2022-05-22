@@ -90,7 +90,7 @@
 
 .music-control {
   position: fixed;
-  bottom: 26rpx;
+  bottom: 47rpx;
   left: 0;
   right: 0;
 }
@@ -105,4 +105,23 @@
 }
 .music-control .control .control-play {
   font-size: 90rpx;
+}
+
+.music-control .progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30rpx 26rpx;
+}
+.progress text {
+  font-size: 22rpx;
+}
+.progress .left-time {
+  color: #fff;
+}
+.progress .right-time {
+  color: #ddd;
+}
+.progress .slider {
+  flex: 1;
 }

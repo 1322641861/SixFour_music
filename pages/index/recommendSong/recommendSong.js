@@ -1,6 +1,7 @@
 // pages/index/recommendSong/recommendSong.js
+import PubSub from 'pubsub-js';
 import request from '../../../utils/request';
-import { redirectToLogin } from '../../../utils/util'
+import { navigateToLogin } from '../../../utils/util'
 
 Page({
 
@@ -10,7 +11,8 @@ Page({
   data: {
     day: '',
     month: '',
-    recommendList: []
+    recommendList: [],
+    index: 0,
   },
 
   /**
@@ -24,13 +26,34 @@ Page({
     });
 
     let recommendList = wx.getStorageSync('recommendList');
-    let userInfo = wx.getStorageSync('userInfo');
-    if (!recommendList && !userInfo) {
-      redirectToLogin();
-    } else if (!recommendList && userInfo) {
-      this.getRecommendList();
-    } else {
+    if (recommendList) {
       this.setData({recommendList});
+    } else {
+      this.initLoad();
+    }
+    /// 订阅切换上/下一首
+    this.subscribeChangeMusic();
+  },
+  subscribeChangeMusic() {
+    PubSub.subscribe("changeMusic", (msg, type) => {
+      let {recommendList, index} = this.data;
+      let lastIndex = recommendList.length - 1;
+      if (type === 'next') {
+        index = index === lastIndex ? 0 : ++index;
+      } else {
+        index = index === 0 ? lastIndex : --index;
+      }
+      this.setData({index});
+      let id =  recommendList[index].id;
+      PubSub.publish("getMusicId", id);
+    })
+  },
+  initLoad() {
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      navigateToLogin();
+    } else {
+      this.getRecommendList();
     }
   },
   /**
@@ -42,7 +65,6 @@ Page({
     });
     let res = await request({url: '/recommend/songs'});
     wx.hideLoading();
-    console.log(res);
     if (res && res.data) {
       this.setData({
         recommendList: res.data.dailySongs
@@ -51,9 +73,10 @@ Page({
     }
   },
   navigatePage(event) {
-    let musicId = event.currentTarget.dataset.musicid;
+    let {index, musicid} = event.currentTarget.dataset;
+    this.setData({index});
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + musicId,
+      url: '/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
 
@@ -89,7 +112,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    console.log(111);
+    this.initLoad();
   },
 
   /**

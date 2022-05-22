@@ -24,14 +24,26 @@
 
     </view> -->
     <view class="music-control">
-      <view class="progress"></view>
+      <view class="progress">
+        <text class="left-time">{{!isPlayedMusic ? '00:00' : currentTime}}</text>
+        <slider class="slider" 
+          block-size="{{!progressMoving ? 12 : 18}}" 
+          backgroundColor="#ddd" 
+          activeColor="#fff" 
+          bindchanging="handleMoving" 
+          bindchange="handleEnd" 
+          max="{{songInfo.dt}}" 
+          value="{{!isPlayedMusic ? 0 : currentWidth}}"
+        ></slider>
+        <text class="right-time">{{durationTime}}</text>
+      </view>
       <view class="control">
         <text class="iconfont icon-replay"></text>
-        <text class="iconfont icon-last-song"></text>
+        <text class="iconfont icon-last-song" data-type="pre" bindtap="changePreNextMusic"></text>
         <!-- <image class="control-play" bindtap="play" src="/static/images/home/play.png"></image> -->
         <text bindtap="play" wx:if="{{!playMusic}}" class="iconfont icon-play1 control-play"></text>
         <text bindtap="play" wx:else class="iconfont icon-pause control-play"></text>
-        <text class="iconfont icon-next-song"></text>
+        <text class="iconfont icon-next-song" data-type="next" bindtap="changePreNextMusic"></text>
         <text class="iconfont icon-music-list"></text>
       </view>
     </view>
