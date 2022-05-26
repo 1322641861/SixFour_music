@@ -1,5 +1,6 @@
 // pages/songDetail/songDetail.js
 import request from '../../utils/request';
+import {throttle} from "../../utils/util";
 import PubSub from "pubsub-js";
 import moment from "moment";
 
@@ -12,7 +13,7 @@ Page({
   data: {
     statusBarHeight: 0,
     playMusic: false, // 当前音频是否播放中
-    songInfo: [],
+    songInfo: {},
     songUrl: '',
     loading: false, // url获取中
     currentTime: '00:00',
@@ -20,7 +21,9 @@ Page({
     progressMoving: false, // 拖动状态
     currentWidth: 0, // 进度条
     isPlayedMusic: false, // 当前音频是否播放过
-    musicId: 0
+    musicId: 0,
+    audioPlayType: 0,
+    pageIsUnload: false
   },
 
   /**
@@ -28,24 +31,32 @@ Page({
    */
   onLoad(options) {
     let musicId = JSON.parse(options.musicId, 10);
+    const globalData = appInstance.globalData;
+    const songInfo = wx.getStorageSync('songInfo') ? wx.getStorageSync('songInfo') : {};
+    const songData = wx.getStorageSync('songData') ? wx.getStorageSync('songData') : {};
+    const audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
+    console.log('globalData', appInstance.globalData, songInfo, options);
+    let isPlayedMusic = globalData.musicId === musicId;
 
-    console.log('globalData', appInstance.globalData, options);
-    let isPlayedMusic = appInstance.globalData.musicId === musicId;
-    this.setData({isPlayedMusic, musicId});
-    if (isPlayedMusic && appInstance.globalData.isPlayMusic) {
+    this.setData({isPlayedMusic, musicId, audioPlayType});
+    if (isPlayedMusic && globalData.isPlayMusic) {
       this.changePlayMusic(true);
       this.setData(Object.assign(
-        appInstance.globalData.songData, 
-        {songInfo: appInstance.globalData.songInfo}
+        songData, 
+        {songInfo: songInfo}
       ));
-    } else if (isPlayedMusic && !appInstance.globalData.isPlayMusic) {
+    } else if (isPlayedMusic && !globalData.isPlayMusic) {
       this.setData(Object.assign(
-        appInstance.globalData.songData, 
-        {songInfo: appInstance.globalData.songInfo}
+        songData, 
+        {songInfo: songInfo}
       ));
+      this.play();
     } else {
       this.getMusicInfo(musicId).then(() => {
-        this.getMusicUrl(musicId);
+        this.getMusicUrl(musicId).then(() => {
+          console.log('wraren==================', this.data.pageIsUnload);
+          if (!this.data.pageIsUnload) this.play();
+        });
       });
     }
 
@@ -90,38 +101,56 @@ Page({
    * 音频监听大全
    */
   handleBgAudioMangerAll(musicId) {
+    let waitingTimer;
     this.backgroundAudioManger = wx.getBackgroundAudioManager();
     this.backgroundAudioManger.onPlay(() => {
-      this.changePlayMusic(true);
       appInstance.globalData.musicId = this.data.musicId;
-      console.log('play....', appInstance.globalData);
+      this.changePlayMusic(true);
       this.setData({isPlayedMusic: true});
+      PubSub.publish("changeAndUpdateMusic");
     });
     this.backgroundAudioManger.onPause(() => {
-      console.log('pause...');
       this.changePlayMusic(false);
+      console.log('onTimeUpdate');
       // 暂停时缓存当前音乐
       this.setMusicData();
+      PubSub.publish("changeAndUpdateMusic");
     });
     this.backgroundAudioManger.onStop(() => {
       this.changePlayMusic(false);
+      this.setMusicData();
+      PubSub.publish("changeAndUpdateMusic");
     });
     this.backgroundAudioManger.onTimeUpdate(() => {
       let data = this.data;
-      if (data.progressMoving || data.loading) return;
       let bgCurrentTime = this.backgroundAudioManger.currentTime;
       let bgDurationTime = this.backgroundAudioManger.duration;
+      if (data.progressMoving || data.loading || !bgDurationTime) return;
       let currentTime = moment(bgCurrentTime * 1000).format("mm:ss");
       let currentWidth = bgCurrentTime / bgDurationTime * Math.floor(bgDurationTime * 1000);
       this.setData({currentTime, currentWidth});
       // 只缓存当前正在播放的音乐
-      if (data.isPlayedMusic) this.setMusicData();
+      if (data.isPlayedMusic) {
+        this.setMusicData();
+      } else {
+        this.backgroundAudioManger.pause();
+      }
     });
     this.backgroundAudioManger.onEnded(() => {
-      console.log('next');
-      this.changePreNextMusic(this, 'next');
+      let audioPlayType = this.data.audioPlayType;
+      if (audioPlayType === 1) {
+        this.setData({
+          currentWidth: 0,
+          currentTime: "00:00"
+        });
+        this.musicControl(false);
+      } else {
+        this.changePreNextMusic(this, 'next');
+      }
     });
     this.backgroundAudioManger.onError(() => {
+      this.changePlayMusic(false);
+      PubSub.publish("changeAndUpdateMusic");
       wx.showToast({
         title: '音频错误',
         icon: "none"
@@ -130,43 +159,59 @@ Page({
     });
     this.backgroundAudioManger.onWaiting(() => {
       console.log('onWaiting...');
+      waitingTimer = setTimeout(() => {
+        wx.showToast({
+          title: '网速有点慢哦~',
+          icon: "none"
+        })
+      }, 2000);
     });
     this.backgroundAudioManger.onCanplay(() => {
       console.log('onCanplay...');
+      if (waitingTimer) clearTimeout(waitingTimer);
+      waitingTimer = null;
+      // 暂停时缓存当前音乐
+      this.setMusicData();
     })
   },
   /// 全局缓存当前歌曲的进度
   setMusicData() {
     const data = this.data;
-    appInstance.globalData.songInfo = data.songInfo;
-    appInstance.globalData.songData = {
-      currentTime: data.currentTime, 
-      durationTime: data.durationTime,
-      songUrl: data.songUrl,
-      currentWidth: data.currentWidth,
-      musicId: data.musicId
+    if (data.songUrl && data.songInfo['id']) {
+      let songData = {
+        currentTime: data.currentTime, 
+        durationTime: data.durationTime,
+        songUrl: data.songUrl,
+        currentWidth: data.currentWidth,
+        musicId: data.musicId
+      };
+      wx.setStorageSync('songInfo', data.songInfo);
+      wx.setStorageSync('songData', songData);
+      this.setData({songInfo: data.songInfo, songData});
     }
   },
   /**
    * 播放/暂停音乐
    * @param {*} playMusic 
+   * changePlayMusic 只改变播放的显示状态
+   * play 切换播放/暂停功能
    */
   changePlayMusic(playMusic) {
     this.setData({playMusic});
     appInstance.globalData.isPlayMusic = playMusic;
   },
   play() {
-    let playMusic = this.data.playMusic;
-    this.musicControl(playMusic);
+    throttle(() => {
+      let playMusic = this.data.playMusic;
+      this.musicControl(playMusic);
+    }, 500);
   },
   musicControl(playMusic) {
-    console.log('musicControl..', playMusic, this.backgroundAudioManger.src);
+    // console.log('musicControl..', playMusic, this.backgroundAudioManger);
     let data = this.data;
     let timer;
     if (!playMusic && data.songUrl) {
-      // this.backgroundAudioManger.play();
-      if (data.songUrl !== this.backgroundAudioManger.src) this.backgroundAudioManger.stop();
-      console.log('stop...', this.backgroundAudioManger.src);
+      if (this.backgroundAudioManger && data.songUrl !== this.backgroundAudioManger.src) this.backgroundAudioManger.pause();
       this.changePlayMusic(true);
       timer = setTimeout(() => {
         this.backgroundAudioManger.src = data.songUrl;
@@ -183,11 +228,27 @@ Page({
     this.backgroundAudioManger.seek(currentTime);
   },
   /**
+   * 切换播放类型
+   * audioPlayType 0 列表循环 1 单曲循环 2 随机播放
+   */
+  changeAudioPlayType() {
+    const audioPlayTypeList = ['列表循环', '单曲循环', '随机播放'];
+    let {audioPlayType} = this.data;
+    audioPlayType++;
+    audioPlayType = audioPlayType % 3;
+    this.setData({audioPlayType});
+    wx.setStorageSync('audioPlayType', audioPlayType)
+    wx.showToast({
+      title: audioPlayTypeList[audioPlayType],
+      icon: "none"
+    })
+  },
+  /**
    * 切换上/下一首
    * PubSub 订阅发布
    */
   changePreNextMusic(event, flag) {
-    console.log('changePreNextMusic', this.data.loading);
+    console.log('changePreNextMusic');
     if (this.data.loading) return;
     this.backgroundAudioManger.pause();
     this.setData({
@@ -204,6 +265,8 @@ Page({
         this.getMusicUrl(id).then(() => {
           this.setData({loading: false, musicId: id});
           this.musicControl(false);
+          this.setMusicData();
+          PubSub.publish("changeAndUpdateMusic");
         });
       });
       PubSub.unsubscribe("getMusicId");
@@ -253,14 +316,13 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.setData({pageIsUnload: true});
   },
 
   /**

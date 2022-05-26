@@ -35,3 +35,9 @@
   </scroll-view>
   <view wx:else class="recommend-body recommend-no-data">暂无数据</view>
 </view>
+<music-control 
+  is-play="{{isPlay}}"
+  song-info="{{songInfo}}" 
+  song-data="{{songData}}"
+  >
+</music-control>

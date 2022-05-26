@@ -1,0 +1,19 @@
+<view class="music-control" bindtap="clickWholeMusic" wx:if="{{songData && songInfo}}">
+  <image class="music-img" src="{{songInfo.al.picUrl}}"></image>
+  <view class="music-info">
+    <text class="music-title">{{songInfo.name}}</text>
+    <text class="music-author"> - {{songInfo.ar[0].name}}</text>
+  </view>
+  <!-- 圆形播放进度条 -->
+  <view class="play-progress" catchtap="changePlayPause" >
+    <view class="wrapper left-bg">
+      <view class="circle left" style="animation-duration: {{songProgressLen}}s;transform: rotate({{initRotate}}deg);"></view>
+    </view>
+    <view class="wrapper right-bg">
+      <view class="circle right" style="animation-duration: {{songProgressLen}}s;transform: rotate({{initRotate}}deg);"></view>
+    </view>
+    <text wx:if="{{!isPlay}}" class="iconfont icon-single-play"></text>
+    <text wx:else class="iconfont icon-single-suspend"></text>
+  </view>
+  <text class="iconfont icon-music-list"></text>
+</view>

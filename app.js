@@ -2,8 +2,9 @@ App({
   globalData: {
     musicId: '',
     isPlayMusic: false,
-    songInfo: {},
-    songData: {}
+    // songInfo: {},
+    // songData: {},
+    audioPlayType: 0, // 0 列表循环 1 单曲循环 2 随机播放
   },
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）

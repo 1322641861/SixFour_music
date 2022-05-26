@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "navHeader": "/components/common/navHeader/navHeader",
-    "songListSlider": "/components/custom/songListSlider"
+    "songListSlider": "/components/custom/songListSlider/songListSlider"
   }
 }

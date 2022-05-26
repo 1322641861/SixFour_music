@@ -37,5 +37,8 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": ["audio"],
+  "usingComponents": {
+    "music-control": "/components/custom/musicControl/musicControl"
+  }
 }

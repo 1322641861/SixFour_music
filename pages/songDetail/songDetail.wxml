@@ -1,4 +1,5 @@
 <view class="song-detail">
+  <image class="bg-image" src="{{songInfo.al.picUrl}}" mode="aspectFill"></image>
   <view style="height: {{statusBarHeight * 2 + 20}}px;">
     <view class="title-wrap" style="padding-top: {{statusBarHeight}}px">
       <text class="iconfont icon-back" bindtap="goBack"></text>
@@ -38,7 +39,9 @@
         <text class="right-time">{{durationTime}}</text>
       </view>
       <view class="control">
-        <text class="iconfont icon-replay"></text>
+        <text wx:if="{{audioPlayType === 0}}" class="iconfont icon-list-play" bindtap="changeAudioPlayType"></text>
+        <text wx:elif="{{audioPlayType === 1}}" class="iconfont icon-single-play1" bindtap="changeAudioPlayType"></text>
+        <text wx:else class="iconfont icon-random-play" bindtap="changeAudioPlayType"></text>
         <text class="iconfont icon-last-song" data-type="pre" bindtap="changePreNextMusic"></text>
         <!-- <image class="control-play" bindtap="play" src="/static/images/home/play.png"></image> -->
         <text bindtap="play" wx:if="{{!playMusic}}" class="iconfont icon-play1 control-play"></text>

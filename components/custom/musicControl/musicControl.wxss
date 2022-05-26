@@ -1,0 +1,108 @@
+@import "/static/iconfont/iconfont.wxss";
+
+.music-control {
+  height: 90rpx;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.music-control .music-img {
+  margin-left: 24rpx;
+  position: absolute;
+  top: -5rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.music-control .music-info {
+  margin-left: 120rpx;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-control .music-title {
+  font-size: 26rpx;
+}
+
+.music-control .music-author {
+  color: #999;
+  font-size: 22rpx;
+}
+
+.play-progress {
+  height: 55rpx;
+  width: 56rpx;
+  line-height: 52rpx;
+  text-align: center;
+  border-radius: 50%;
+  border: 4rpx solid #ddd;
+  position: relative;
+  margin: 0 12rpx;
+  box-sizing: border-box;
+}
+.play-progress .iconfont {
+  font-size: 26rpx;
+}
+.music-control .icon-music-list {
+  font-size: 43rpx;
+  padding: 0 24rpx;
+}
+.play-progress .wrapper {
+  position: absolute;
+  top: -2rpx;
+  width: 28rpx;
+  height: 56rpx;
+  overflow: hidden;
+}
+.play-progress .left-bg {
+  left: -1rpx;
+}
+.play-progress .right-bg {
+  right: 0;
+}
+.play-progress .circle {
+  width: 56rpx;
+  height: 56rpx;
+  box-sizing: border-box;
+  border: 4rpx solid transparent;
+  position: absolute;
+  transform: rotate(-135deg);
+  border-radius: 50%;
+}
+.play-progress .left  {
+  border-left: 4rpx solid #333;
+  border-bottom: 4rpx solid #333;
+  left: 0;
+}
+.play-progress .right {
+  border-top: 4rpx solid #333;
+  border-right: 4rpx solid #333;
+  right: 0;
+}
+.right-bg .right {
+  animation: circleRight  linear infinite;
+}
+.left-bg .left {
+  animation: circleLeft  linear infinite;
+}
+@keyframes circleLeft{
+  0%, 50% {
+    transform: rotate(-135deg);
+  }
+  100%{
+    transform: rotate(45deg);
+  }
+}
+@keyframes circleRight{
+  0%{
+    transform: rotate(-135deg);
+  }
+  50%, 100% {
+    transform: rotate(45deg);
+  }
+}

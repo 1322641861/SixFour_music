@@ -1,7 +1,8 @@
 // pages/index/recommendSong/recommendSong.js
 import PubSub from 'pubsub-js';
 import request from '../../../utils/request';
-import { navigateToLogin } from '../../../utils/util'
+import { navigateToLogin, getRandomIndex } from '../../../utils/util';
+const appInstance = getApp();
 
 Page({
 
@@ -13,6 +14,9 @@ Page({
     month: '',
     recommendList: [],
     index: 0,
+    isPlay: false,
+    songInfo: {},
+    songData: {}
   },
 
   /**
@@ -31,26 +35,60 @@ Page({
     } else {
       this.initLoad();
     }
+
     /// 订阅切换上/下一首
     this.subscribeChangeMusic();
   },
+  /**
+   * 获取当前正在播放/暂停状态的歌曲
+   */
+  getCurrentMusic() {
+    let isPlay = appInstance.globalData.isPlayMusic;
+    let songInfo = wx.getStorageSync('songInfo');
+    let songData = wx.getStorageSync('songData');
+    this.setData({isPlay, songInfo, songData});
+  },
+  /**
+   * 切换下一首
+   * 注意是否随机模式(type:2)
+   */
   subscribeChangeMusic() {
     PubSub.subscribe("changeMusic", (msg, type) => {
-      let {recommendList, index} = this.data;
+      this.getCurrentMusic();
+      let audioPlayType = wx.getStorageSync('audioPlayType');
+      
+      /// 需要修改一下 recommendList => 改成当前播放歌单
+      /// 本地缓存, 组件中直接获取即可
+      let {recommendList, songData} = this.data;
+      if (!recommendList || !recommendList.length) {
+        wx.showToast({
+          title: '请下拉刷新页面',
+          icon: 'none'
+        });
+        PubSub.publish("getMusicId", null);
+        return;
+      }
+      let index = recommendList.findIndex(item => item['id'] === songData['musicId']);
       let lastIndex = recommendList.length - 1;
-      if (type === 'next') {
-        index = index === lastIndex ? 0 : ++index;
+      if (audioPlayType === 2) {
+        let randomIndex = getRandomIndex(lastIndex);
+        index = randomIndex;
       } else {
-        index = index === 0 ? lastIndex : --index;
+        if (type === 'next') {
+          index = index === lastIndex ? 0 : ++index;
+        } else {
+          index = index === 0 ? lastIndex : --index;
+        }
       }
       this.setData({index});
-      let id =  recommendList[index].id;
+      let id = recommendList[index].id;
       PubSub.publish("getMusicId", id);
     })
   },
   initLoad() {
     let userInfo = wx.getStorageSync('userInfo');
     if (!userInfo) {
+      wx.stopPullDownRefresh();
       navigateToLogin();
     } else {
       this.getRecommendList();
@@ -65,6 +103,7 @@ Page({
     });
     let res = await request({url: '/recommend/songs'});
     wx.hideLoading();
+    wx.stopPullDownRefresh();
     if (res && res.data) {
       this.setData({
         recommendList: res.data.dailySongs
@@ -91,14 +130,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getCurrentMusic();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
@@ -112,7 +150,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    console.log(111);
     this.initLoad();
   },
 

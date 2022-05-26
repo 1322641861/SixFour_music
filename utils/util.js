@@ -27,7 +27,47 @@ const navigateToLogin = () => {
   })
 }
 
+/**
+   * 递归, 避免随机模式时, 出现随机重复同一首歌
+   * @param {*} len 歌单长度下标
+   */
+const getRandomIndex = function (len) {
+  let randomIndex = parseInt(Math.random() * len);
+  if (this.randomIndex === randomIndex) {
+    return getRandomIndex(len);
+  } else {
+    this.randomIndex = randomIndex;
+    return randomIndex;
+  }
+}
+
+/**
+ * 防抖
+ */
+let timer1;
+const debounce = (fn, delay = 800) => {
+  if (timer1) clearTimeout(timer1);
+  timer1 = setTimeout(() => {
+    fn.apply(this, arguments);
+  }, delay);
+}
+/**
+ * 节流
+ */
+let flag = false;
+const throttle = (fn, timeLen = 800) => {
+  if (flag) return;
+  flag = true;
+  fn();
+  setTimeout(() => {
+    flag = false;
+  }, timeLen);
+}
+
 module.exports = {
   formatTime,
-  navigateToLogin
+  navigateToLogin,
+  debounce,
+  throttle,
+  getRandomIndex
 }
