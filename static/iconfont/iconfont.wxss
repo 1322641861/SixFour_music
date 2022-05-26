@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3393598 */
-  src: url('//at.alicdn.com/t/font_3393598_zu4ztf3qyca.woff2?t=1653321146560') format('woff2'),
-       url('//at.alicdn.com/t/font_3393598_zu4ztf3qyca.woff?t=1653321146560') format('woff'),
-       url('//at.alicdn.com/t/font_3393598_zu4ztf3qyca.ttf?t=1653321146560') format('truetype');
+  src: url('//at.alicdn.com/t/font_3393598_ss8qlslac2l.woff2?t=1653578566986') format('woff2'),
+       url('//at.alicdn.com/t/font_3393598_ss8qlslac2l.woff?t=1653578566986') format('woff'),
+       url('//at.alicdn.com/t/font_3393598_ss8qlslac2l.ttf?t=1653578566986') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiangshang2:before {
+  content: "\e76e";
+}
+
+.icon-xiangxia2:before {
+  content: "\e772";
+}
+
+.icon-delete:before {
+  content: "\e68e";
+}
+
+.icon-gengduo:before {
+  content: "\e63e";
+}
+
+.icon-xiangshang:before {
+  content: "\ec67";
 }
 
 .icon-single-suspend:before {

@@ -14,7 +14,7 @@
       <text class="iconfont icon-check"></text>
     </view>
   </view>
-  <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body">
+  <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body"  style="height: calc(70vh - {{songInfo['id'] && songData['songUrl'] ? '100rpx' : 0}});">
     <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
       <image class="avatar" src="{{item.al.picUrl}}"></image>
       <view class="item-message">
@@ -35,7 +35,8 @@
   </scroll-view>
   <view wx:else class="recommend-body recommend-no-data">暂无数据</view>
 </view>
-<music-control 
+<music-control
+  wx:if="{{songInfo['id'] && songData['songUrl']}}"
   is-play="{{isPlay}}"
   song-info="{{songInfo}}" 
   song-data="{{songData}}"

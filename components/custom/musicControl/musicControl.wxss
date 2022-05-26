@@ -1,5 +1,13 @@
 @import "/static/iconfont/iconfont.wxss";
 
+.music-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 9;
+}
 .music-control {
   height: 90rpx;
   display: flex;
