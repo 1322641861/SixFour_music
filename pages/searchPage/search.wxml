@@ -1,2 +1,8 @@
-<!--pages/searchPage/search.wxml-->
-<text>pages/searchPage/search.wxml</text>
+<view class="search-wrap">
+  <view class="search">
+    <view class="search-border">
+      <input id="find-music" class="search-input" type="text" bindinput="handleInput" confirm-type="search" placeholder="请输入手机号码"/>
+    </view>
+    <text class="search-btn">搜索</text>
+  </view>
+</view>

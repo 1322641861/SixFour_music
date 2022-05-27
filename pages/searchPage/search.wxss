@@ -1,1 +1,25 @@
-/* pages/searchPage/search.wxss */
+.search-wrap {
+  height: 100vh;
+}
+.search-wrap .search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 24rpx;
+}
+.search-border {
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+  flex: 1;
+}
+.search-input {
+  padding: 0 10rpx;
+  /* padding-bottom: 5rpx; */
+  height: 70rpx;
+}
+.search-btn {
+  line-height: 70rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;v
+}
