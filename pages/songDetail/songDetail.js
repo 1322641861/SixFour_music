@@ -204,7 +204,7 @@ Page({
     throttle(() => {
       let playMusic = this.data.playMusic;
       this.musicControl(playMusic);
-    }, 500);
+    }, 500)();
   },
   musicControl(playMusic) {
     // console.log('musicControl..', playMusic, this.backgroundAudioManger);

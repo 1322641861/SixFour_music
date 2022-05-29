@@ -1,8 +1,41 @@
 <view class="search-wrap">
   <view class="search">
     <view class="search-border">
-      <input id="find-music" class="search-input" type="text" bindinput="handleInput" confirm-type="search" placeholder="请输入手机号码"/>
+      <text class="iconfont icon-sousuo"></text>
+      <input id="find-music" class="search-input" type="text" value="{{inputValue}}" bindinput="handleInput" confirm-type="search" placeholder="{{keyword}}" />
+      <text wx:if="{{entered}}" bindtap="clearInputValue" class="iconfont icon-delete1"></text>
     </view>
-    <text class="search-btn">搜索</text>
+    <text class="search-btn" bindtap="getSearchDetail">搜索</text>
+  </view>
+
+  <view class="search-desc">
+    <view class="history-view" wx:if="{{historyList.length}}">
+      <view class="history-title">
+        <text class="history-h">历史</text>
+        <text class="iconfont icon-delete"></text>
+      </view>
+      <view class="history-content">
+        <text wx:for="{{historyList}}">{{item}}</text>
+      </view>
+    </view>
+    <view class="hot-view">
+      <view class="history-title">
+        <text class="history-h">热搜榜</text>
+      </view>
+      <view class="hot-content">
+        <view wx:for="{{hotList}}" wx:key="index" class="hot-single {{index < 3 ? 'hot-top' : ''}}">
+          <text class="hot-i">{{index + 1}}</text>
+          <view class="hot-info">
+            <text class="name">{{item['searchWord']}}</text>
+            <!-- <text class="tag">热</text> -->
+            <image wx:if="{{item['url']}}" src="{{item.url}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="search-content">
+
   </view>
 </view>

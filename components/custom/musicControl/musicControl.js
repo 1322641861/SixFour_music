@@ -46,28 +46,32 @@ Component({
     /**
      * 暂停/播放
      */
-    changePlayPause() {
+    changePlayStatus() {
       let {songInfo, songData, isPlay} = this.data;
-      this.backgroundAudioManager = wx.getBackgroundAudioManager();
+      // this.backgroundAudioManager = wx.getBackgroundAudioManager();
+      isPlay = !isPlay;
+      this.setData({ isPlay });
+      appInstance.globalData.isPlayMusic = isPlay;
+      // throttle(() => {
+      //   this.changePlayPause();
+      // }, 500);
+    },
+    changePlayPause() {
+      // isPlay = !isPlay;
+      // this.setData({ isPlay });
+      // appInstance.globalData.isPlayMusic = isPlay;
       throttle(() => {
-        isPlay = !isPlay;
-        // console.log(222, this.backgroundAudioManager.src, songInfo, isPlay);
-        this.setData({ isPlay });
-        appInstance.globalData.isPlayMusic = isPlay;
+        this.changePlayStatus();
+        let {songInfo, songData, isPlay} = this.data;
+        console.log(songData.songUrl, isPlay);
+        this.backgroundAudioManager = wx.getBackgroundAudioManager();
         if (isPlay) {
-          // if (this.backgroundAudioManager.src) {
-          //   this.backgroundAudioManager.play();
-          // } else {
-          //   this.backgroundAudioManager.src = songData.songUrl;
-          //   this.backgroundAudioManager.title = songInfo.name;
-          // }
           this.backgroundAudioManager.src = songData.songUrl;
           this.backgroundAudioManager.title = songInfo.name;
         } else {
-          // console.log('准备暂停', this.backgroundAudioManager.url);
           this.backgroundAudioManager.pause();
         }
-      }, 500);
+      }, 500)();
     },
     /**
      * 播放下一首
@@ -121,11 +125,16 @@ Component({
       this.backgroundAudioManager = wx.getBackgroundAudioManager();
       let waitingTimer;
       this.backgroundAudioManager.onPlay(() => {
-        console.log("onplay11111111111111111111111");
-        this.changePlayPause();
+        console.log("onplay11111111111111111111111", this.data.isPlay);
+        if (!this.data.isPlay) this.changePlayPause();
       })
       this.backgroundAudioManager.onError(() => {
         console.log("onError11111111111111111111111");
+        wx.showToast({
+          title: '加载错误, 自动播放下一首',
+          icon: "none"
+        })
+        this.changePreNextMusic();
       })
       this.backgroundAudioManager.onEnded(() => {
         console.log("onEnded11111111111111111111111");
@@ -145,7 +154,8 @@ Component({
         }, 2000);
       })
       this.backgroundAudioManager.onPause(() => {
-        this.changePlayPause();
+        console.log("onPause11111111111111111111111", this.data.isPlay);
+        if (this.data.isPlay) this.changePlayStatus();
         // 暂停时缓存当前音乐
         this.setMusicData();
       });
@@ -155,7 +165,7 @@ Component({
         this.setMusicData();
       });
       this.backgroundAudioManager.onTimeUpdate(() => {
-        // throttle(() => {
+        throttle(() => {
           // console.log('4444444444',this.backgroundAudioManager);
           let bgCurrentTime = this.backgroundAudioManager.currentTime;
           let bgDurationTime = this.backgroundAudioManager.duration;
@@ -167,7 +177,7 @@ Component({
           songData.currentWidth = currentWidth;
           this.setData({songData});
           this.setMusicData();
-        // }, 500);
+        }, 500)();
       })
     },
      /**

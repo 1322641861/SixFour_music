@@ -44,24 +44,61 @@ const getRandomIndex = function (len) {
 /**
  * 防抖
  */
-let timer1;
 const debounce = (fn, delay = 800) => {
+  let timer1;
   if (timer1) clearTimeout(timer1);
-  timer1 = setTimeout(() => {
-    fn.apply(this, arguments);
-  }, delay);
+  let that = this;
+  return function () {
+    timer1 = setTimeout(() => {
+      fn.apply(that, arguments);
+    }, delay);
+  }
 }
 /**
  * 节流
  */
-let flag = false;
-const throttle = (fn, timeLen = 800) => {
-  if (flag) return;
-  flag = true;
-  fn();
-  setTimeout(() => {
-    flag = false;
-  }, timeLen);
+const throttle1 = (fn, timeLen = 800) => {
+  let flag = false;
+  return function () {
+    if (!flag) {
+      flag = true;
+      setTimeout(() => {
+        flag = false;
+        fn.apply(this, arguments);
+      }, timeLen);
+    }
+  }
+}
+const throttle2 = (fn, time = 800) => {
+  let startTime = 0;
+  let that = this;
+  return function() {
+      let nowTime = Date.now();
+      console.log('nowTime', nowTime, startTime, time);
+      if (nowTime - startTime >= time) {
+          fn.apply(that, arguments)
+          startTime = Date.now();
+      }
+  }
+}
+function throttle (fn, time = 800) {
+  let startTime = Date.now();
+  // let startTime = 0;
+  let timer = null;
+  let that = this;
+  return function() {
+      let nowTime = Date.now();
+      clearTimeout(timer);
+      console.log(nowTime - startTime >= time, nowTime, startTime);
+      if (nowTime - startTime >= time){ // 时间范围允许立即执行
+          fn.apply(that, arguments);
+          startTime = Date.now();
+      } else {
+          timer = setTimeout(()=>{
+              fn.apply(that, arguments)
+          }, time)
+      }
+  }
 }
 
 module.exports = {
