@@ -102,10 +102,35 @@
   display: inline-block;
 }
 .hot-info image {
-  width: 36rpx;
-  max-height: 30rpx;
+  width: 38rpx;
+  max-height: 20rpx;
   margin-left: 10rpx;
+  vertical-align: text-top;
 }
 .hot-content .hot-top {
   font-weight: bold;
+}
+
+.search-content .search-single {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+}
+.search-content .trim-value {
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #eee;
+  margin: 0 24rpx;
+  font-size: 26rpx;
+  color: #2876ec;
+  white-space: pre;
+}
+.search-single .icon-sousuo {
+  font-size: 32rpx;
+  margin-right: 24rpx;
+}
+.search-single .single-msg {
+  font-size: 26rpx;
+  flex: 1;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #eee;
 }

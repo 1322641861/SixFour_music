@@ -1,1 +1,32 @@
-/* components/common/topNav/topNav.wxss */
+@import "/static/iconfont/iconfont.wxss";
+.top-nav .title-wrap {
+  text-align: center;
+  color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.top-nav .icon-back {
+  height: 40px;
+  line-height: 40px;
+  font-size: 40rpx;
+  float: left;
+  padding-left: 20rpx;
+  position: absolute;
+  left: 0;
+}
+.top-nav .title {
+  display: inline-block;
+  height: 40px;
+  line-height: 20px;
+  font-size: 32rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200rpx;
+}
+.top-nav .title2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,18 +1,16 @@
 <view class="song-detail">
   <image class="bg-image" src="{{songInfo.al.picUrl}}" mode="aspectFill"></image>
-  <view style="height: {{statusBarHeight * 2 + 20}}px;">
-    <view class="title-wrap" style="padding-top: {{statusBarHeight}}px">
-      <text class="iconfont icon-back" bindtap="goBack"></text>
-      <view class="title">
-        <text>{{songInfo.name}}</text>
-        <view class="author">
-          <text class="name">{{songInfo.ar[0].name}}</text>
-          <!-- <text class="follow">关注</text> -->
-        </view>
+
+  <top-nav bindcustomGoBack="goBack" isShowSlot="{{true}}">
+    <view>
+      <text>{{songInfo.name}}</text>
+      <view class="author">
+        <text class="name">{{songInfo.ar[0].name}}</text>
+        <!-- <text class="follow">关注</text> -->
       </view>
-      <!-- <text class="iconfont icon-share_light"></text> -->
     </view>
-  </view>
+  </top-nav>
+
   <view class="song-content">
     <view class="music-disc">
       <image class="single-cover single-cover-rotate" style="animation-play-state: {{playMusic ? 'running' : 'pasued'}}" src="/static/images/home/singlecover.png">

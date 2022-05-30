@@ -54,7 +54,6 @@ Page({
     } else {
       this.getMusicInfo(musicId).then(() => {
         this.getMusicUrl(musicId).then(() => {
-          console.log('wraren==================', this.data.pageIsUnload);
           if (!this.data.pageIsUnload) this.play();
         });
       });
@@ -71,6 +70,11 @@ Page({
     } catch (error) {
       console.log(error);
     }
+  },
+  goBack() {
+    wx.navigateBack({
+      delta: 1,
+    })
   },
   /**
    * 获取歌曲信息

@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "发现音乐"
+  "usingComponents": {
+    "top-nav": "/components/common/topNav/topNav"
+  },
+  "navigationBarTitleText": "发现音乐",
+  "navigationStyle": "custom"
 }

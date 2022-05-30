@@ -46,11 +46,12 @@ const getRandomIndex = function (len) {
  */
 const debounce = (fn, delay = 800) => {
   let timer1;
-  if (timer1) clearTimeout(timer1);
-  let that = this;
   return function () {
-    timer1 = setTimeout(() => {
-      fn.apply(that, arguments);
+    if (timer1) clearTimeout(timer1);
+    let that = this;
+    let args = arguments;
+    timer1 = setTimeout(function () {
+      fn.apply(that, args);
     }, delay);
   }
 }
@@ -67,18 +68,6 @@ const throttle1 = (fn, timeLen = 800) => {
         fn.apply(this, arguments);
       }, timeLen);
     }
-  }
-}
-const throttle2 = (fn, time = 800) => {
-  let startTime = 0;
-  let that = this;
-  return function() {
-      let nowTime = Date.now();
-      console.log('nowTime', nowTime, startTime, time);
-      if (nowTime - startTime >= time) {
-          fn.apply(that, arguments)
-          startTime = Date.now();
-      }
   }
 }
 function throttle (fn, time = 800) {

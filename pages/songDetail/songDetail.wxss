@@ -3,17 +3,17 @@
   height: 100vh;
   background: #ccc;
 }
-.song-detail .title-wrap {
-  text-align: center;
-  color: #fff;
-  position: relative;
-}
 .song-detail .bg-image {
   height: 100vh;
   width: 100vw;
   position: absolute;
   opacity: 0.9;
   filter: blur(59px);
+}
+/* .song-detail .title-wrap {
+  text-align: center;
+  color: #fff;
+  position: relative;
 }
 .song-detail .icon-back {
   height: 40px;
@@ -31,8 +31,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 200rpx;
-}
-.song-detail .title .author {
+} */
+.song-detail .author {
   font-size: 24rpx;
   color: #eee;
 }

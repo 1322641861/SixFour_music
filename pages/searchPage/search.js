@@ -1,4 +1,6 @@
 import request from "../../utils/request";
+import {debounce} from "../../utils/util"
+
 Page({
 
   /**
@@ -9,16 +11,24 @@ Page({
     historyList: [],
     entered: false,
     inputValue: '',
+    showTrimValue: false, // 用户是否只输入 " "
     keyword: '',
-    searchDetailList: []
+    searchSingleList: [], // input模糊查询
+    searchDetailList: [],
+    systemBarHeight: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let historyList = wx.getStorageSync('historyList') ? wx.getStorageSync('historyList') : [];
-    this.setData({historyList});
+    try {
+      let systemInfo = wx.getSystemInfoSync();
+      this.setData({systemBarHeight: `${systemInfo.statusBarHeight * 2 + 20}px`});
+    } catch (error) {
+      console.log(error);
+    }
+    this.getHistoryList();
     this.getSearchDefault();
     this.getSearchHotList();
   },
@@ -33,20 +43,90 @@ Page({
     let res = await request({url: "/search/hot/detail"});
     wx.hideLoading();
     if (res && res.code == 200) {
+      for (const item of res.data) {
+        item['iconWidth'] = this.getIconWidth(item['iconType']);
+      }
       this.setData({ hotList: res.data });
     }
-    // console.log(res);
   },
-  handleInput(event) {
+  /**
+   * 获取本地搜索历史记录
+   */
+  getHistoryList() {
+    let historyList = wx.getStorageSync('historyList') ? wx.getStorageSync('historyList') : [];
+    if (Object.prototype.toString.call(historyList) !== "[object Array]") {
+      wx.removeStorageSync('historyList');
+      this.setData({historyList: []});
+    } else {
+      this.setData({historyList});
+    }
+  },
+  setHistoryList(allData, currentValue) {
+    if (!allData.includes(currentValue)) {
+      if (allData.length === 20) allData.pop();
+      allData.unshift(currentValue);
+      this.setData({historyList: allData});
+      wx.setStorageSync('historyList', allData);
+    }
+  },
+  clearHistoryList() {
+    wx.showModal({
+      content: "确定清空全部历史记录?",
+      success: function () {
+        wx.removeStorageSync('historyList');
+        this.setData({historyList: []});
+      }
+    })
+  },
+  /**
+   * 监听input输入
+   * @param {*} event 
+   */
+  handleInput: debounce(function (event) {
     let value = event.detail.value;
-    this.setData({
-      entered: value.length ? true : false,
-      inputValue: value
-    });
-    // console.log('value', value, 'inputValue',  this.data.inputValue);
-  },
+    let entered = value.length ? true : false;
+    if (entered) {
+      if (value.trim()) {
+        this.setData({
+          entered,
+          inputValue: value,
+          showTrimValue: false
+        });
+        this.getSearchDetail();
+      } else {
+        this.setData({entered, inputValue: value, showTrimValue: true, searchSingleList: []})
+      }
+    } else {
+      this.clearInputValue();
+    }
+  }, 200),
   clearInputValue() {
-    this.setData({inputValue: ''});
+    this.setData({
+      inputValue: '',
+      searchSingleList: [],
+      entered: false,
+      showTrimValue: false
+    });
+  },
+  /**
+   * 根据iconType改变image长度
+   * @param {*} iconType 
+   */
+  getIconWidth(iconType) {
+    let width;
+    switch (iconType) {
+      case 1:
+      case 2:
+        width = "38rpx"
+        break;
+      case 5:
+        width = "22rpx";
+        break;
+      default:
+        width = "38rpx"
+        break;
+    }
+    return width;
   },
   /**
    * 获取搜索框内的默认文字
@@ -60,13 +140,24 @@ Page({
   /**
    * 搜索
    */
-  async getSearchDetail() {
-    let {inputValue, keyword} = this.data;
-    let searchValue = inputValue ? inputValue : keyword;
-    let res = await request({url: "/search", data: {keywords: searchValue}});
-    console.log(res);
-    if (res && res.code == 200) {
-      // this.setData({keyword: res.data.showKeyword});
+  async getSearchDetail(event) {
+    let {inputValue, keyword, showTrimValue, historyList} = this.data;
+    let submitType = event && event.currentTarget.dataset.submit;
+    if (submitType) {
+     this.setHistoryList(historyList, inputValue);
+    }
+
+    let trimValue = inputValue.trim();
+    let searchValue = showTrimValue ? trimValue : inputValue ? inputValue : keyword;
+    let res = await request({url: "/search", data: {
+      keywords: searchValue,
+      limit: 10,
+      // type: 1018
+    }});
+    if (res && res.code == 200 && res.result.songCount) {
+      this.setData({searchSingleList: res.result.songs});
+    } else {
+      this.setData({searchSingleList: []});
     }
   },
   /**

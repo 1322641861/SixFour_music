@@ -1,2 +1,9 @@
-<!--components/common/topNav/topNav.wxml-->
-<text>components/common/topNav/topNav.wxml</text>
+<view class="top-nav" style="height: {{statusBarHeight * 2 + 20}}px;">
+  <view class="title-wrap" style="padding-top: {{statusBarHeight}}px;color: {{titleColor}};">
+    <text class="iconfont icon-back" bindtap="goBack"></text>
+    <view wx:if="{{isShowSlot}}" class="title">
+      <slot></slot>
+    </view>
+    <view wx:else class="title title2">{{title}}</view>
+  </view>
+</view>
