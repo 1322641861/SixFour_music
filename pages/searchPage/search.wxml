@@ -1,24 +1,25 @@
 <view class="search-wrap">
-  <top-nav title="发现音乐" titleColor="#333"></top-nav>
+  <top-nav title="发现音乐" titleColor="#333" bindcustomGoBack="goBack"></top-nav>
   <view class="search">
     <view class="search-border">
       <text class="iconfont icon-sousuo"></text>
-      <input id="find-music" class="search-input" type="text" value="{{inputValue}}" data-submit="1" bindinput="handleInput" bindconfirm="getSearchDetail" confirm-type="search" placeholder="{{keyword}}" />
+      <input id="find-music" class="search-input" type="text" value="{{inputValue}}" data-submit="{{inputValue}}" bindinput="handleInput" bindconfirm="getSearchDetail" confirm-type="search" placeholder="{{keyword}}" />
       <text wx:if="{{entered}}" bindtap="clearInputValue" class="iconfont icon-delete1"></text>
     </view>
-    <text class="search-btn" data-submit="1" bindtap="getSearchDetail">搜索</text>
+    <text class="search-btn" data-submit="{{inputValue}}" bindtap="getSearchDetail">搜索</text>
   </view>
 
-  <scroll-view style="height: calc(100vh - {{systemBarHeight}} - 70rpx);">
-    <block wx:if="{{!entered}}">
+  <scroll-view scroll-y style="height: calc(100vh - {{systemBarHeight}} - {{songInfo['id'] && songData['songUrl'] ? 160 : 70}}rpx);">
+    <!-- 首页搜索界面 -->
+    <block wx:if="{{!entered && !enteredDetail}}">
       <view class="search-desc">
         <view class="history-view" wx:if="{{historyList.length}}">
           <view class="history-title">
             <text class="history-h">历史</text>
-            <text class="iconfont icon-delete"></text>
+            <text class="iconfont icon-delete" bindtap="clearHistoryList"></text>
           </view>
           <view class="history-content">
-            <text wx:for="{{historyList}}" wx:key="item">{{item}}</text>
+            <text wx:for="{{historyList}}" wx:key="item" data-submit="{{item}}" bindtap="getSearchDetail">{{item}}</text>
           </view>
         </view>
         <view class="hot-view">
@@ -26,7 +27,7 @@
             <text class="history-h">热搜榜</text>
           </view>
           <view class="hot-content">
-            <view wx:for="{{hotList}}" wx:key="searchWord" class="hot-single {{index < 3 ? 'hot-top' : ''}}">
+            <view wx:for="{{hotList}}" wx:key="searchWord" class="hot-single {{index < 3 ? 'hot-top' : ''}}" data-submit="{{item['searchWord']}}" bindtap="getSearchDetail">
               <text class="hot-i">{{index + 1}}</text>
               <view class="hot-info">
                 <text class="name">{{item['searchWord']}}</text>
@@ -39,14 +40,56 @@
       </view>
     </block>
 
-    <block wx:elif="{{entered}}">
+    <!-- 模糊搜索界面 -->
+    <block wx:elif="{{entered && !enteredDetail}}">
       <view class="search-content">
-        <view class="trim-value" data-submit="1" bindtap="getSearchDetail" wx:if="{{showTrimValue || !searchSingleList.length}}">搜索“{{inputValue}}”</view>
-        <view wx:for="{{searchSingleList}}" wx:key="id" class="search-single">
+        <view class="trim-value" data-submit="{{inputValue}}" bindtap="getSearchDetail" wx:if="{{showTrimValue || !searchSingleList.length}}">搜索“{{inputValue}}”</view>
+        <view wx:for="{{searchSingleList}}" wx:key="keyword" data-submit="{{item.keyword}}" class="search-single" bindtap="getSearchDetail">
           <text class="iconfont icon-sousuo"></text>
-          <view class="single-msg">{{item.name}}</view>
+          <view class="single-msg">{{item.keyword}}</view>
         </view>
       </view>
     </block>
+
+    <!-- 搜索结果界面 -->
+    <block wx:else>
+      <view wx:if="{{searchDetailList.length}}" class="search-detail">
+        <view class="play-more" bindtap="playAllSongSheet">
+          <view class="play-left">
+            <text class="iconfont icon-play"></text>
+            <text class="play">播放全部</text>
+          </view>
+          <text class="iconfont icon-check"></text>
+        </view>
+        <view class="detail-list">
+          <view class="recommend-item" wx:for="{{searchDetailList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
+            <!-- <image class="avatar" src="{{item.al.picUrl}}"></image> -->
+            <view class="item-message">
+              <view class="title">
+                <text>{{item.name}}</text>
+                <!-- <text class="repeat-title">(删了吧)</text> -->
+              </view>
+              <view class="avatar-name">
+                <text class="name">{{item.artists[0].name}}</text>
+                <text> - {{item.album.name}}</text>
+              </view>
+            </view>
+            <view class="right-btn">
+              <text class="iconfont icon-music_play"></text>
+              <text class="iconfont icon-more_point"></text>
+            </view>
+          </view>
+          <view class="border-10"></view>
+        </view>
+      </view>
+      <view wx:else class="recommend-body recommend-no-data">未找到与“{{inputValue}}”相关的内容</view>
+    </block>
   </scroll-view>
+  <music-control
+    wx:if="{{songInfo['id'] && songData['songUrl']}}"
+    is-play="{{isPlay}}"
+    song-info="{{songInfo}}" 
+    song-data="{{songData}}"
+    >
+  </music-control>
 </view>

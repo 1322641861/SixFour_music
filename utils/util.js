@@ -78,7 +78,7 @@ function throttle (fn, time = 800) {
   return function() {
       let nowTime = Date.now();
       clearTimeout(timer);
-      console.log(nowTime - startTime >= time, nowTime, startTime);
+      // console.log(nowTime - startTime >= time, nowTime, startTime);
       if (nowTime - startTime >= time){ // 时间范围允许立即执行
           fn.apply(that, arguments);
           startTime = Date.now();

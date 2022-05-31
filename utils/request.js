@@ -19,6 +19,10 @@ function request({url, data = {}, method = 'GET'}) {
       },
       fail: (err) => {
         console.log(err);
+        wx.hideLoading();
+        wx.showToast({
+          title: "请求超时, 请检查网络",
+        })
         reject(err);
       }
     })

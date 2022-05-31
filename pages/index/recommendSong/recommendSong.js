@@ -85,6 +85,11 @@ Page({
       PubSub.publish("getMusicId", id);
     })
   },
+  /// 播放全部
+  playAllSongSheet() {
+    wx.setStorageSync('currentSongSheet', this.data.recommendList);
+    this.navigatePage(null, 0);
+  },
   initLoad() {
     let userInfo = wx.getStorageSync('userInfo');
     if (!userInfo) {
@@ -111,8 +116,17 @@ Page({
       wx.setStorageSync('recommendList', res.data.dailySongs);
     }
   },
-  navigatePage(event) {
-    let {index, musicid} = event.currentTarget.dataset;
+  navigatePage(event, i) {
+    let index;
+    let musicid;
+    if (i >= 0) {
+      index = i;
+      musicid = this.data.recommendList.length && this.data.recommendList[i].id;
+    } else {
+      const dataset = event.currentTarget.dataset;
+      index = dataset.index;
+      musicid = dataset.musicid;
+    }
     this.setData({index});
     wx.navigateTo({
       url: '/pages/songDetail/songDetail?musicId=' + musicid,

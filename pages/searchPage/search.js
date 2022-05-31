@@ -1,5 +1,6 @@
 import request from "../../utils/request";
 import {debounce} from "../../utils/util"
+const appInstance = getApp();
 
 Page({
 
@@ -15,7 +16,12 @@ Page({
     keyword: '',
     searchSingleList: [], // input模糊查询
     searchDetailList: [],
-    systemBarHeight: ""
+    enteredDetail: false,
+    systemBarHeight: "",
+    index: 0,
+    isPlay: false,
+    songInfo: {},
+    songData: {}
   },
 
   /**
@@ -33,6 +39,16 @@ Page({
     this.getSearchHotList();
   },
   /**
+   * 获取当前播放歌单/歌曲
+   */
+  getCurrentMusic() {
+    let isPlay = appInstance.globalData.isPlayMusic;
+    let songInfo = wx.getStorageSync('songInfo');
+    let songData = wx.getStorageSync('songData');
+    this.setData({isPlay, songInfo, songData});
+  },
+
+  /**
    * 获取热搜列表
    */
   async getSearchHotList() {
@@ -49,6 +65,42 @@ Page({
       this.setData({ hotList: res.data });
     }
   },
+
+  /**
+   * 跳转
+   */
+  navigatePage(event, i) {
+    let index;
+    let musicid;
+    if (i >= 0) {
+      index = i;
+      musicid = this.data.searchDetailList.length && this.data.searchDetailList[i].id;
+    } else {
+      const dataset = event.currentTarget.dataset;
+      index = dataset.index;
+      musicid = dataset.musicid;
+    }
+    this.setData({index});
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + musicid,
+    })
+  },
+  goBack() {
+    const {entered, searchSingleList, searchDetailList} = this.data;
+    if (entered || searchDetailList.length) {
+      this.clearInputValue();
+    } else {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
+  },
+  /// 播放全部
+  playAllSongSheet() {
+    wx.setStorageSync('currentSongSheet', this.data.searchDetailList);
+    this.navigatePage(null, 0);
+  },
+
   /**
    * 获取本地搜索历史记录
    */
@@ -62,7 +114,7 @@ Page({
     }
   },
   setHistoryList(allData, currentValue) {
-    if (!allData.includes(currentValue)) {
+    if (currentValue && !allData.includes(currentValue)) {
       if (allData.length === 20) allData.pop();
       allData.unshift(currentValue);
       this.setData({historyList: allData});
@@ -72,9 +124,11 @@ Page({
   clearHistoryList() {
     wx.showModal({
       content: "确定清空全部历史记录?",
-      success: function () {
-        wx.removeStorageSync('historyList');
-        this.setData({historyList: []});
+      success: (res) => {
+        if (res.confirm) {
+          wx.removeStorageSync('historyList');
+          this.setData({historyList: []});
+        }
       }
     })
   },
@@ -92,7 +146,7 @@ Page({
           inputValue: value,
           showTrimValue: false
         });
-        this.getSearchDetail();
+        this.getSearchSuggest();
       } else {
         this.setData({entered, inputValue: value, showTrimValue: true, searchSingleList: []})
       }
@@ -105,7 +159,9 @@ Page({
       inputValue: '',
       searchSingleList: [],
       entered: false,
-      showTrimValue: false
+      showTrimValue: false,
+      searchDetailList: [],
+      enteredDetail: false
     });
   },
   /**
@@ -139,25 +195,43 @@ Page({
   },
   /**
    * 搜索
+   * getSearchSuggest 模糊查询
+   * getSearchDetail 详情
    */
-  async getSearchDetail(event) {
-    let {inputValue, keyword, showTrimValue, historyList} = this.data;
-    let submitType = event && event.currentTarget.dataset.submit;
-    if (submitType) {
-     this.setHistoryList(historyList, inputValue);
-    }
+  async getSearchSuggest() {
+    this.setData({enteredDetail: false, searchDetailList: []});
 
-    let trimValue = inputValue.trim();
+    let {inputValue, keyword, showTrimValue} = this.data;
     let searchValue = showTrimValue ? trimValue : inputValue ? inputValue : keyword;
+    let res = await request({url: "/search/suggest", data: {keywords: searchValue, type: "mobile"}});
+    // console.log('搜索建议', res);
+    if (res && res.code == 200 && res.result.allMatch) {
+      this.setData({searchSingleList: res.result.allMatch});
+    } else {
+      this.setData({searchSingleList: []});
+    }
+  },
+  async getSearchDetail(event) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let submitValue = event.currentTarget.dataset.submit;
+    this.setData({enteredDetail: true, inputValue: submitValue});
+    let {inputValue, keyword, historyList} = this.data;
+    this.setHistoryList(historyList, inputValue);
+
+    let searchValue = submitValue ? submitValue : inputValue ? inputValue : keyword;
     let res = await request({url: "/search", data: {
       keywords: searchValue,
       limit: 10,
       // type: 1018
     }});
+    wx.hideLoading();
+    // console.log('搜索详情', res);
     if (res && res.code == 200 && res.result.songCount) {
-      this.setData({searchSingleList: res.result.songs});
+      this.setData({searchDetailList: res.result.songs});
     } else {
-      this.setData({searchSingleList: []});
+      this.setData({searchDetailList: []});
     }
   },
   /**
@@ -171,7 +245,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getCurrentMusic();
   },
 
   /**
