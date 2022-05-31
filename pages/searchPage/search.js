@@ -28,6 +28,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let keyword = options.keyword;
+    if (!keyword) {
+      this.getSearchDefault();
+    } else {
+      this.setData({keyword});
+    }
+
     try {
       let systemInfo = wx.getSystemInfoSync();
       this.setData({systemBarHeight: `${systemInfo.statusBarHeight * 2 + 20}px`});
@@ -35,7 +42,7 @@ Page({
       console.log(error);
     }
     this.getHistoryList();
-    this.getSearchDefault();
+    
     this.getSearchHotList();
   },
   /**
@@ -98,6 +105,7 @@ Page({
   /// 播放全部
   playAllSongSheet() {
     wx.setStorageSync('currentSongSheet', this.data.searchDetailList);
+    wx.setStorageSync('currentSongId', this.data.searchDetailList[0].id);
     this.navigatePage(null, 0);
   },
 

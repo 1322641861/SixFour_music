@@ -1,5 +1,6 @@
-// pages/index/index.js
 import request from '../../utils/request';
+import PubSub from "pubsub-js";
+const appInstance = getApp();
 
 Page({
 
@@ -9,13 +10,18 @@ Page({
   data: {
     banners: [],
     personalized: [],
-    topList: []
+    topList: [],
+    isPlay: false,
+    songInfo: {},
+    songData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    this.subscribeChangeMusic();
+    
     /// 轮播图
     this.getBanners();
     /// 推荐歌单
@@ -75,6 +81,57 @@ Page({
         break;
     }
   },
+  
+  /**
+   * 获取当前正在播放/暂停状态的歌曲
+   */
+  getCurrentMusic() {
+    let isPlay = appInstance.globalData.isPlayMusic;
+    let songInfo = wx.getStorageSync('songInfo');
+    let songData = wx.getStorageSync('songData');
+    this.setData({isPlay, songInfo, songData});
+  },
+  /**
+   * 切换下一首
+   * 注意是否随机模式(type:2)
+   */
+  subscribeChangeMusic() {
+    PubSub.subscribe("changeMusic", (msg, type) => {
+      this.getCurrentMusic();
+      let audioPlayType = wx.getStorageSync('audioPlayType');
+      
+      /// 本地缓存, 当前播放歌单列表
+      let currentSongSheet = wx.getStorageSync('currentSongSheet');
+      let currentSongId = wx.getStorageSync('currentSongId');
+      console.log("currentSongSheet", currentSongSheet);
+      console.log("currentSongId", currentSongId);
+      if (!currentSongSheet || !currentSongSheet.length) {
+        // wx.showToast({
+        //   title: '请下拉刷新页面',
+        //   icon: 'none'
+        // });
+        PubSub.publish("getMusicId", null);
+        return;
+      }
+      let index = currentSongSheet.findIndex(item => item['id'] === currentSongId);
+      console.log("currentSongId => index", index, type);
+      let lastIndex = currentSongSheet.length - 1;
+      if (audioPlayType === 2) {
+        let randomIndex = getRandomIndex(lastIndex);
+        index = randomIndex;
+      } else {
+        if (type === 'next') {
+          index = (Object.prototype.toString.call(index) !== '[object Number]' || index === lastIndex) ? 0 : ++index;
+        } else {
+          index = index === 0 ? lastIndex : --index;
+        }
+      }
+      this.setData({index});
+      wx.setStorageSync('currentSongId', currentSongSheet[index].id);
+      let id = currentSongSheet[index].id;
+      PubSub.publish("getMusicId", id);
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -87,6 +144,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getCurrentMusic(); 
     if (typeof this.getTabBar === 'function' &&
         this.getTabBar()) {
         this.getTabBar().setData({

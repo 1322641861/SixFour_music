@@ -1,9 +1,9 @@
 <view class="cloud-wrap">
   <view class="search">
     <image src="/static/images/home/music.png"></image>
-    <view class="search-content">
+    <view class="search-content" bindtap="goSearchPage">
       <text class="iconfont icon-sousuo"></text>
-      <text>新人必听</text>
+      <text>{{keyword}}</text>
     </view>
     <image src="/static/images/home/add.png"></image>
   </view>

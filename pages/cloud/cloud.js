@@ -14,13 +14,16 @@ Page({
     triggered: false, // 刷新
     offset: 0, // 分页参数,
     hasMore: true, // 是否可以触发上拉加载
-    scrollTop: 0
+    scrollTop: 0,
+    keyword: '' // 搜索框内的默认关键字
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getSearchDefault();
+
     /// 标签/分类列表
     let groupList = wx.getStorageSync('groupList');
     if (!groupList) {
@@ -195,6 +198,23 @@ Page({
       this.setData({offset: allData.offset});
       console.log('refreshPullUp', this.data);
       this.getCurrentVideoList(allData.activedId, true);
+    }
+  },
+  /**
+   * 跳转搜索
+   */
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/searchPage/search?keyword=' + this.data.keyword,
+    })
+  },
+  /**
+   * 获取搜索框内的默认文字
+   */
+  async getSearchDefault() {
+    let res = await request({url: "/search/default"});
+    if (res && res.code == 200) {
+      this.setData({keyword: res.data.showKeyword});
     }
   },
 

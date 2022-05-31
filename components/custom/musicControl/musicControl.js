@@ -191,6 +191,12 @@ Component({
         if (songInfo['id'] && songData['songUrl']) {
            this.setData({ songData, songInfo, isPlay })
         }
+        /// 监听当前歌曲是否属于当前播放歌单列表
+        const currentSongSheet = wx.getStorageSync('currentSongSheet', this.data.searchDetailList);
+        if (currentSongSheet && currentSongSheet.length) {
+          let currentSong = currentSongSheet.find(item => item['id'] === songData['musicId']);
+          if (currentSong) wx.setStorageSync('currentSongId', currentSong['id']);
+        }
       })
     },
    /**
