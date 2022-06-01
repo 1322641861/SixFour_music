@@ -29,6 +29,7 @@
     refresher-triggered="{{triggered}}"
     bindscrolltolower="refreshPullUp"
     scroll-top="{{scrollTop}}"
+    style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 338 : 250}}rpx);"
   >
     <view class="cloud-video-wrap" wx:if="{{videoList.length}}">
       <view wx:for="{{videoList}}" wx:key="id" class="video-wrap">
@@ -78,4 +79,12 @@
     </view>
     <view wx:else class="not-more">暂无视频推荐</view>
   </scroll-view>
+  <music-control
+    wx:if="{{songInfo['id'] && songData['songUrl']}}"
+    is-play="{{isPlay}}"
+    song-info="{{songInfo}}" 
+    song-data="{{songData}}"
+    bottom-space="100rpx"
+    >
+  </music-control>
 </view>

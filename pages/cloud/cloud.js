@@ -1,5 +1,6 @@
 // pages/cloud/cloud.js
 import request from "../../utils/request";
+import {getCurrentMusic} from '../../utils/util';
 
 Page({
 
@@ -15,7 +16,10 @@ Page({
     offset: 0, // 分页参数,
     hasMore: true, // 是否可以触发上拉加载
     scrollTop: 0,
-    keyword: '' // 搜索框内的默认关键字
+    keyword: '', // 搜索框内的默认关键字
+    isPlay: false,
+    songInfo: {},
+    songData: {}
   },
 
   /**
@@ -23,6 +27,7 @@ Page({
    */
   onLoad(options) {
     this.getSearchDefault();
+    getCurrentMusic(this); 
 
     /// 标签/分类列表
     let groupList = wx.getStorageSync('groupList');
@@ -52,6 +57,7 @@ Page({
         selected: 1
       })
     }
+    getCurrentMusic(this); 
   },
 
   /**

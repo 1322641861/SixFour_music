@@ -1,4 +1,6 @@
 // pages/profile/profile.js
+import {getCurrentMusic} from '../../utils/util';
+
 Page({
 
   /**
@@ -15,13 +17,17 @@ Page({
       { icon: 'icon-boke', text: '我的播客', name: 'podcast' },
       { icon: 'icon-box', text: '音乐盒子', name: 'musicBox' },
     ],
-    userInfo: {}
+    userInfo: {},
+    isPlay: false,
+    songInfo: {},
+    songData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    getCurrentMusic(this); 
     let userInfo = wx.getStorageSync("userInfo");
     this.setData({
       userInfo: userInfo ? JSON.parse(userInfo) : {}
@@ -53,6 +59,7 @@ Page({
           selected: 2
         })
     }
+    getCurrentMusic(this); 
   },
 
   /**

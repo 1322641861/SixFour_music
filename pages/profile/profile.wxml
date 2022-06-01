@@ -1,4 +1,4 @@
-<view class="profile">
+<view class="profile" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 288 : 200}}rpx);">
   <view class="avatar-wrap" bindtap="toLogin" wx:if="{{!userInfo.nickname}}">
     <text class="iconfont icon-avatar profile-avatar "></text>
     <view class="avatar-name">
@@ -23,3 +23,11 @@
     </view>
   </view>
 </view>
+<music-control
+  wx:if="{{songInfo['id'] && songData['songUrl']}}"
+  is-play="{{isPlay}}"
+  song-info="{{songInfo}}" 
+  song-data="{{songData}}"
+  bottom-space="100rpx"
+  >
+</music-control>
