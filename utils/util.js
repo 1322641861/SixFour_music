@@ -98,7 +98,6 @@ const appInstance = getApp();
  * 获取当前播放歌曲
  */
 const getCurrentMusic = function (that) {
-  console.log('util getCurrentMusic', that);
   let isPlay = appInstance.globalData.isPlayMusic;
   let songInfo = wx.getStorageSync('songInfo');
   let songData = wx.getStorageSync('songData');

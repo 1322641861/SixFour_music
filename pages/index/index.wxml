@@ -51,7 +51,7 @@
             </view>
             <text class="top-tag">{{item.desc}}</text>
           </view>
-          <view class="top-desc" wx:for="{{item.list}}" wx:key="id" wx:for-item="mItem">
+          <view class="top-desc" wx:for="{{item.list}}" wx:key="id" wx:for-item="mItem" data-musicid="{{mItem['id']}}" bindtap="navigatePage">
             <image class="top-image" src="{{mItem.al.picUrl}}"></image>
             <text class="top-index">{{index + 1}}</text>
             <view class="song-title">

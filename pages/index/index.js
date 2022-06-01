@@ -67,7 +67,6 @@ Page({
       });
       this.setData({topList})
     }
-    console.log('topList ==> ', topList);
   },
   /**
    * 顶部导航
@@ -93,14 +92,11 @@ Page({
    */
   subscribeChangeMusic() {
     PubSub.subscribe("changeMusic", (msg, type) => {
+      /// 1. 本地缓存, 当前播放歌单列表
       getCurrentMusic(this);
       let audioPlayType = wx.getStorageSync('audioPlayType');
-      
-      /// 本地缓存, 当前播放歌单列表
       let currentSongSheet = wx.getStorageSync('currentSongSheet');
       let currentSongId = wx.getStorageSync('currentSongId');
-      console.log("currentSongSheet", currentSongSheet);
-      console.log("currentSongId", currentSongId);
       if (!currentSongSheet || !currentSongSheet.length) {
         // wx.showToast({
         //   title: '请下拉刷新页面',
@@ -109,8 +105,8 @@ Page({
         PubSub.publish("getMusicId", null);
         return;
       }
+      /// 2. 获取歌曲下标, 并找到上/下一首下标
       let index = currentSongSheet.findIndex(item => item['id'] === currentSongId);
-      console.log("currentSongId => index", index, type);
       let lastIndex = currentSongSheet.length - 1;
       if (audioPlayType === 2) {
         let randomIndex = getRandomIndex(lastIndex);
@@ -122,10 +118,22 @@ Page({
           index = index === 0 ? lastIndex : --index;
         }
       }
-      this.setData({index});
-      wx.setStorageSync('currentSongId', currentSongSheet[index].id);
+      /// 3. 更新数据
       let id = currentSongSheet[index].id;
+      this.setData({index});
+      wx.setStorageSync('currentSongId', id);
+      appInstance.globalData.currentSongId = id;
       PubSub.publish("getMusicId", id);
+    })
+  },
+
+  /**
+   * 跳转歌曲播放器详情
+   */
+  navigatePage(event) {
+    let musicid = event.currentTarget.dataset.musicid;
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
 
@@ -140,9 +148,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('index onShow');
     getCurrentMusic(this); 
-    console.log(this.data.songData);
     if (typeof this.getTabBar === 'function' &&
         this.getTabBar()) {
         this.getTabBar().setData({

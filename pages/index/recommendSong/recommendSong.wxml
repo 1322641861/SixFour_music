@@ -16,7 +16,10 @@
   </view>
   <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body"  style="height: calc(70vh - {{songInfo['id'] && songData['songUrl'] ? '100rpx' : 0}});">
     <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
-      <image class="avatar" src="{{item.al.picUrl}}"></image>
+      <image wx:if="{{item.id !== currentSongId}}" class="avatar" src="{{item.al.picUrl}}"></image>
+      <view wx:else class="avatar">
+        <text class="iconfont icon-yinpin"></text>
+      </view>
       <view class="item-message">
         <view class="title">
           <text>{{item.name}}</text>

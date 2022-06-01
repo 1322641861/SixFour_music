@@ -51,23 +51,15 @@ Component({
      * 暂停/播放
      */
     changePlayStatus() {
-      let {songInfo, songData, isPlay} = this.data;
-      // this.backgroundAudioManager = wx.getBackgroundAudioManager();
+      let {isPlay} = this.data;
       isPlay = !isPlay;
       this.setData({ isPlay });
       appInstance.globalData.isPlayMusic = isPlay;
-      // throttle(() => {
-      //   this.changePlayPause();
-      // }, 500);
     },
     changePlayPause() {
-      // isPlay = !isPlay;
-      // this.setData({ isPlay });
-      // appInstance.globalData.isPlayMusic = isPlay;
       throttle(() => {
         this.changePlayStatus();
         let {songInfo, songData, isPlay} = this.data;
-        console.log(songData.songUrl, isPlay);
         this.backgroundAudioManager = wx.getBackgroundAudioManager();
         if (isPlay) {
           this.backgroundAudioManager.src = songData.songUrl;

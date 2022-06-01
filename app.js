@@ -2,15 +2,38 @@ App({
   globalData: {
     musicId: '',
     isPlayMusic: false,
-    // songInfo: {},
-    // songData: {},
+    songInfo: {},
+    songData: {},
+    currentSongId: 0,
     audioPlayType: 0, // 0 列表循环 1 单曲循环 2 随机播放
   },
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    
+    let songInfo = wx.getStorageSync('songInfo');
+    let songData = wx.getStorageSync('songData');
+    let currentSongId = wx.getStorageSync('currentSongId');
+    Object.assign(this.globalData, {songInfo, songData, currentSongId});
+  },
+  /**
+   * 监听全局变量变化
+   */
+  watch: function (variate, method) {
+    let obj = this.globalData;
+    let val = obj[variate];
+    Object.defineProperty(obj, variate, {
+      configurable: false,
+      enumerable: true,
+      set: function (value) {
+        val = value;
+        method(variate, value);
+      },
+      get: function () {
+        // 在其他界面调用getApp().globalData.variate的时候，这里就会执行。
+        return val;
+      }
+    })
   },
 
   /**
