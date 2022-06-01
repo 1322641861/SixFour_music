@@ -21,6 +21,10 @@ Component({
     songData: {
       type: Object,
       value: wx.getStorageSync('songData')
+    },
+    bottomSpace: {
+      type: String,
+      value: 0
     }
   },
 
@@ -269,4 +273,7 @@ Component({
       // console.log('detached...');
     },
   },
+  options: {
+    styleIsolation: 'isolated'
+  }
 })

@@ -1,5 +1,5 @@
 
-<view class="music-wrapper">
+<view class="music-wrapper" style="bottom: {{bottomSpace}};">
   <view class="music-control" bindtap="clickWholeMusic" wx:if="{{songData && songInfo}}">
     <image class="music-img" src="{{songInfo.al.picUrl}}"></image>
     <view class="music-info">

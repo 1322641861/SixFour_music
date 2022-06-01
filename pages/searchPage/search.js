@@ -1,5 +1,5 @@
 import request from "../../utils/request";
-import {debounce} from "../../utils/util"
+import {debounce, getCurrentMusic, playAllSongSheet} from "../../utils/util"
 const appInstance = getApp();
 
 Page({
@@ -23,7 +23,6 @@ Page({
     songInfo: {},
     songData: {}
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -41,18 +40,9 @@ Page({
     } catch (error) {
       console.log(error);
     }
+
     this.getHistoryList();
-    
     this.getSearchHotList();
-  },
-  /**
-   * 获取当前播放歌单/歌曲
-   */
-  getCurrentMusic() {
-    let isPlay = appInstance.globalData.isPlayMusic;
-    let songInfo = wx.getStorageSync('songInfo');
-    let songData = wx.getStorageSync('songData');
-    this.setData({isPlay, songInfo, songData});
   },
 
   /**
@@ -104,9 +94,7 @@ Page({
   },
   /// 播放全部
   playAllSongSheet() {
-    wx.setStorageSync('currentSongSheet', this.data.searchDetailList);
-    wx.setStorageSync('currentSongId', this.data.searchDetailList[0].id);
-    this.navigatePage(null, 0);
+    playAllSongSheet(this.data.searchDetailList);
   },
 
   /**
@@ -253,7 +241,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getCurrentMusic();
+    getCurrentMusic(this);
   },
 
   /**

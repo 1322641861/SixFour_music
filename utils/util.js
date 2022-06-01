@@ -14,6 +14,9 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+/**
+ * 跳转登录
+ */
 const navigateToLogin = () => {
   wx.showModal({
     content: '请先登录',
@@ -28,9 +31,9 @@ const navigateToLogin = () => {
 }
 
 /**
-   * 递归, 避免随机模式时, 出现随机重复同一首歌
-   * @param {*} len 歌单长度下标
-   */
+ * 递归, 避免随机模式时, 出现随机重复同一首歌
+ * @param {*} len 歌单长度下标
+ */
 const getRandomIndex = function (len) {
   let randomIndex = parseInt(Math.random() * len);
   if (this.randomIndex === randomIndex) {
@@ -90,10 +93,35 @@ function throttle (fn, time = 800) {
   }
 }
 
+const appInstance = getApp();
+/**
+ * 获取当前播放歌曲
+ */
+const getCurrentMusic = function (that) {
+  console.log('util getCurrentMusic', that);
+  let isPlay = appInstance.globalData.isPlayMusic;
+  let songInfo = wx.getStorageSync('songInfo');
+  let songData = wx.getStorageSync('songData');
+  that.setData({isPlay, songInfo, songData});
+}
+/**
+ * 播放全部
+ */
+const playAllSongSheet = function (songList) {
+  console.log('util playAllSongSheet', songList);
+  wx.setStorageSync('currentSongSheet', songList);
+  wx.setStorageSync('currentSongId', songList[0].id);
+  wx.navigateTo({
+    url: '/pages/songDetail/songDetail?musicId=' + songList[0].id,
+  })
+}
+
 module.exports = {
   formatTime,
   navigateToLogin,
   debounce,
   throttle,
-  getRandomIndex
+  getRandomIndex,
+  getCurrentMusic,
+  playAllSongSheet
 }

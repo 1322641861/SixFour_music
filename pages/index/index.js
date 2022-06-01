@@ -1,4 +1,5 @@
 import request from '../../utils/request';
+import {getCurrentMusic} from '../../utils/util';
 import PubSub from "pubsub-js";
 const appInstance = getApp();
 
@@ -21,7 +22,7 @@ Page({
    */
   onLoad: async function (options) {
     this.subscribeChangeMusic();
-    
+    getCurrentMusic(this); 
     /// 轮播图
     this.getBanners();
     /// 推荐歌单
@@ -68,6 +69,10 @@ Page({
     }
     console.log('topList ==> ', topList);
   },
+  /**
+   * 顶部导航
+   * @param {*} event 
+   */
   navigateToPage(event) {
     let index = parseInt(event.currentTarget.dataset.index);
     switch (index) {
@@ -83,21 +88,12 @@ Page({
   },
   
   /**
-   * 获取当前正在播放/暂停状态的歌曲
-   */
-  getCurrentMusic() {
-    let isPlay = appInstance.globalData.isPlayMusic;
-    let songInfo = wx.getStorageSync('songInfo');
-    let songData = wx.getStorageSync('songData');
-    this.setData({isPlay, songInfo, songData});
-  },
-  /**
    * 切换下一首
    * 注意是否随机模式(type:2)
    */
   subscribeChangeMusic() {
     PubSub.subscribe("changeMusic", (msg, type) => {
-      this.getCurrentMusic();
+      getCurrentMusic(this);
       let audioPlayType = wx.getStorageSync('audioPlayType');
       
       /// 本地缓存, 当前播放歌单列表
@@ -144,7 +140,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getCurrentMusic(); 
+    console.log('index onShow');
+    getCurrentMusic(this); 
+    console.log(this.data.songData);
     if (typeof this.getTabBar === 'function' &&
         this.getTabBar()) {
         this.getTabBar().setData({

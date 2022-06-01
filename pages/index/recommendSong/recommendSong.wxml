@@ -6,7 +6,7 @@
       <text class="line">/</text>
       <text class="month">{{month}}</text>
     </view>
-    <view class="play-more">
+    <view class="play-more" bindtap="playAllSongSheet">
       <view class="play-left">
         <text class="iconfont icon-play"></text>
         <text class="play">播放全部</text>

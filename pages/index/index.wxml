@@ -2,10 +2,10 @@
 <!-- <import src="index.skeleton.wxml"></import>
 <template is="skeleton"></template> -->
 
-<view class="home-wrap">
+<scroll-view scroll-y class="home-wrap" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);">
   <view class="swiper-wrap">
-    <swiper class="home-swiper" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .2)" indicator-active-color="#fff" autoplay interval="5000">
-      <swiper-item class="home-swiper-item" wx:for="{{banners}}" wx:key="encodeId">
+    <swiper wx:if="{{banners}}"class="home-swiper" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .2)" indicator-active-color="#fff" autoplay interval="5000">
+      <swiper-item class="home-swiper-item" wx:for="{{banners}}" wx:key="bannerId">
         <image src="{{item.pic}}"></image>
       </swiper-item>
     </swiper>
@@ -64,4 +64,13 @@
       </swiper-item>
     </swiper>
   </view>
-</view>
+  
+</scroll-view>
+<music-control
+  wx:if="{{songInfo['id'] && songData['songUrl']}}"
+  is-play="{{isPlay}}"
+  song-info="{{songInfo}}" 
+  song-data="{{songData}}"
+  bottom-space="100rpx"
+  >
+</music-control>
