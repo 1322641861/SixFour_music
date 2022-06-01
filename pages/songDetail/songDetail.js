@@ -34,6 +34,9 @@ Page({
     const globalData = appInstance.globalData;
     const songInfo = wx.getStorageSync('songInfo') ? wx.getStorageSync('songInfo') : {};
     const songData = wx.getStorageSync('songData') ? wx.getStorageSync('songData') : {};
+    if (songData.durationTime === '00:00' && songInfo.dt) {
+      songData.durationTime = moment(songInfo.dt).format("mm:ss");
+    }
     const audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
     console.log('globalData', appInstance.globalData, songInfo, options);
     let isPlayedMusic = globalData.musicId === musicId;
@@ -96,7 +99,7 @@ Page({
    */
   async getMusicUrl(id) {
     let res = await request({url: '/song/url', data: {id: id}});
-    if (res) {
+    if (res && res.data) {
       this.setData({songUrl: res.data[0].url});
     }
   },
@@ -255,16 +258,11 @@ Page({
     console.log('changePreNextMusic');
     if (this.data.loading) return;
     this.backgroundAudioManger.pause();
-    this.setData({
-      loading: true, 
-      currentWidth: 0, 
-      currentTime: "00:00",
-      durationTime: "00:00",
-      playMusic: false
-    });
     let type = flag ?? event.currentTarget.dataset.type;
+    this.setData({playMusic: false, currentWidth: 0, currentTime: "00:00"})
     PubSub.publish("changeMusic", type);
     PubSub.subscribe('getMusicId', (msg, id) => {
+      this.setData({ loading: true, durationTime: "00:00" });
       this.getMusicInfo(id).then(() => {
         this.getMusicUrl(id).then(() => {
           this.setData({loading: false, musicId: id});

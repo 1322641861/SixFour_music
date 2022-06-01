@@ -42,7 +42,6 @@ Page({
    * 监听songData变化
    */
   watchCb(name, value) {
-    console.log('监听songData变化', name, value);
     if (name === 'currentSongId') this.setData({currentSongId: value});
   },
   /// 播放全部

@@ -59,7 +59,7 @@
 .recommend-body {
   height: 70vh;
 }
-.recommend-item {
+/* .recommend-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,7 +105,7 @@
 }
 .recommend-item .repeat-title {
   color: #999;
-}
+} */
 
 .recommend-no-data {
   text-align: center;

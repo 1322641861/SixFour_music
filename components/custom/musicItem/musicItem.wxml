@@ -1,0 +1,19 @@
+<view class="recommend-item" bindtap="musicPlay">
+  <image wx:if="{{musicInfo.id !== currentSongId}}" class="avatar" src="{{imageUrl ? imageUrl : musicInfo.al.picUrl}}"></image>
+  <view wx:else class="avatar">
+    <text class="iconfont icon-yinpin"></text>
+  </view>
+  <view class="item-message">
+    <view class="title">
+      <text class="name">{{musicInfo.name}}</text>
+      <!-- <text class="repeat-title">(删了吧)</text> -->
+    </view>
+    <view class="avatar-name">
+      <text>{{musicInfo.ar[0].name}} - {{musicInfo.al.name}}</text>
+    </view>
+  </view>
+  <view class="right-btn">
+    <text class="iconfont icon-music_play"></text>
+    <text class="iconfont icon-more_point"></text>
+  </view>
+</view>

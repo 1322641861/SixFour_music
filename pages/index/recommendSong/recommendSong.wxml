@@ -14,26 +14,17 @@
       <text class="iconfont icon-check"></text>
     </view>
   </view>
-  <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body"  style="height: calc(70vh - {{songInfo['id'] && songData['songUrl'] ? '100rpx' : 0}});">
-    <view class="recommend-item" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
-      <image wx:if="{{item.id !== currentSongId}}" class="avatar" src="{{item.al.picUrl}}"></image>
-      <view wx:else class="avatar">
-        <text class="iconfont icon-yinpin"></text>
-      </view>
-      <view class="item-message">
-        <view class="title">
-          <text>{{item.name}}</text>
-          <!-- <text class="repeat-title">(删了吧)</text> -->
-        </view>
-        <view class="avatar-name">
-          <text>{{item.ar[0].name}} - {{item.al.name}}</text>
-        </view>
-      </view>
-      <view class="right-btn">
-        <text class="iconfont icon-music_play"></text>
-        <text class="iconfont icon-more_point"></text>
-      </view>
-    </view>
+  <scroll-view wx:if="{{recommendList.length}}" scroll-y class="recommend-body"  style="height: calc(70vh - {{songInfo['id'] && songData['songUrl'] ? '93rpx' : 0}});">
+    <music-item 
+      wx:for="{{recommendList}}"
+      wx:key="id" 
+      data-index="{{index}}" 
+      data-musicId="{{item.id}}" 
+      bindmusicPlay="navigatePage"
+      music-info="{{item}}"
+      current-song-id="{{currentSongId}}"
+    >
+    </music-item>
     <view class="border-10"></view>
   </scroll-view>
   <view wx:else class="recommend-body recommend-no-data">暂无数据</view>

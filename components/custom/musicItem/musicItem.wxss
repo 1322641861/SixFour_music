@@ -1,0 +1,49 @@
+@import "/static/iconfont/iconfont.wxss";
+
+.recommend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15rpx 24rpx;
+}
+.recommend-item .avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+  margin-right: 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recommend-item .avatar .icon-yinpin {
+  font-size: 26rpx;
+  color: #d81e06;
+}
+.recommend-item .item-message {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recommend-item .right-btn {
+  color: #999;
+}
+.recommend-item .right-btn .iconfont {
+  padding: 10rpx;
+}
+.recommend-item .title {
+  font-size: 30rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.recommend-item .avatar-name {
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.recommend-item .repeat-title {
+  color: #999;
+}

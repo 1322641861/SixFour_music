@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "music-item": "/components/custom/musicItem/musicItem"
+  },
   "navigationBarTitleText": "每日推荐",
   "navigationBarBackgroundColor": "#f7cc81",
   "navigationBarTextStyle": "white",
