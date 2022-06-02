@@ -1,10 +1,10 @@
 App({
   globalData: {
-    musicId: '',
+    musicId: 0,
     isPlayMusic: false,
     songInfo: {},
     songData: {},
-    currentSongId: 0,
+    // currentSongId: 0,
     audioPlayType: 0, // 0 列表循环 1 单曲循环 2 随机播放
   },
   /**
@@ -13,8 +13,8 @@ App({
   onLaunch: function () {
     let songInfo = wx.getStorageSync('songInfo');
     let songData = wx.getStorageSync('songData');
-    let currentSongId = wx.getStorageSync('currentSongId');
-    Object.assign(this.globalData, {songInfo, songData, currentSongId});
+    let musicId = songData.musicId;
+    Object.assign(this.globalData, {songInfo, songData, musicId});
   },
   /**
    * 监听全局变量变化

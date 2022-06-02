@@ -1,4 +1,4 @@
-<view class="profile" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 288 : 200}}rpx);">
+<scroll-view scroll-y class="profile" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 188 : 100}}rpx);">
   <view class="avatar-wrap" bindtap="toLogin" wx:if="{{!userInfo.nickname}}">
     <text class="iconfont icon-avatar profile-avatar "></text>
     <view class="avatar-name">
@@ -22,7 +22,25 @@
       <text>{{item.text}}</text>
     </view>
   </view>
-</view>
+
+  <view class="my-like" wx:if="{{createdList.length}}">
+    <view class="bg-border"></view>
+    <image class="like-img" src="{{createdList[0]['coverImgUrl']}}">
+      <text class="iconfont icon-love"></text>
+    </image>
+    <view class="like-title">
+      <text class="title">我喜欢的音乐</text>
+      <view class="download">
+        <text class="iconfont icon-downloaded"></text>
+        <text class="download-no">214首, 已下载191首</text>
+      </view>
+    </view>
+    <view class="beckon-btn">
+      <image class="beckon" src="/static/images/home/beckon.png"></image>
+      <text>心动模式</text>
+    </view>
+  </view>
+</scroll-view>
 <music-control
   wx:if="{{songInfo['id'] && songData['songUrl']}}"
   is-play="{{isPlay}}"

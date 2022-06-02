@@ -2,11 +2,11 @@
 .profile {
   height: calc(100vh - 200rpx);
   background-color: #f5f5f5;
-  padding-top: 100rpx;
+  /* padding-top: 100rpx; */
 }
 .avatar-wrap {
   text-align: center;
-  margin: 0 24rpx;
+  margin: 100rpx 24rpx 0;
   background-color: #fff;
   border-radius: 20rpx;
   position: relative;
@@ -69,4 +69,81 @@
   margin-bottom: 6rpx;
   font-size: 50rpx;
   color: #d81e06;
+}
+
+.my-like {
+  text-align: center;
+  margin: 24rpx 24rpx 0;
+  background-color: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 26rpx;
+  align-items: center;
+  position: relative;
+}
+.my-like .bg-border {
+  position: absolute;
+  background: #eee;
+  width: 80rpx;
+  height: 80rpx;
+  left: 36rpx;
+  top: 20rpx;
+  border-radius: 12rpx;
+}
+.my-like .like-img {
+  width: 100rpx;
+  height: 100rpx;
+  background: #eee;
+  border-radius: 16rpx;
+  position: relative;
+}
+.my-like .icon-love {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50rpx;
+  color: #fff;
+}
+.my-like .like-title {
+  margin: 0 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  overflow: hidden;
+}
+.my-like .title {
+  font-size: 30rpx;
+}
+.my-like .download {
+  font-size: 22rpx;
+  margin-top: 5rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: left;
+}
+.my-like .download-no {
+  color: #999;
+}
+.my-like .icon-downloaded {
+  font-size: 26rpx;
+  color: #47acf5;
+  margin-right: 8rpx;
+}
+.beckon-btn {
+  font-size: 22rpx;
+  padding: 6rpx 14rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 60rpx;
+}
+.beckon-btn .beckon {
+  width: 32rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  padding-right: 6rpx;
 }

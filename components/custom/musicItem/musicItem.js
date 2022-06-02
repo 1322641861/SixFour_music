@@ -10,7 +10,7 @@ Component({
     musicName: {type: String, value: ''},
     arName: {type: String, value: ''},
     alName: {type: String, value: ''},
-    currentSongId: {type: Number, value: appInstance.globalData.currentSongId}
+    currentSongId: {type: Number, value: 0}
   },
 
   /**
@@ -32,7 +32,8 @@ Component({
   },
   observers: {
     "currentSongId": function (currentSongId) {
-      console.log('observers', currentSongId);
+      console.log('observers', currentSongId, appInstance.globalData.musicId);
+      if (this.data.currentSongId !== currentSongId) this.setData({currentSongId});
     }
   },
   lifetimes: {

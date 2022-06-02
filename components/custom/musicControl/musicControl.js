@@ -183,6 +183,7 @@ Component({
       PubSub.subscribe("changeAndUpdateMusic", (msg, type) => {
         const songData = wx.getStorageSync('songData');
         const songInfo = wx.getStorageSync('songInfo');
+        console.log('musicControl songData', songData);
         const isPlay = appInstance.globalData.isPlayMusic;
         if (songInfo['id'] && songData['songUrl']) {
            this.setData({ songData, songInfo, isPlay })
@@ -191,6 +192,7 @@ Component({
         const currentSongSheet = wx.getStorageSync('currentSongSheet', this.data.searchDetailList);
         if (currentSongSheet && currentSongSheet.length) {
           let currentSong = currentSongSheet.find(item => item['id'] === songData['musicId']);
+          console.log('musicControl currentSong', currentSong);
           if (currentSong) wx.setStorageSync('currentSongId', currentSong['id']);
         }
       })
@@ -240,6 +242,7 @@ Component({
     created: function () {
       // console.log('created...');
       this.handleBgMusic();
+      appInstance.globalData.musicId = this.data.musicId;
     },
     attached: function() {
       // 在组件实例进入页面节点树时执行

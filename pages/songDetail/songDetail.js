@@ -42,6 +42,7 @@ Page({
     let isPlayedMusic = globalData.musicId === musicId;
 
     this.setData({isPlayedMusic, musicId, audioPlayType});
+    globalData.musicId = musicId;
     if (isPlayedMusic && globalData.isPlayMusic) {
       this.changePlayMusic(true);
       this.setData(Object.assign(

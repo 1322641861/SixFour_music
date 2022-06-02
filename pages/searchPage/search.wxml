@@ -62,12 +62,10 @@
           <text class="iconfont icon-check"></text>
         </view>
         <view class="detail-list">
-          <view class="recommend-item" wx:for="{{searchDetailList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
-            <!-- <image class="avatar" src="{{item.al.picUrl}}"></image> -->
+          <!-- <view class="recommend-item" wx:for="{{searchDetailList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
             <view class="item-message">
               <view class="title">
                 <text>{{item.name}}</text>
-                <!-- <text class="repeat-title">(删了吧)</text> -->
               </view>
               <view class="avatar-name">
                 <text class="name">{{item.artists[0].name}}</text>
@@ -78,7 +76,18 @@
               <text class="iconfont icon-music_play"></text>
               <text class="iconfont icon-more_point"></text>
             </view>
-          </view>
+          </view> -->
+          <music-item 
+            wx:for="{{searchDetailList}}"
+            wx:key="id" 
+            data-index="{{index}}" 
+            data-musicId="{{item.id}}" 
+            bindmusicPlay="navigatePage"
+            music-info="{{item}}"
+            ar-name="{{item.artists[0].name}}"
+            al-name="{{item.album.name}}"
+          >
+          </music-item>
           <view class="border-10"></view>
         </view>
       </view>

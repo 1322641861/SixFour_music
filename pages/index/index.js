@@ -122,7 +122,7 @@ Page({
       let id = currentSongSheet[index].id;
       this.setData({index});
       wx.setStorageSync('currentSongId', id);
-      appInstance.globalData.currentSongId = id;
+      appInstance.globalData.musicId = id;
       PubSub.publish("getMusicId", id);
     })
   },

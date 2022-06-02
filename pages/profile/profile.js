@@ -1,5 +1,6 @@
 // pages/profile/profile.js
 import {getCurrentMusic} from '../../utils/util';
+import request from "../../utils/request";
 
 Page({
 
@@ -20,7 +21,9 @@ Page({
     userInfo: {},
     isPlay: false,
     songInfo: {},
-    songData: {}
+    songData: {},
+    createdList: [], // 创建的歌单
+    subscribedList: [], // 收藏的歌单
   },
 
   /**
@@ -32,6 +35,7 @@ Page({
     this.setData({
       userInfo: userInfo ? JSON.parse(userInfo) : {}
     })
+    this.getPlayList();
   },
   actionNavigate(event) {
     let routerName = event.currentTarget.dataset.name;
@@ -41,6 +45,29 @@ Page({
     wx.navigateTo({
       url: '/pages/auth/login/login'
     })
+  },
+  async getPlayList() {
+    let uid = this.data.userInfo && this.data.userInfo.userId;
+    console.log(uid);
+    if (!uid) return;
+    // let res = request({url: "/likelist", data: {uid}});
+    let res = await request({url: "/user/playlist", data: {uid}});
+    if (res && res.code === 200) {
+      if (res.playlist && res.playlist.length > 0) {
+        let createdList = [];
+        let subscribedList = [];
+        for (const item of res.playlist) {
+          if (item['subscribed']) {
+            subscribedList.push(item);
+          } else {
+            createdList.push(item);
+          }
+        }
+        this.setData({createdList, subscribedList});
+      }
+    }
+    // let res = await request({url: "/playlist/detail", data: {id: 4928141974}});
+    console.log(res);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

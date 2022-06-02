@@ -22,7 +22,7 @@
       data-musicId="{{item.id}}" 
       bindmusicPlay="navigatePage"
       music-info="{{item}}"
-      current-song-id="{{currentSongId}}"
+      current-song-id="{{musicId}}"
     >
     </music-item>
     <view class="border-10"></view>

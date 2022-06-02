@@ -15,20 +15,20 @@ Page({
     isPlay: false,
     songInfo: {},
     songData: {},
-    currentSongId: 0
+    musicId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    appInstance.watch('currentSongId', this.watchCb);
+    appInstance.watch('musicId', this.watchCb);
 
     let date = new Date();
     this.setData({
       day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
       month: date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1,
-      currentSongId: appInstance.globalData.currentSongId
+      musicId: appInstance.globalData.musicId
     });
 
     let recommendList = wx.getStorageSync('recommendList');
@@ -42,7 +42,7 @@ Page({
    * 监听songData变化
    */
   watchCb(name, value) {
-    if (name === 'currentSongId') this.setData({currentSongId: value});
+    if (name === 'musicId') this.setData({musicId: value});
   },
   /// 播放全部
   playAllSongSheet() {

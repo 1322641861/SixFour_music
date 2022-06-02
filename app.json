@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/index/recommendSong/recommendSong",
+    "pages/profile/profile",
     "pages/index/index",
     "pages/searchPage/search",
+    "pages/index/recommendSong/recommendSong",
     "pages/songDetail/songDetail",
     "pages/cloud/cloud",
-    "pages/profile/profile",
     "pages/auth/login/login"
   ],
   "window": {
@@ -42,6 +42,7 @@
     "audio"
   ],
   "usingComponents": {
-    "music-control": "/components/custom/musicControl/musicControl"
+    "music-control": "/components/custom/musicControl/musicControl",
+    "music-item": "/components/custom/musicItem/musicItem"
   }
 }
