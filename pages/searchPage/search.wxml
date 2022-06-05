@@ -62,21 +62,6 @@
           <text class="iconfont icon-check"></text>
         </view>
         <view class="detail-list">
-          <!-- <view class="recommend-item" wx:for="{{searchDetailList}}" wx:key="id" data-index="{{index}}" data-musicId="{{item.id}}" bindtap="navigatePage">
-            <view class="item-message">
-              <view class="title">
-                <text>{{item.name}}</text>
-              </view>
-              <view class="avatar-name">
-                <text class="name">{{item.artists[0].name}}</text>
-                <text> - {{item.album.name}}</text>
-              </view>
-            </view>
-            <view class="right-btn">
-              <text class="iconfont icon-music_play"></text>
-              <text class="iconfont icon-more_point"></text>
-            </view>
-          </view> -->
           <music-item 
             wx:for="{{searchDetailList}}"
             wx:key="id" 

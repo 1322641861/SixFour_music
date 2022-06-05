@@ -46,9 +46,21 @@ Page({
       url: '/pages/auth/login/login'
     })
   },
+  /**
+   * 跳转歌单
+   */
+  toSongSheetPage(event) {
+    let id  = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/songSheetPage/songSheet?id=' + id,
+    })
+  },
+  /**
+   * 获取所有歌单
+   * 需要登录, 获取用户uid
+   */
   async getPlayList() {
     let uid = this.data.userInfo && this.data.userInfo.userId;
-    console.log(uid);
     if (!uid) return;
     // let res = request({url: "/likelist", data: {uid}});
     let res = await request({url: "/user/playlist", data: {uid}});
@@ -66,8 +78,6 @@ Page({
         this.setData({createdList, subscribedList});
       }
     }
-    // let res = await request({url: "/playlist/detail", data: {id: 4928141974}});
-    console.log(res);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

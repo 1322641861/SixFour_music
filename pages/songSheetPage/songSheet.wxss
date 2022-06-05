@@ -1,0 +1,95 @@
+.sheet-wrap {
+  height: 100vh;
+}
+.sheet-wrap .header-wrap {
+  position: relative;
+}
+.sheet-wrap .wrap-img {
+  position: absolute;
+  opacity: 0.9;
+  filter: blur(25px);
+}
+.sheet-header {
+  padding: 0 24rpx;
+  height: 23vh;
+}
+.sheet-header .sheet-h-msg {
+  height: 20vh;
+  display: flex;
+}
+.sheet-header .sheet-img {
+  /* height: 20vh; */
+  position: relative;
+}
+.sheet-header .bg-border {
+  position: absolute;
+  top: .3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,.2);
+  height: 14vh;
+  width: 14vh;
+  border-radius: 18rpx;
+}
+.sheet-header .img {
+  height: 16vh;
+  width: 16vh;
+  position: relative;
+  margin-top: 1vh;
+  border-radius: 24rpx;
+}
+
+.right-title {
+  position: relative;
+  margin-left: 20rpx;
+  margin-top: 1vh;
+  color: #fff;
+}
+.right-title .title {
+  font-size: 32rpx;
+}
+.right-title .avatar {
+  display: flex;
+  align-items: center;
+  margin-top: 5vh;
+}
+.right-title .avatar image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.right-title .avatar text:nth-of-type(1) {
+  margin-left: 10rpx;
+  font-size: 26rpx;
+}
+
+.sheet-list .list{
+  background: #fff;
+}
+.sheet-list {
+  position: relative;
+}
+.sheet-list .play-more {
+  height: 80rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+.play-more .icon-play {
+  vertical-align: middle;
+  margin-right: 24rpx;
+  font-size: 42rpx;
+  color: #f91473;
+}
+.play-more .play {
+  vertical-align: text-top;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.play-more .icon-check {
+  font-size: 53rpx;
+  color: #333;
+}

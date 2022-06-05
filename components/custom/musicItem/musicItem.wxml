@@ -1,9 +1,9 @@
 <view class="recommend-item" bindtap="musicPlay">
-  <image wx:if="{{(imageUrl || musicInfo.al.picUrl) && musicInfo.id !== currentSongId}}" class="avatar" src="{{imageUrl ? imageUrl : musicInfo.al.picUrl}}"></image>
-  <view wx:elif="{{(imageUrl || musicInfo.al.picUrl) && musicInfo.id === currentSongId}}" class="avatar">
+  <image wx:if="{{(imageUrl || musicInfo.al.picUrl) && !indexReplaceImg && musicInfo.id !== currentSongId}}" class="avatar" src="{{imageUrl ? imageUrl : musicInfo.al.picUrl}}"></image>
+  <view wx:elif="{{(imageUrl || musicInfo.al.picUrl) && !indexReplaceImg && musicInfo.id === currentSongId}}" class="avatar">
     <text class="iconfont icon-yinpin"></text>
   </view>
-  <view wx:elif="{{!imageUrl && !musicInfo.al.picUrl && currentSongId}}" class="avatar">
+  <view wx:elif="{{indexReplaceImg && currentSongId}}" class="avatar">
     <text class="index-no">{{currentSongId}}</text>
   </view>
   <view class="item-message">
@@ -12,8 +12,8 @@
       <!-- <text class="repeat-title">(删了吧)</text> -->
     </view>
     <view class="avatar-name">
-      <text style="color: {{!currentSongId ? '#64abf5' : '#999'}}">{{arName ? arName : musicInfo.ar[0].name}}</text>
-      <text> - {{alName ? alName : musicInfo.al.name}}</text>
+      <text style="color: {{!currentSongId ? '#64abf5' : '#999'}}">{{arName ? arName : musicInfo.ar[0].name ? musicInfo.ar[0].name : '群星'}}</text>
+      <text wx:if="{{alName || musicInfo.al.name}}"> - {{alName ? alName : musicInfo.al.name}}</text>
     </view>
   </view>
   <view class="right-btn">

@@ -10,28 +10,6 @@
   opacity: 0.9;
   filter: blur(59px);
 }
-/* .song-detail .title-wrap {
-  text-align: center;
-  color: #fff;
-  position: relative;
-}
-.song-detail .icon-back {
-  height: 40px;
-  line-height: 40px;
-  font-size: 40rpx;
-  float: left;
-  padding-left: 20rpx;
-}
-.song-detail .title {
-  display: inline-block;
-  height: 40px;
-  line-height: 20px;
-  font-size: 32rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 200rpx;
-} */
 .song-detail .author {
   font-size: 24rpx;
   color: #eee;

@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusBarHeight: 0,
+    // statusBarHeight: 0,
     playMusic: false, // 当前音频是否播放中
     songInfo: {},
     songUrl: '',
@@ -66,14 +66,14 @@ Page({
     /// 监听背景音频管理器
     this.handleBgAudioMangerAll(musicId);
 
-    try {
-      let systemInfo = wx.getSystemInfoSync();
-      this.setData({
-        statusBarHeight: systemInfo.statusBarHeight
-      })
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   let systemInfo = wx.getSystemInfoSync();
+    //   this.setData({
+    //     statusBarHeight: systemInfo.statusBarHeight
+    //   })
+    // } catch (error) {
+    //   console.log(error);
+    // }
   },
   goBack() {
     wx.navigateBack({

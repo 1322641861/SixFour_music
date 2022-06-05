@@ -6,7 +6,8 @@
     "pages/index/recommendSong/recommendSong",
     "pages/songDetail/songDetail",
     "pages/cloud/cloud",
-    "pages/auth/login/login"
+    "pages/auth/login/login",
+    "pages/songSheetPage/songSheet"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -43,6 +44,7 @@
   ],
   "usingComponents": {
     "music-control": "/components/custom/musicControl/musicControl",
-    "music-item": "/components/custom/musicItem/musicItem"
+    "music-item": "/components/custom/musicItem/musicItem",
+    "top-nav": "/components/common/topNav/topNav"
   }
 }

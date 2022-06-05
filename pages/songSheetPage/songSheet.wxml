@@ -1,0 +1,55 @@
+<view class="sheet-wrap" wx:if="{{tracks.length}}">
+  <view class="header-wrap">
+    <image style="height: calc({{statusBarHeight}}px + 23vh);" class="wrap-img" src="{{playlist.coverImgUrl}}" mode="aspectFill"></image>
+    <top-nav bindcustomGoBack="goBack" title="歌单"></top-nav>
+    <view class="sheet-header">
+      <view class="sheet-h-msg">
+        <view class="sheet-img">
+          <view class="bg-border"></view>
+          <image class="img" src="{{playlist.coverImgUrl}}">
+            <!-- <text class="iconfont icon-love"></text>   -->
+          </image>
+        </view>
+        <view class="right-title">
+          <text class="title">我喜欢的音乐</text>
+          <view class="avatar">
+            <image src="{{creator.avatarUrl}}"></image>
+            <text>Biboniu</text>
+            <text class="iconfont icon-more"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="sheet-list">
+    <view class="play-more" bindtap="playAllSongSheet">
+      <view class="play-left">
+        <text class="iconfont icon-play"></text>
+        <text class="play">播放全部</text>
+      </view>
+      <text class="iconfont icon-check"></text>
+    </view>
+    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - 170rpx);">
+      <music-item 
+        wx:for="{{tracks}}"
+        wx:key="id" 
+        data-index="{{index}}" 
+        data-musicId="{{item.id}}"
+        bindmusicPlay="navigatePage"
+        indexReplaceImg="{{true}}"
+        currentSongId="{{index + 1}}"
+        music-info="{{item}}"
+      >
+      </music-item>
+      <view class="border-10"></view>
+    </scroll-view>
+  </view>
+  <music-control
+    wx:if="{{songInfo['id'] && songData['songUrl']}}"
+    is-play="{{isPlay}}"
+    song-info="{{songInfo}}" 
+    song-data="{{songData}}"
+    >
+  </music-control>
+</view>

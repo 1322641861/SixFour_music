@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="my-like" wx:if="{{createdList.length}}">
+  <view class="my-like" wx:if="{{createdList.length}}" data-id="{{createdList[0]['id']}}" bindtap="toSongSheetPage">
     <view class="bg-border"></view>
     <image class="like-img" src="{{createdList[0]['coverImgUrl']}}">
       <text class="iconfont icon-love"></text>

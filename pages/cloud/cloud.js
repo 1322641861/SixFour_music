@@ -87,18 +87,20 @@ Page({
       },
     });
     wx.hideLoading();
-    let videoList = res.datas.map(item => {
-      item.id = item.data.vid;
-      item.countHeight = `${96 * item.data.height / item.data.width}vw`;
-      this.getRelatedVideo(item.data.vid);
-      return item;
-    });
-    let oldVideoList = this.data.videoList;
-    this.setData({
-      videoList: isPullMore ? oldVideoList.concat(videoList) : videoList, 
-      triggered: false, 
-      hasMore: res.hasmore
-    });
+    if (res && res.datas) {
+      let videoList = res.datas.map(item => {
+        item.id = item.data.vid;
+        item.countHeight = `${96 * item.data.height / item.data.width}vw`;
+        this.getRelatedVideo(item.data.vid);
+        return item;
+      });
+      let oldVideoList = this.data.videoList;
+      this.setData({
+        videoList: isPullMore ? oldVideoList.concat(videoList) : videoList, 
+        triggered: false, 
+        hasMore: res.hasmore
+      });
+    }
   },
 
   // async getVideoTimeline() {

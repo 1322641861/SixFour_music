@@ -10,7 +10,8 @@ Component({
     musicName: {type: String, value: ''},
     arName: {type: String, value: ''},
     alName: {type: String, value: ''},
-    currentSongId: {type: Number, value: 0}
+    currentSongId: {type: Number, value: 0},
+    indexReplaceImg: {type: Boolean, value: false}
   },
 
   /**
@@ -32,7 +33,6 @@ Component({
   },
   observers: {
     "currentSongId": function (currentSongId) {
-      console.log('observers', currentSongId, appInstance.globalData.musicId);
       if (this.data.currentSongId !== currentSongId) this.setData({currentSongId});
     }
   },

@@ -15,6 +15,10 @@ Component({
     titleColor: {
       type: String,
       value: "#fff"
+    },
+    isUseCostomCb: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -30,7 +34,13 @@ Component({
    */
   methods: {
     goBack() {
-      this.triggerEvent("customGoBack")
+      if (this.data.isUseCostomCb) {
+        this.triggerEvent("customGoBack");
+      } else {
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
     },
     updateBarHeight(statusBarHeight) {
       this.setData({ statusBarHeight });

@@ -137,12 +137,11 @@
 
 .search-detail .play-more {
   height: 80rpx;
-  /* position: absolute; */
   bottom: 0;
   left: 0;
   right: 0;
   background: #fff;
-  border-radius: 25rpx 25rpx 0 0;
+  /* border-radius: 25rpx 25rpx 0 0; */
   display: flex;
   justify-content: space-between;
   padding: 0 24rpx;
@@ -164,7 +163,7 @@
   color: #333;
 }
 
-.recommend-item {
+/* .recommend-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -206,7 +205,7 @@
 }
 .recommend-item .repeat-title {
   color: #999;
-}
+} */
 
 .recommend-no-data {
   text-align: center;

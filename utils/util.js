@@ -107,12 +107,13 @@ const getCurrentMusic = function (that) {
  * 播放全部
  */
 const playAllSongSheet = function (songList) {
-  console.log('util playAllSongSheet', songList);
-  wx.setStorageSync('currentSongSheet', songList);
-  wx.setStorageSync('currentSongId', songList[0].id);
-  wx.navigateTo({
-    url: '/pages/songDetail/songDetail?musicId=' + songList[0].id,
-  })
+  if (songList && songList.length) {
+    wx.setStorageSync('currentSongSheet', songList);
+    wx.setStorageSync('currentSongId', songList[0].id);
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + songList[0].id,
+    })
+  }
 }
 
 module.exports = {

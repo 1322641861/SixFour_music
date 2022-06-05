@@ -1,7 +1,7 @@
 <view class="song-detail">
   <image class="bg-image" src="{{songInfo.al.picUrl}}" mode="aspectFill"></image>
 
-  <top-nav bindcustomGoBack="goBack" isShowSlot="{{true}}">
+  <top-nav isUseCustomCb="{{true}}" bindcustomGoBack="goBack" isShowSlot="{{true}}">
     <view>
       <text>{{songInfo.name}}</text>
       <view class="author">
