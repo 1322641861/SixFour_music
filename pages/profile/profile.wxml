@@ -23,11 +23,14 @@
     </view>
   </view>
 
-  <view class="my-like" wx:if="{{createdList.length}}" data-id="{{createdList[0]['id']}}" bindtap="toSongSheetPage">
-    <view class="bg-border"></view>
-    <image class="like-img" src="{{createdList[0]['coverImgUrl']}}">
-      <text class="iconfont icon-love"></text>
-    </image>
+  <!-- 我喜欢的音乐 -->
+  <view class="my-like" wx:if="{{loveList.length}}" data-id="{{loveList[0]['id']}}" bindtap="toSongSheetPage">
+    <view class="cover-img">
+      <view class="bg-border"></view>
+      <image class="like-img" src="{{loveList[0]['coverImgUrl']}}">
+        <text class="iconfont icon-love"></text>
+      </image>
+    </view>
     <view class="like-title">
       <text class="title">我喜欢的音乐</text>
       <view class="download">
@@ -38,6 +41,48 @@
     <view class="beckon-btn">
       <image class="beckon" src="/static/images/home/beckon.png"></image>
       <text>心动模式</text>
+    </view>
+  </view>
+
+  <!-- 创建的歌单 -->
+  <view class="created-list" wx:if="{{createdList.length}}">
+    <text class="sheet-title">创建歌单</text>
+    <view class="my-like created-detail">
+      <view class="detail-item" wx:key="id" wx:for="{{createdList}}" data-id="{{item['id']}}" bindtap="toSongSheetPage">
+        <view class="cover-img">
+          <view class="bg-border"></view>
+          <image class="like-img" src="{{item['coverImgUrl']}}"></image>
+        </view>
+        <view class="like-title">
+          <text class="title">{{item['name']}}</text>
+          <view class="download">
+            <text class="iconfont icon-downloaded"></text>
+            <text class="download-no">{{item['trackCount']}}首, by {{item['creator']['nickname']}}</text>
+          </view>
+        </view>
+        <text class="iconfont icon-more_point"></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收藏歌单 -->
+  <view class="collection-list created-list" wx:if="{{subscribedList.length}}">
+    <text class="sheet-title">收藏歌单</text>
+    <view class="my-like created-detail">
+      <view class="detail-item" wx:key="id" wx:for="{{subscribedList}}" data-id="{{item['id']}}" bindtap="toSongSheetPage">
+        <view class="cover-img">
+          <view class="bg-border"></view>
+          <image class="like-img" src="{{item['coverImgUrl']}}"></image>
+        </view>
+        <view class="like-title">
+          <text class="title">{{item['name']}}</text>
+          <view class="download">
+            <text class="iconfont icon-downloaded"></text>
+            <text class="download-no">{{item['trackCount']}}首, by {{item['creator']['nickname']}}</text>
+          </view>
+        </view>
+        <text class="iconfont icon-more_point"></text>
+      </view>
     </view>
   </view>
 </scroll-view>

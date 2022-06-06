@@ -73,7 +73,7 @@
 
 .my-like {
   text-align: center;
-  margin: 24rpx 24rpx 0;
+  margin: 24rpx;
   background-color: #fff;
   border-radius: 20rpx;
   display: flex;
@@ -82,13 +82,16 @@
   align-items: center;
   position: relative;
 }
+.my-like .cover-img {
+  position: relative;
+}
 .my-like .bg-border {
   position: absolute;
   background: #eee;
   width: 80rpx;
   height: 80rpx;
-  left: 36rpx;
-  top: 20rpx;
+  left: 10rpx;
+  top: 0;
   border-radius: 12rpx;
 }
 .my-like .like-img {
@@ -97,6 +100,7 @@
   background: #eee;
   border-radius: 16rpx;
   position: relative;
+  margin-top: 10rpx;
 }
 .my-like .icon-love {
   position: absolute;
@@ -117,6 +121,11 @@
 }
 .my-like .title {
   font-size: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: start;
 }
 .my-like .download {
   font-size: 22rpx;
@@ -146,4 +155,26 @@
   height: 30rpx;
   vertical-align: middle;
   padding-right: 6rpx;
+}
+
+.created-list {
+  padding-bottom: 20rpx;
+}
+.created-list .created-detail {
+  display: block;
+}
+.created-list .sheet-title {
+  margin-left: 24rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.created-list .icon-more_point {
+  color: #999;
+}
+.my-like .detail-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10rpx;
 }

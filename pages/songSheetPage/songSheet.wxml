@@ -11,10 +11,10 @@
           </image>
         </view>
         <view class="right-title">
-          <text class="title">我喜欢的音乐</text>
+          <text class="title">{{playlist.name}}</text>
           <view class="avatar">
             <image src="{{creator.avatarUrl}}"></image>
-            <text>Biboniu</text>
+            <text>{{creator.nickname}}</text>
             <text class="iconfont icon-more"></text>
           </view>
         </view>

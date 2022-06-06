@@ -23,7 +23,8 @@ Page({
     songInfo: {},
     songData: {},
     createdList: [], // 创建的歌单
-    subscribedList: [], // 收藏的歌单
+    subscribedList: [], // 收藏的歌单,
+    loveList: [],
   },
 
   /**
@@ -68,6 +69,7 @@ Page({
       if (res.playlist && res.playlist.length > 0) {
         let createdList = [];
         let subscribedList = [];
+        let loveList = [];
         for (const item of res.playlist) {
           if (item['subscribed']) {
             subscribedList.push(item);
@@ -75,7 +77,9 @@ Page({
             createdList.push(item);
           }
         }
-        this.setData({createdList, subscribedList});
+        loveList = createdList.slice(0, 1);
+        createdList = createdList.slice(1);
+        this.setData({createdList, subscribedList, loveList});
       }
     }
   },
