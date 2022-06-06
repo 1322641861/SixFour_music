@@ -9,13 +9,27 @@ Page({
     phone: '',
     password: '',
     disabled: false,
+    isLayout: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    if (options.isLayout) {
+      this.setData({isLayout: options.isLayout});
+    }
+  },
+  closeCurrentPage() {
+    if (this.data.isLayout) {
+      wx.reLaunch({
+        url: '/pages/index/index',
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
   },
   handleInput(event) {
     /// let type = event.currentTarget.dataset.type;

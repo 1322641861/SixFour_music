@@ -1,0 +1,3 @@
+<!--pages/testWx/test.wxml-->
+<text>pages/testWx/test.wxml</text>
+<button bindtap="getOpenId">openId</button>

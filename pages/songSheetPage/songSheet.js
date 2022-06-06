@@ -57,10 +57,14 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '数据加载失败, 请稍后再试~',
+        // title: '数据加载失败, 请稍后再试~',
+        title: res.msg,
         icon: "none"
+      }).then(() => {
+        this.setTimer = setTimeout(() => {
+          this.goBack();
+        }, 800);
       })
-      this.goBack();
     }
   },
   /**
@@ -97,14 +101,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    getCurrentMusic(this);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    if (this.setTimer) clearTimeout(this.setTimer);
   },
 
   /**

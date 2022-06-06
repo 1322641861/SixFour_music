@@ -43,6 +43,10 @@
   color: #666;
   padding-top: 30rpx;
 }
+.cloud-tab-wrap {
+  padding-left: 20rpx;
+  background: #fff;
+}
 .cloud-tab .active {
   color: #333;
   border-bottom: 1px solid #d81e06;

@@ -47,6 +47,38 @@ Page({
       url: '/pages/auth/login/login'
     })
   },
+  // 退出登录
+  toLayout() {
+    wx.showModal({
+      title: "确定要退出当前账号吗?",
+      confirmColor: "#d81e06",
+      success: async (res) => {
+        let getBackgroundAudioManager = wx.getBackgroundAudioManager();
+        getBackgroundAudioManager.stop();
+        if (res.confirm) {
+          let res = await request({url: "/logout"});
+          if (res.code === 200) {
+            wx.removeStorageSync('songData');
+            wx.removeStorageSync('songInfo');
+            wx.removeStorageSync('currentSongId');
+            wx.removeStorageSync('currentSongSheet');
+            wx.removeStorageSync('userInfo');
+            wx.removeStorageSync('cookies');
+            wx.reLaunch({
+              url: '/pages/auth/login/login?isLayout=' + true,
+            });
+          } else {
+            wx.showToast({
+              title: '请求失败, 请稍后重试',
+              icon: "none"
+            })
+          }
+          
+        }
+      }
+    })
+    
+  },
   /**
    * 跳转歌单
    */

@@ -178,3 +178,15 @@
   align-items: center;
   padding-top: 10rpx;
 }
+
+.layout {
+  padding-bottom: 20rpx;
+}
+.layout .layout-btn {
+  width: auto;
+  background: #fff;
+  margin: 0 24rpx 24rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  color: #d81e06;
+}

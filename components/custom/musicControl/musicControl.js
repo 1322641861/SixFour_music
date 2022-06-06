@@ -156,9 +156,12 @@ Component({
         this.setMusicData();
       });
       this.backgroundAudioManager.onStop(() => {
-        this.changePlayMusic(false);
-        console.log('stop111111111111111');
-        this.setMusicData();
+        console.log(this);
+        if (this) {
+          console.log('stop111111111111111');
+          this.changePlayMusic(false);
+          this.setMusicData();
+        }
       });
       this.backgroundAudioManager.onTimeUpdate(() => {
         throttle(() => {

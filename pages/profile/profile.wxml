@@ -85,6 +85,10 @@
       </view>
     </view>
   </view>
+
+  <view wx:if="{{userInfo.nickname}}" class="layout">
+    <button class="layout-btn" bindtap="toLayout">退出登录</button>
+  </view>
 </scroll-view>
 <music-control
   wx:if="{{songInfo['id'] && songData['songUrl']}}"

@@ -4,7 +4,8 @@ function request({url, data = {}, method = 'GET'}) {
   return new Promise((resolve, reject) => {
     let cookies = wx.getStorageSync('cookies');
     wx.request({
-      url: config.domain + url,
+      // url: config.domain + url,
+      url: config.localDomain + url,
       data,
       method,
       header: {
@@ -22,6 +23,7 @@ function request({url, data = {}, method = 'GET'}) {
         wx.hideLoading();
         wx.showToast({
           title: "请求超时, 请检查网络",
+          icon: "none"
         })
         reject(err);
       }

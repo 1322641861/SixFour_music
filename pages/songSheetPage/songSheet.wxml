@@ -30,7 +30,7 @@
       </view>
       <text class="iconfont icon-check"></text>
     </view>
-    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - 170rpx);">
+    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - {{songInfo['id'] && songData['songUrl'] ? 170 : 80}}rpx);">
       <music-item 
         wx:for="{{tracks}}"
         wx:key="id" 
@@ -45,6 +45,7 @@
       <view class="border-10"></view>
     </scroll-view>
   </view>
+
   <music-control
     wx:if="{{songInfo['id'] && songData['songUrl']}}"
     is-play="{{isPlay}}"

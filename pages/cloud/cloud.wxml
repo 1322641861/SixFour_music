@@ -8,16 +8,19 @@
     <image src="/static/images/home/add.png"></image>
   </view>
 
-  <scroll-view 
-    scroll-x 
-    scroll-into-view="{{'scroll' + activedId}}" 
-    scroll-with-animation 
-    class="cloud-tab cloud-scroll-view"
-  >
-    <view id="{{'scroll' + item.id}}" class="tab-item {{activedId === item.id ? 'active' : ''}}" wx:for="{{groupList}}" wx:key="id" data-id="{{item.id}}" bindtap="changeTab">
-      {{item.name}}
-    </view>
-  </scroll-view>
+  <view class="cloud-tab-wrap">
+    <scroll-view 
+      scroll-x 
+      scroll-into-view="{{'scroll' + activedId}}" 
+      scroll-with-animation 
+      class="cloud-tab cloud-scroll-view"
+    >
+      <view id="{{'scroll' + item.id}}" class="tab-item {{activedId === item.id ? 'active' : ''}}" wx:for="{{groupList}}" wx:key="id" data-id="{{item.id}}" bindtap="changeTab">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+  
 
   <scroll-view
     scroll-y
