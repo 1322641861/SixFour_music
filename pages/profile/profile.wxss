@@ -49,7 +49,7 @@
 
 .action-list {
   text-align: center;
-  margin: 24rpx 24rpx 0;
+  margin: 24rpx;
   background-color: #fff;
   border-radius: 20rpx;
   display: flex;

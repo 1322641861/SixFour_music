@@ -1,5 +1,5 @@
 import request from "../../utils/request";
-import {playAllSongSheet, getCurrentMusic} from "../../utils/util"
+import {playAllSongSheet, getCurrentMusic, getAmount} from "../../utils/util"
 
 Page({
 
@@ -50,6 +50,11 @@ Page({
     let res = await request({url: "/playlist/detail", data: {id}});
     wx.hideLoading();
     if (res && res.playlist) {
+      Object.assign(res.playlist, {
+        commentCountStr: getAmount(res.playlist.commentCount),
+        shareCountStr: getAmount(res.playlist.shareCount),
+        subscribedCountStr: getAmount(res.playlist.subscribedCount)
+      });
       this.setData({
         creator: res.playlist.creator,
         tracks: res.playlist.tracks,

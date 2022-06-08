@@ -17,6 +17,7 @@
       <text wx:if="{{!isPlay}}" class="iconfont icon-single-play"></text>
       <text wx:else class="iconfont icon-single-suspend"></text>
     </view>
-    <text class="iconfont icon-music-list"></text>
+    <text class="iconfont icon-music-list" catchtap="changeShowMusicContainer"></text>
   </view>
 </view>
+<song-sheet bottomHeight="90rpx" bindchangeShowMusic="changeShowMusicContainer" showMusicContainer="{{showMusicContainer}}" musicId="{{songData.musicId}}"></song-sheet>

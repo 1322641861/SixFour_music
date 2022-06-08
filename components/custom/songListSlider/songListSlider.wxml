@@ -1,5 +1,5 @@
 <scroll-view class="re-list" scroll-x="true">
-  <view class="album" wx:for="{{list}}" wx:key="id">
+  <view class="album" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="toSongSheetPage">
     <view class="album-avatar">
       <image class="album-image" src="{{item.picUrl}}"></image>
       <!-- <view>

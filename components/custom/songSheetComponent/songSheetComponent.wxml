@@ -1,0 +1,31 @@
+<page-container
+show="{{showMusicContainer}}"
+round
+bind:clickoverlay="changeShowMusicContainer"
+>
+  <view class="music-container">
+    <view class="title">
+      <text>当前播放<text class="num" wx:if="{{currentSongSheet.length}}">({{currentSongSheet.length}})</text></text>
+      <view class="right-btn">
+        <text wx:if="{{audioPlayType === 0}}" class="iconfont icon-list-play" bindtap="changeAudioPlayType"><text class="txt">列表循环</text></text>
+        <text wx:elif="{{audioPlayType === 1}}" class="iconfont icon-single-play1" bindtap="changeAudioPlayType"><text class="txt">单曲循环</text></text>
+        <text wx:else class="iconfont icon-random-play" bindtap="changeAudioPlayType"><text class="txt">随机播放</text></text>
+      </view>
+    </view>
+    <scroll-view wx:if="{{currentSongSheet.length}}" style="height: calc(70vh - 84rpx - {{bottomHeight}});" scroll-y class="container-container">
+      <view class="song-item {{musicId === item.id ? 'actived' : ''}}" wx:for="{{currentSongSheet}}" wx:key="id" data-musicId="{{item.id}}" bindtap="changeToWholeMusic">
+        <view class="item-msg">
+          <text wx:if="{{musicId === item.id}}" class="iconfont icon-yinpin actived"></text>
+          <text class="title-name">{{item.name}}</text>
+          <text class="name {{musicId === item.id ? 'actived' : ''}}" wx:if="{{item.ar.length}}"> - <text wx:for="{{item.ar}}" wx:for-item="ar" wx:key="id" wx:for-index="i">{{(i === 0 ? '' : '/') + ar.name}}</text>
+          </text>
+        </view>
+        <text class="iconfont icon-delete1" data-musicId="{{item.id}}" data-index="{{index}}" catchtap="deleteCurrentSong"></text>
+      </view>
+      <view class="border-10"></view>
+    </scroll-view>
+    <view wx:else class="container-container">
+      <view class="no-data">暂无播放歌单</view>
+    </view>
+  </view>
+</page-container>

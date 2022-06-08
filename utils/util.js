@@ -115,6 +115,36 @@ const playAllSongSheet = function (songList) {
     })
   }
 }
+/**
+ * 切换播放类型
+ * audioPlayType 0 列表循环 1 单曲循环 2 随机播放
+ */
+const changeAudioPlayType = function (that) {
+  let audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
+  const audioPlayTypeList = ['列表循环', '单曲循环', '随机播放'];
+  audioPlayType++;
+  audioPlayType = audioPlayType % 3;
+  that.setData({audioPlayType});
+  wx.setStorageSync('audioPlayType', audioPlayType)
+  wx.showToast({
+    title: audioPlayTypeList[audioPlayType],
+    icon: "none"
+  })
+}
+
+/**
+ * 获取数量, 超过10万时转中文万单位
+ */
+const getAmount = function (num) {
+  if (!num) return 0;
+  let newNum;
+  if (num >= 10000) {
+    newNum = Math.floor(num / 1000) / 10 + '万';
+  } else {
+    newNum = num.toString();
+  }
+  return newNum;
+} 
 
 module.exports = {
   formatTime,
@@ -123,5 +153,7 @@ module.exports = {
   throttle,
   getRandomIndex,
   getCurrentMusic,
-  playAllSongSheet
+  playAllSongSheet,
+  changeAudioPlayType,
+  getAmount
 }

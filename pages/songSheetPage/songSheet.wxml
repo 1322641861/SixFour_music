@@ -22,6 +22,24 @@
     </view>
   </view>
   
+  <view class="song-nav"  style="top: calc({{statusBarHeight}}px + 23vh - 50rpx);">
+    <view class="song-nav-item {{playlist.subscribed || playlist.subscribedCountStr ? '' : 'collection'}}">
+      <text wx:if="{{playlist.subscribed}}" class="iconfont icon-yuanxingxuanzhong subscribed"></text>
+      <text wx:if="{{!playlist.subscribedCountStr}}" class="nav-msg subscribed">收藏</text>
+      <text wx:else class="nav-msg subscribed">{{playlist.subscribedCountStr}}</text>
+    </view>
+    <view class="song-nav-item comment">
+      <text class="iconfont icon-comments"></text>
+      <text wx:if="{{!playlist.commentCountStr}}" class="nav-msg">评论</text>
+      <text wx:else class="nav-msg">{{playlist.commentCountStr}}</text>
+    </view>
+    <view class="song-nav-item share">
+      <text class="iconfont icon-share_light"></text>
+      <text wx:if="{{!playlist.shareCountStr}}" class="nav-msg">分享</text>
+      <text wx:else class="nav-msg">{{playlist.shareCountStr}}</text>
+    </view>
+  </view>
+
   <view class="sheet-list">
     <view class="play-more" bindtap="playAllSongSheet">
       <view class="play-left">
@@ -30,7 +48,7 @@
       </view>
       <text class="iconfont icon-check"></text>
     </view>
-    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - {{songInfo['id'] && songData['songUrl'] ? 170 : 80}}rpx);">
+    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);">
       <music-item 
         wx:for="{{tracks}}"
         wx:key="id" 

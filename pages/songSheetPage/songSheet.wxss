@@ -3,6 +3,8 @@
 }
 .sheet-wrap .header-wrap {
   position: relative;
+  overflow: hidden;
+  border-radius: 0 0 50% 50%/0 0 7% 7%;
 }
 .sheet-wrap .wrap-img {
   position: absolute;
@@ -37,6 +39,41 @@
   position: relative;
   margin-top: 1vh;
   border-radius: 24rpx;
+}
+
+.song-nav {
+  display: flex;
+  width: 80%;
+  position: absolute;
+  z-index: 3;
+  background: #fff;
+  height: 70rpx;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 30rpx;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #333;
+  box-shadow: 0rpx 0rpx 16rpx rgba(0,0,0,.2);
+}
+.song-nav .nav-msg,
+.song-nav .song-nav-item .iconfont {
+  vertical-align: middle;
+}
+.song-nav .song-nav-item {
+  flex: 1;
+  text-align: center;
+}
+.song-nav .collection .subscribed {
+  color: #ddd;
+}
+.song-nav .comment {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+.song-nav .nav-msg {
+  padding-left: 10rpx;
 }
 
 .right-title {
@@ -77,6 +114,7 @@
   padding: 0 24rpx;
   align-items: center;
   border-bottom: 1rpx solid #eee;
+  margin-top: 20rpx;
 }
 .play-more .icon-play {
   vertical-align: middle;

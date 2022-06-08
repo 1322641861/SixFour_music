@@ -46,6 +46,7 @@
   "usingComponents": {
     "music-control": "/components/custom/musicControl/musicControl",
     "music-item": "/components/custom/musicItem/musicItem",
-    "top-nav": "/components/common/topNav/topNav"
+    "top-nav": "/components/common/topNav/topNav",
+    "song-sheet": "/components/custom/songSheetComponent/songSheetComponent"
   }
 }

@@ -45,8 +45,9 @@
         <text bindtap="play" wx:if="{{!playMusic}}" class="iconfont icon-play1 control-play"></text>
         <text bindtap="play" wx:else class="iconfont icon-pause control-play"></text>
         <text class="iconfont icon-next-song" data-type="next" bindtap="changePreNextMusic"></text>
-        <text class="iconfont icon-music-list"></text>
+        <text class="iconfont icon-music-list" catchtap="changeShowMusicContainer"></text>
       </view>
     </view>
   </view>
 </view>
+<song-sheet bindchangeShowMusic="changeShowMusicContainer" showMusicContainer="{{showMusicContainer}}" musicId="{{songData.musicId}}"></song-sheet>

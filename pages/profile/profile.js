@@ -25,18 +25,22 @@ Page({
     createdList: [], // 创建的歌单
     subscribedList: [], // 收藏的歌单,
     loveList: [],
+    isLoading: false, // 下拉刷新
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.init();
+  },
+  async init() {
     getCurrentMusic(this); 
     let userInfo = wx.getStorageSync("userInfo");
     this.setData({
       userInfo: userInfo ? JSON.parse(userInfo) : {}
     })
-    this.getPlayList();
+    await this.getPlayList();
   },
   actionNavigate(event) {
     let routerName = event.currentTarget.dataset.name;
@@ -115,6 +119,13 @@ Page({
       }
     }
   },
+  refresh() {
+    this.setData({isLoading: true})
+    this.init().then((res, rej) => {
+      console.log(res);
+      this.setData({isLoading: false})
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -153,7 +164,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    
   },
 
   /**

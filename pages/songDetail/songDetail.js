@@ -1,6 +1,6 @@
 // pages/songDetail/songDetail.js
 import request from '../../utils/request';
-import {throttle} from "../../utils/util";
+import {throttle, changeAudioPlayType} from "../../utils/util";
 import PubSub from "pubsub-js";
 import moment from "moment";
 
@@ -23,7 +23,8 @@ Page({
     isPlayedMusic: false, // 当前音频是否播放过
     musicId: 0,
     audioPlayType: 0,
-    pageIsUnload: false
+    pageIsUnload: false,
+    showMusicContainer: false, // 打开右下角歌单列表弹窗
   },
 
   /**
@@ -38,7 +39,6 @@ Page({
       songData.durationTime = moment(songInfo.dt).format("mm:ss");
     }
     const audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
-    console.log('globalData', appInstance.globalData, songInfo, options);
     let isPlayedMusic = globalData.musicId === musicId;
 
     this.setData({isPlayedMusic, musicId, audioPlayType});
@@ -65,20 +65,16 @@ Page({
 
     /// 监听背景音频管理器
     this.handleBgAudioMangerAll(musicId);
-
-    // try {
-    //   let systemInfo = wx.getSystemInfoSync();
-    //   this.setData({
-    //     statusBarHeight: systemInfo.statusBarHeight
-    //   })
-    // } catch (error) {
-    //   console.log(error);
-    // }
   },
   goBack() {
     wx.navigateBack({
       delta: 1,
     })
+  },
+  /// 打开歌单播放列表弹窗
+  changeShowMusicContainer() {
+    let isShow = this.data.showMusicContainer;
+    this.setData({showMusicContainer: !isShow});
   },
   /**
    * 获取歌曲信息
@@ -215,7 +211,6 @@ Page({
     }, 500)();
   },
   musicControl(playMusic) {
-    // console.log('musicControl..', playMusic, this.backgroundAudioManger);
     let data = this.data;
     let timer;
     if (!playMusic && data.songUrl) {
@@ -240,16 +235,7 @@ Page({
    * audioPlayType 0 列表循环 1 单曲循环 2 随机播放
    */
   changeAudioPlayType() {
-    const audioPlayTypeList = ['列表循环', '单曲循环', '随机播放'];
-    let {audioPlayType} = this.data;
-    audioPlayType++;
-    audioPlayType = audioPlayType % 3;
-    this.setData({audioPlayType});
-    wx.setStorageSync('audioPlayType', audioPlayType)
-    wx.showToast({
-      title: audioPlayTypeList[audioPlayType],
-      icon: "none"
-    })
+    changeAudioPlayType(this);
   },
   /**
    * 切换上/下一首

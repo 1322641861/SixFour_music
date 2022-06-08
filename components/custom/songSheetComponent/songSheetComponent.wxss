@@ -1,0 +1,70 @@
+@import "/static/iconfont/iconfont.wxss";
+.music-container {
+  height: 70vh;
+  padding: 24rpx 30rpx 0;
+  box-sizing: border-box;
+}
+.music-container .title {
+  height: 70rpx;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.music-container .iconfont {
+  font-size: 32rpx;
+  color: #999;
+  font-weight: normal;
+}
+.music-container .iconfont .txt {
+  padding-left: 6rpx;
+}
+.music-container .num {
+  font-weight: normal;
+  font-size: 26rpx;
+  color: #999;
+}
+.music-container .container-container {
+  height: calc(70vh - 84rpx);
+}
+.music-container .no-data {
+  text-align: center;
+  color: #999;
+  padding-top: 20vh;
+}
+.music-container .song-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.music-container .item-msg {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.music-container .icon-yinpin {
+  font-size: 20rpx;
+  padding-right: 6rpx;
+  margin-right: 6rpx;
+}
+.music-container .title-name {
+  font-weight: normal;
+}
+.music-container .name {
+  font-size: 22rpx;
+  color: #999;
+}
+.music-container .icon-delete1 {
+  color: #999;
+  padding: 10rpx;
+}
+.actived {
+  color: #d81e06!important;
+}
+.border-10 {
+  height: 20rpx;
+}

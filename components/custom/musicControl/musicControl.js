@@ -1,6 +1,6 @@
 // components/custom/musicControl/musicControl.js
 const appInstance = getApp();
-import {throttle} from "../../../utils/util";
+import {throttle, changeAudioPlayType} from "../../../utils/util";
 import PubSub from "pubsub-js";
 import moment from "moment";
 import request from "../../../utils/request"
@@ -33,19 +33,28 @@ Component({
    */
   data: {
     songProgressLen: 0,
-    initRotate: -135
+    initRotate: -135,
+    showMusicContainer: false,
+    // currentSongSheet: [],
+    // audioPlayType: 0
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    /// 点击控制台进入播放列表
     clickWholeMusic() {
       const musicId = this.data.songData.musicId;
       appInstance.globalData.musicId = musicId;
       wx.navigateTo({
         url: '/pages/songDetail/songDetail?musicId=' + musicId,
       })
+    },
+    /// 打开歌单播放列表弹窗
+    changeShowMusicContainer() {
+      let isShow = this.data.showMusicContainer;
+      this.setData({showMusicContainer: !isShow});
     },
     /**
      * 暂停/播放
@@ -186,7 +195,6 @@ Component({
       PubSub.subscribe("changeAndUpdateMusic", (msg, type) => {
         const songData = wx.getStorageSync('songData');
         const songInfo = wx.getStorageSync('songInfo');
-        console.log('musicControl songData', songData);
         const isPlay = appInstance.globalData.isPlayMusic;
         if (songInfo['id'] && songData['songUrl']) {
            this.setData({ songData, songInfo, isPlay })
@@ -195,61 +203,47 @@ Component({
         const currentSongSheet = wx.getStorageSync('currentSongSheet', this.data.searchDetailList);
         if (currentSongSheet && currentSongSheet.length) {
           let currentSong = currentSongSheet.find(item => item['id'] === songData['musicId']);
-          console.log('musicControl currentSong', currentSong);
           if (currentSong) wx.setStorageSync('currentSongId', currentSong['id']);
         }
       })
     },
-   /**
-   * 获取歌曲信息
-   */
-  async getMusicInfo(musicId) {
-    let res = await request({url: '/song/detail', data: {ids: musicId}});
-    if (res) {
-      let song = res.songs[0];
-      let durationTime = moment(song.dt).format("mm:ss");
-      let songData = this.data.songData;
-      songData.durationTime = durationTime;
-      songData.musicId = musicId;
-      this.setData({
-        songInfo: song,
-        songData
-      });
-    }
-  },
-  /**
-   * 获取歌曲url
-   */
-  async getMusicUrl(id) {
-    let res = await request({url: '/song/url', data: {id: id}});
-    if (res) {
-      let songData = this.data.songData;
-      songData.songUrl = res.data[0].url;
-      songData.musicId = id;
-      this.setData({songData});
-    }
-  },
-}, 
-  // observers: {
-  //   'songInfo, songData': function (songInfo, songData) {
-  //     const isPlay = appInstance.globalData.isPlayMusic;
-  //     console.log('songInfo, songData', isPlay);
-  //     // this.handleBgMusic();
-  //     if (isPlay) {
-
-  //     }
-  //     console.log('observers ===> ',songInfo, songData);
-  //   }
-  // },
+    /**
+     * 获取歌曲信息
+     */
+    async getMusicInfo(musicId) {
+      let res = await request({url: '/song/detail', data: {ids: musicId}});
+      if (res) {
+        let song = res.songs[0];
+        let durationTime = moment(song.dt).format("mm:ss");
+        let songData = this.data.songData;
+        songData.durationTime = durationTime;
+        songData.musicId = musicId;
+        this.setData({
+          songInfo: song,
+          songData
+        });
+      }
+    },
+    /**
+     * 获取歌曲url
+     */
+    async getMusicUrl(id) {
+      let res = await request({url: '/song/url', data: {id: id}});
+      if (res) {
+        let songData = this.data.songData;
+        songData.songUrl = res.data[0].url;
+        songData.musicId = id;
+        this.setData({songData});
+      }
+    },
+  }, 
   lifetimes: {
     created: function () {
-      // console.log('created...');
       this.handleBgMusic();
       appInstance.globalData.musicId = this.data.musicId;
     },
     attached: function() {
       // 在组件实例进入页面节点树时执行
-      // console.log('attached...');
       this.subscribeUpdateMusic();
     },
     ready: function () {
@@ -257,7 +251,6 @@ Component({
       if (!songData || !songInfo) return;
       let songProgressLen = Math.floor(songInfo.dt / 10) / 100;
       let initRotate = this.getInitRotate(songProgressLen);
-      // console.log('initRotate; $initRotate', initRotate, songProgressLen);
       this.setData({
         songProgressLen,
         initRotate

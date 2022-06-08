@@ -14,7 +14,8 @@ Page({
     topList: [],
     isPlay: false,
     songInfo: {},
-    songData: {}
+    songData: {},
+    isLoading: false, // 下拉刷新
   },
 
   /**
@@ -22,37 +23,47 @@ Page({
    */
   onLoad: async function (options) {
     this.subscribeChangeMusic();
+    this.init();
+  },
+  async init() {
     getCurrentMusic(this); 
     /// 轮播图
-    this.getBanners();
+    await this.getBanners();
     /// 推荐歌单
-    this.getRecommend();
+    await this.getRecommend();
     /// 排行榜
     this.getTopList();
   },
-  getBanners() {
-    request({
+  async refresh() {
+    this.setData({isLoading: true})
+    await this.init();
+    this.setData({isLoading: false})
+  },
+  async getBanners() {
+    let res = await request({
       url: '/banner',
       data: {
         type: 2
       }
-    }).then(res => {
+    });
+    if (res && res.banners) {
       this.setData({
         banners: res.banners
       })
-    });
+    }
   },
-  getRecommend() {
-    request({
+  async getRecommend() {
+    let res = await request({
       url: "/personalized",
       data: {
         limit: 6
       }
-    }).then(res => {
+    })
+    if (res && res.result) {
       this.setData({
         personalized: res.result
       })
-    });
+    }
   },
   async getTopList() {
     let i = 0;

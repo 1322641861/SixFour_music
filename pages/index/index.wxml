@@ -2,7 +2,7 @@
 <!-- <import src="index.skeleton.wxml"></import>
 <template is="skeleton"></template> -->
 
-<scroll-view scroll-y class="home-wrap" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);">
+<scroll-view scroll-y class="home-wrap" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);" refresher-enabled refresher-triggered="{{isLoading}}" bindrefresherrefresh="refresh">
   <view class="swiper-wrap">
     <swiper wx:if="{{banners}}"class="home-swiper" indicator-dots="{{true}}" indicator-color="rgba(0, 0, 0, .2)" indicator-active-color="#fff" autoplay interval="5000">
       <swiper-item class="home-swiper-item" wx:for="{{banners}}" wx:key="bannerId">

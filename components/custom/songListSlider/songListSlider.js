@@ -20,7 +20,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    /**
+     * 跳转歌单
+     */
+    toSongSheetPage(event) {
+      let id  = event.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: '/pages/songSheetPage/songSheet?id=' + id,
+      })
+    },
   },
   options: {
     addGlobalClass: true
