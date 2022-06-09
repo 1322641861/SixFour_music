@@ -33,11 +33,23 @@ Page({
     await this.getRecommend();
     /// 排行榜
     this.getTopList();
+    this.getLikeList();
   },
   async refresh() {
     this.setData({isLoading: true})
     await this.init();
     this.setData({isLoading: false})
+  },
+  /**
+   * 喜欢的歌单列表
+   */
+  async getLikeList() {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) return;
+    let res = await request({url: "/likelist", data: {uid: userInfo.id}});
+    if (res && res.ids) {
+      wx.setStorageSync('likeIdList', res.ids);
+    }
   },
   async getBanners() {
     let res = await request({

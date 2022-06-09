@@ -69,8 +69,7 @@
             data-musicId="{{item.id}}" 
             bindmusicPlay="navigatePage"
             music-info="{{item}}"
-            ar-name="{{item.artists[0].name}}"
-            al-name="{{item.album.name}}"
+            indexReplaceImg="{{true}}"
           >
           </music-item>
           <view class="border-10"></view>

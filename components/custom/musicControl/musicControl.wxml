@@ -20,4 +20,4 @@
     <text class="iconfont icon-music-list" catchtap="changeShowMusicContainer"></text>
   </view>
 </view>
-<song-sheet bottomHeight="90rpx" bindchangeShowMusic="changeShowMusicContainer" showMusicContainer="{{showMusicContainer}}" musicId="{{songData.musicId}}"></song-sheet>
+<song-sheet wx:if="{{showMusicContainer}}" bottomHeight="{{HasBottomHeight ? '90rpx' : '0'}}" bindchangeShowMusic="changeShowMusicContainer" showMusicContainer="{{showMusicContainer}}" musicId="{{songData.musicId}}"></song-sheet>

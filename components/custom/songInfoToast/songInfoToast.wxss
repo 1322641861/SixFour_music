@@ -1,0 +1,56 @@
+@import "/static/iconfont/iconfont.wxss";
+
+.song-info {
+  height: 70vh;
+}
+.song-info .header {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  box-sizing: border-box;
+  height: 150rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.song-info .avatar-img {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 8rpx;
+  margin-right: 12rpx;
+}
+.song-info .header-title {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+.song-info .song-name,
+.song-info .avatar {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.song-info .song-name {
+  font-size: 28rpx;
+}
+.song-info .avatar {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.body-msg .info-item {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx 0 30rpx;
+  display: flex;
+  align-items: center;
+}
+.body-msg .info-msg {
+  flex: 1;
+  margin-left: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+}
+.body-msg .old-avatar-wrap {
+  color: #999;
+  margin-left: 10rpx;
+}

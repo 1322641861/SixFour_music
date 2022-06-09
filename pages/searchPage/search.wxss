@@ -74,11 +74,11 @@
 }
 .hot-content .hot-single {
   width: 50%;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   padding: 20rpx 0;
   font-size: 29rpx;
+  display: flex;
+  align-items: center;
 }
 .hot-info .name {
   line-height: 33rpx;
@@ -100,6 +100,8 @@
 }
 .hot-single .hot-info {
   display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .hot-info image {
   width: 38rpx;

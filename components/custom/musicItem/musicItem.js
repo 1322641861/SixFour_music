@@ -18,6 +18,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    showSongInfo: false,
   },
 
   /**
@@ -30,6 +31,10 @@ Component({
     mvPlay() {
       this.triggerEvent("mvPlay");
     },
+    changeShowInfo(event) {
+      let {showSongInfo} = this.data;
+      this.setData({showSongInfo: !showSongInfo});
+    }
   },
   observers: {
     "currentSongId": function (currentSongId) {

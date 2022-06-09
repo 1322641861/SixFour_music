@@ -200,13 +200,15 @@ Page({
     let {inputValue, keyword, showTrimValue} = this.data;
     let searchValue = showTrimValue ? trimValue : inputValue ? inputValue : keyword;
     let res = await request({url: "/search/suggest", data: {keywords: searchValue, type: "mobile"}});
-    // console.log('搜索建议', res);
     if (res && res.code == 200 && res.result.allMatch) {
       this.setData({searchSingleList: res.result.allMatch});
     } else {
       this.setData({searchSingleList: []});
     }
   },
+  /**
+   * type: 搜索类型；默认为 1 即单曲 , 取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音(搜索声音返回字段格式会不一样)
+   */
   async getSearchDetail(event) {
     wx.showLoading({
       title: '加载中...',
@@ -215,11 +217,12 @@ Page({
     this.setData({enteredDetail: true, inputValue: submitValue});
     let {inputValue, keyword, historyList} = this.data;
     this.setHistoryList(historyList, inputValue);
-
     let searchValue = submitValue ? submitValue : inputValue ? inputValue : keyword;
-    let res = await request({url: "/search", data: {
+    // /search 或者 /cloudsearch(更全)
+    let res = await request({url: "/cloudsearch", data: {
       keywords: searchValue,
-      limit: 10,
+      limit: 30,
+      offset: 1
       // type: 1018
     }});
     wx.hideLoading();

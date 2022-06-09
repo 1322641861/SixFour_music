@@ -18,6 +18,12 @@
   </view>
   <view class="right-btn">
     <text class="iconfont icon-music_play"></text>
-    <text class="iconfont icon-more_point"></text>
+    <text class="iconfont icon-more_point" catchtap="changeShowInfo"></text>
   </view>
 </view>
+<song-info-toast
+wx:if="{{showSongInfo}}"
+showSongInfo="{{showSongInfo}}"
+bindchangeShowInfo="changeShowInfo"
+songInfo="{{musicInfo}}"
+></song-info-toast>

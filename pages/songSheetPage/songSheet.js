@@ -14,7 +14,8 @@ Page({
     statusBarHeight: 0,
     isPlay: false,
     songInfo: {},
-    songData: {}
+    songData: {},
+    isLoading: false,
   },
 
   /**
@@ -33,7 +34,7 @@ Page({
 
     let id = options.id;
     this.setData({id});
-    this.getPlayListDetail(id);
+    this.refresh();
   },
   goBack() {
     wx.navigateBack({
@@ -43,6 +44,10 @@ Page({
   /**
    * 获取歌单详情
    */
+  async refresh() {
+    await this.getPlayListDetail(this.data.id);
+    wx.stopPullDownRefresh();
+  },
   async getPlayListDetail(id) {
     wx.showLoading({
       title: '加载中...',
@@ -127,7 +132,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.refresh();
   },
 
   /**

@@ -1,5 +1,6 @@
 // components/custom/songSheetComponent/songSheetComponent.js
 import {changeAudioPlayType} from "../../../utils/util";
+import Pubsub from "pubsub-js";
 
 Component({
   /**
@@ -72,11 +73,21 @@ Component({
 
     changeShowMusicContainer() {
       this.triggerEvent("changeShowMusic")
-    }
+    },
+
+    pubsubSheetList() {
+      Pubsub.subscribe("changeSheetSong", (msg, data) => {
+        console.log('pubsubSheetList', msg, data);
+        if (data && data.length) {
+          this.setData({currentSongSheet: data});
+          Pubsub.unsubscribe("changeSheetSong");
+        }
+      })
+    },
   },
   lifetimes: {
     created: function () {
-      
+      this.pubsubSheetList();
     },
     attached: function () {
       this.getCurrentSongSheet();

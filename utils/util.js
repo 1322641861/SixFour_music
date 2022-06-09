@@ -1,3 +1,5 @@
+import Pubsub from "pubsub-js";
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -110,6 +112,7 @@ const playAllSongSheet = function (songList) {
   if (songList && songList.length) {
     wx.setStorageSync('currentSongSheet', songList);
     wx.setStorageSync('currentSongId', songList[0].id);
+    Pubsub.publish("changeSheetSong", songList);
     wx.navigateTo({
       url: '/pages/songDetail/songDetail?musicId=' + songList[0].id,
     })

@@ -4,7 +4,6 @@ App({
     isPlayMusic: false,
     songInfo: {},
     songData: {},
-    // currentSongId: 0,
     audioPlayType: 0, // 0 列表循环 1 单曲循环 2 随机播放
   },
   /**

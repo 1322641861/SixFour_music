@@ -1,5 +1,6 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "歌单",
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
 }

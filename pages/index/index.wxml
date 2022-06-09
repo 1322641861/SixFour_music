@@ -72,5 +72,6 @@
   song-info="{{songInfo}}" 
   song-data="{{songData}}"
   bottom-space="100rpx"
+  HasBottomHeight="{{true}}"
   >
 </music-control>

@@ -25,6 +25,10 @@ Component({
     bottomSpace: {
       type: String,
       value: 0
+    },
+    HasBottomHeight: {
+      type: Boolean,
+      value: false
     }
   },
 

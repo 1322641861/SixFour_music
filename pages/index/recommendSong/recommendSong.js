@@ -22,8 +22,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    appInstance.watch('musicId', this.watchCb);
-
     let date = new Date();
     this.setData({
       day: date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
@@ -37,12 +35,14 @@ Page({
     } else {
       this.initLoad();
     }
+
+    appInstance.watch('musicId', this.watchCb);
   },
   /**
    * 监听songData变化
    */
   watchCb(name, value) {
-    if (name === 'musicId') this.setData({musicId: value});
+    if (name === 'musicId' && value) this.setData({musicId: value});
   },
   /// 播放全部
   playAllSongSheet() {

@@ -99,7 +99,6 @@ Page({
   async getPlayList() {
     let uid = this.data.userInfo && this.data.userInfo.userId;
     if (!uid) return;
-    // let res = request({url: "/likelist", data: {uid}});
     let res = await request({url: "/user/playlist", data: {uid}});
     if (res && res.code === 200) {
       if (res.playlist && res.playlist.length > 0) {
