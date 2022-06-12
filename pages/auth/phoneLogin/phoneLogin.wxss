@@ -1,0 +1,93 @@
+@import "/static/iconfont/iconfont.wxss";
+
+.phone-wrap{
+  padding: 60rpx 30rpx 0;
+}
+.phone-wrap .login-title {
+  font-size: 36rpx;
+  margin-bottom: 30rpx;
+}
+.phone-wrap .login-tip {
+  margin-top: 6rpx;
+  color: #999;
+  margin-bottom: 50rpx;
+}
+.phone-wrap .phone {
+  display: flex;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.phone-wrap .phone-input {
+  padding-left: 10rpx;
+  flex: 1;
+  display: flex;
+}
+.phone-wrap .passward-input {
+  border-bottom: 1px solid #eee;
+  margin-top: 10rpx;
+}
+.phone-wrap .phone-place {
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.phone-wrap .phone-place {
+  flex: 1;
+}
+.phone-wrap .psw-tip {
+  margin-top: 14rpx;
+  color: #999;
+  font-size: 22rpx;
+  display: inline-block;
+}
+.phone-wrap .login-btn {
+  width: 100%;
+  margin-top: 60rpx;
+}
+.phone-wrap .bottom-btn {
+  margin-top: 40rpx;
+  color: #4fa5ef;
+  display: flex;
+  justify-content: space-between;
+}
+
+.captcha-btn {
+  justify-content: space-between;
+  display: flex;
+}
+.captcha-btn .send-btn {
+  font-size: 30rpx;
+}
+.captcha-btn .captcha-send {
+  color: #4fa5ef;
+}
+.captcha-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  /* margin-top: 30rpx; */
+}
+.captcha-tip .tip {
+  vertical-align: middle;
+  line-height: 26rpx;
+}
+.captcha-tip .iconfont {
+  vertical-align: middle;
+  font-size: 32rpx;
+}
+.captcha-num {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.captcha-num .num {
+  width: calc(25vw - 60rpx);
+  height: 80rpx;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  line-height: 80rpx;
+}
+.captcha-input #captcha {
+  opacity: 0;
+}

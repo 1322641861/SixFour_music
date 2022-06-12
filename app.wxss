@@ -14,3 +14,15 @@ page {
   height: 0;
   color: transparent;
 }
+
+.default-button {
+  width: 100%;
+  background: linear-gradient(180deg, #ed5946, #d81e06);
+  color: #fff;
+  border-radius: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding: 0;
+  font-weight: normal;
+}

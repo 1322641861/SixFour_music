@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/auth/login/login",
+    "pages/auth/phoneLogin/phoneLogin",
     "pages/testWx/test",
     "pages/profile/profile",
     "pages/searchPage/search",
     "pages/index/recommendSong/recommendSong",
     "pages/songDetail/songDetail",
     "pages/cloud/cloud",
-    "pages/auth/login/login",
     "pages/songSheetPage/songSheet"
   ],
   "window": {

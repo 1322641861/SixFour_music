@@ -13,8 +13,11 @@
     </view>
   </view>
   <button class="login" bindtap="login" disabled="{{disabled}}" loading="{{disabled}}">登录</button>
-  <view class="forget-psd">忘记密码?</view>
+  <view class="forget-psd">
+    <text bindtap="toPhoneLoginPage">验证码登录</text>
+    <text data-password="{{true}}" bindtap="toPhoneLoginPage">忘记密码?</text>
+  </view>
   <view class="to-register">还没有账号?
-    <text class="register">马上注册</text>
+    <text class="register" data-register="{{true}}" bindtap="toPhoneLoginPage">马上注册</text>
   </view>
 </view>

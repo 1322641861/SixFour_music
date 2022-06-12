@@ -71,24 +71,18 @@ Page({
 
     /// 前端校验成功
     let {phone, password} = this.data;
-    this.setData({
-      disabled: true
-    })
+    this.setData({disabled: true});
     request({
       url: '/login/cellphone',
       data: {phone, password, isLogin: true}
     }).then(res => {
-      console.log(res);
-      this.setData({
-        disabled: false
-      })
+      this.setData({disabled: false});
       if (res.code === 200) {
         wx.showToast({
           title: '登录成功'
         });
         /// 用户数据
         wx.setStorageSync("userInfo", JSON.stringify(res.profile));
-
         wx.reLaunch({
           url: '/pages/index/index',
         })
@@ -110,6 +104,25 @@ Page({
       }
     })
   },
+
+  toPhoneLoginPage(event) {
+    let register = event.currentTarget.dataset['register'];
+    let isChangePassword = event.currentTarget.dataset['password'];
+    if (register) {
+      wx.navigateTo({
+        url: '/pages/auth/phoneLogin/phoneLogin?register=' + register,
+      })
+    } else if (isChangePassword) {
+      wx.navigateTo({
+        url: '/pages/auth/phoneLogin/phoneLogin?isChangePassword=' + isChangePassword,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/auth/phoneLogin/phoneLogin',
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

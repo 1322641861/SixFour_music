@@ -131,3 +131,8 @@
   font-size: 53rpx;
   color: #333;
 }
+.sheet-list .no-music {
+  text-align: center;
+  margin-top: 60rpx;
+  color: #999;
+}

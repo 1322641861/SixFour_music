@@ -1,4 +1,4 @@
-<view class="sheet-wrap" wx:if="{{tracks.length}}">
+<view class="sheet-wrap">
   <view class="header-wrap">
     <image style="height: calc({{statusBarHeight}}px + 23vh);" class="wrap-img" src="{{playlist.coverImgUrl}}" mode="aspectFill"></image>
     <top-nav bindcustomGoBack="goBack" title="歌单"></top-nav>
@@ -48,7 +48,7 @@
       </view>
       <text class="iconfont icon-check"></text>
     </view>
-    <scroll-view scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);">
+    <scroll-view wx:if="{{tracks.length}}" scroll-y class="list" style="height: calc(77vh - {{statusBarHeight}}px - {{songInfo['id'] && songData['songUrl'] ? 190 : 100}}rpx);">
       <music-item 
         wx:for="{{tracks}}"
         wx:key="id" 
@@ -62,6 +62,7 @@
       </music-item>
       <view class="border-10"></view>
     </scroll-view>
+    <view class="no-music" wx:else>暂无音乐!</view>
   </view>
 
   <music-control

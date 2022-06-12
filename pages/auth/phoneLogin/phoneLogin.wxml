@@ -1,0 +1,61 @@
+<top-nav wx:if="{{!isChangePassword}}" titleColor="#333" title="手机号{{isRegister ? '注册' : '登录'}}" bindcustomGoBack='goBack' isUseCostomCb="{{true}}"></top-nav>
+<top-nav wx:else titleColor="#333" title="修改密码" bindcustomGoBack='goBack' isUseCostomCb="{{true}}"></top-nav>
+<view class="phone-wrap">
+  
+  <block wx:if="{{!isGetCaptcha}}">
+    <view wx:if="{{!isChangePassword}}" class="login-title">{{isRegister ? "注册" : ''}}登录体验更多精彩</view>
+    <view wx:else class="login-title">密码修改</view>
+    <!-- <view class="login-tip">未注册手机号登录后将自动创建账号</view> -->
+    <view class="phone">
+      <view class="country-number">
+        <text>+86</text>
+        <text></text>
+      </view>
+      <view class="phone-input">
+        <input class="phone-place" id="phone" type="number" placeholder="请输入手机号"  bindinput="handleInput"/>
+        <text class="iconfont"></text>
+      </view>
+    </view>
+
+    <!-- 注册input -->
+    <block wx:if="{{isRegister || isChangePassword}}">
+      <view class="phone-input passward-input">
+        <input class="phone-place password" id="password" type="password" placeholder="请输入密码" bindinput="handleInput"/>
+        <text class="iconfont"></text>
+      </view>
+      <text class="psw-tip">注意: 密码不能包含空格; 包含字母、数字、符号中至少两种; 密码长度为8-20位</text>
+      <button class="login-btn default-button" bindtap="register">下一步</button>
+      <view class="bottom-btn">
+        <text class="find-account" data-register="{{false}}" bindtap="changeRegisterType">验证码登录</text>
+        <text class="find-account">找回账号</text>
+      </view>
+    </block>
+    <!-- 登录 -->
+    <block wx:else>
+      <button class="login-btn default-button" bindtap="loginCellphone">下一步</button>
+      <view class="bottom-btn">
+        <text class="find-account" data-register="{{true}}" bindtap="changeRegisterType">账号注册</text>
+        <text class="find-account">找回账号</text>
+      </view>
+    </block>
+  </block>
+
+  <block wx:else>
+    <view class="login-title">请输入验证码</view>
+    <view class="login-tip captcha-btn">
+      <text>已发送至+86 {{captcha}}</text>
+      <text wx:if="{{!countDownNum}}" class="sent-btn captcha-send" bindtap="sentCaptcha">重新发送</text>
+      <text wx:else class="sent-btn">重新发送{{countDownNum}}s</text>
+    </view>
+    <view class="captcha-input">
+      <view class="captcha-num">
+        <text class="num" style="border-bottom-color: {{captchaNum[index] ? '#333' : '#ddd'}}" wx:for="{{[0, 0, 0, 0]}}" wx:key="index" bindtap="getCaptchaFocus">{{captchaNum[index]}}</text>
+      </view>
+      <input type="number" id="captcha" bindinput="enterCaptcha" value="{{captchaNum}}" focus="{{captchaFocus}}" maxlength="4"/>
+    </view>
+    <view class="captcha-tip">
+      <text class="tip">手机号已更换, 无法接收验证码?</text>
+      <text class="iconfont icon-more"></text>
+    </view>
+  </block>
+</view>

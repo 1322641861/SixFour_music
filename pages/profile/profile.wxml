@@ -35,7 +35,7 @@
       <text class="title">我喜欢的音乐</text>
       <view class="download">
         <text class="iconfont icon-downloaded"></text>
-        <text class="download-no">214首, 已下载191首</text>
+        <text class="download-no">{{loveList[0]['trackCount']}}首</text>
       </view>
     </view>
     <view class="beckon-btn">

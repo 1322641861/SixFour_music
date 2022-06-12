@@ -31,15 +31,16 @@
 .login-wrap .login {
   width: 85vw;
   border-radius: 80rpx;
-  /* background: #d81e06; */
   background: linear-gradient(180deg, #fd8070, #d81e06);
   color: #fff;
 }
 .login-wrap .forget-psd {
+  justify-content: space-between;
   text-align: center;
   color: #4fa5ef;
   width: 85vw;
   margin: 30rpx auto 0;
+  display: flex;
 }
 .login-wrap .to-register {
   position: absolute;
