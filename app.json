@@ -50,5 +50,6 @@
     "top-nav": "/components/common/topNav/topNav",
     "song-sheet": "/components/custom/songSheetComponent/songSheetComponent",
     "song-info-toast": "/components/custom/songInfoToast/songInfoToast"
-  }
+  },
+  "lazyCodeLoading": "requiredComponents"
 }

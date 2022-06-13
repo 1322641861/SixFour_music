@@ -9,7 +9,7 @@
     <view class="phone">
       <view class="country-number">
         <text>+86</text>
-        <text></text>
+        <text class="iconfont icon-xiangxia"></text>
       </view>
       <view class="phone-input">
         <input class="phone-place" id="phone" type="number" placeholder="请输入手机号"  bindinput="handleInput"/>
@@ -43,7 +43,10 @@
   <block wx:else>
     <view class="login-title">请输入验证码</view>
     <view class="login-tip captcha-btn">
-      <text>已发送至+86 {{captcha}}</text>
+      <view>
+        <text>已发送至+86 {{captcha}}  </text>
+        <text class="iconfont icon-xiugai" bindtap="backToChangePhone"></text>
+      </view>
       <text wx:if="{{!countDownNum}}" class="sent-btn captcha-send" bindtap="sentCaptcha">重新发送</text>
       <text wx:else class="sent-btn">重新发送{{countDownNum}}s</text>
     </view>

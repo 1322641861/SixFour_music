@@ -25,6 +25,7 @@
   <view class="song-nav"  style="top: calc({{statusBarHeight}}px + 23vh - 50rpx);">
     <view class="song-nav-item {{playlist.subscribed || playlist.subscribedCountStr ? '' : 'collection'}}">
       <text wx:if="{{playlist.subscribed}}" class="iconfont icon-yuanxingxuanzhong subscribed"></text>
+      <text wx:else class="iconfont icon-tianjia1 subscribed"></text>
       <text wx:if="{{!playlist.subscribedCountStr}}" class="nav-msg subscribed">收藏</text>
       <text wx:else class="nav-msg subscribed">{{playlist.subscribedCountStr}}</text>
     </view>

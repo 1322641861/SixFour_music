@@ -27,7 +27,6 @@ Page({
     const {phone, password} = this.data;
     /// 1. 验证手机号格式
     let valid = this.phoneValid(phone);
-    console.log(valid);
     if (valid) {
       /// 2. 检查手机号是否注册
       let phoneExisted = await this.checkExistence(phone);
@@ -53,7 +52,6 @@ Page({
     let res = await request({url: "/login/cellphone", data: {
       phone, captcha: captchaNum, isLogin: true
     }});
-    console.log(res);
     if (res && res.code === 200) {
       /// 用户数据
       wx.setStorageSync("userInfo", JSON.stringify(res.profile));
@@ -136,7 +134,6 @@ Page({
       nickname,
       isChangePassword
     }});
-    console.log(res);
     if (res && res.code === 200) {
       wx.showModal({
         content: (isChangePassword ? "修改成功" : "注册成功") + ", 是否立即登录?",
@@ -155,7 +152,7 @@ Page({
    * 验证验证码
    */
   async captchaVerifyApi() {
-    let {phone, captchaNum} = this.data;
+    let {phone, captchaNum, isChangePassword} = this.data;
     let res = await request({url: "/captcha/verify", data: {phone, captcha: captchaNum}});
     if (res && res.code === 200) {
       if (isChangePassword) {
@@ -271,7 +268,6 @@ Page({
     })
   },
   enterCaptcha(event) {
-    console.log(event);
     let value = event.detail.value;
     this.setData({captchaNum: value});
     if (value.length === 4) {

@@ -51,6 +51,9 @@
   display: flex;
   justify-content: space-between;
 }
+.phone-wrap .icon-xiangxia {
+  font-size: 28rpx;
+}
 
 .captcha-btn {
   justify-content: space-between;

@@ -1,6 +1,6 @@
 <view class="recommend-wrap">
   <view class="header">
-    <image src="/static/images/home/recommend_bg.png" mode="aspectFill"></image>
+    <image src="/static/images/home/recommend_bg.jpg" mode="aspectFill"></image>
     <view class="date">
       <text class="day">{{day}}</text>
       <text class="line">/</text>

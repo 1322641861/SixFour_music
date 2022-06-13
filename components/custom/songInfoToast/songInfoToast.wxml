@@ -12,24 +12,29 @@ bind:clickoverlay="changeShowInfoToast"
     </view>
   </view>
   <scroll-view scroll-y class="body-msg">
-    <view class="info-item" bindtap="likeMusic">
+    <view wx:if="{{!isLike}}" class="info-item" bindtap="likeMusic">
+      <!-- <text wx:if="{{!isLike}}" class="iconfont icon-xihuan"></text> -->
       <text class="iconfont icon-love"></text>
       <text class="info-msg">喜欢音乐</text>
     </view>
+    <view wx:else class="info-item" bindtap="likeMusic">
+      <text class="iconfont icon-delete"></text>
+      <text class="info-msg">删除音乐</text>
+    </view>
     <view class="info-item">
-      <text class="iconfont"></text>
+      <text class="iconfont icon-comments"></text>
       <text class="info-msg">评论(100)</text>
     </view>
     <view class="info-item">
-      <text class="iconfont"></text>
+      <text class="iconfont icon-share_light"></text>
       <text class="info-msg">分享</text>
     </view>
     <view class="info-item">
-      <text class="iconfont"></text>
+      <text class="iconfont icon-yonghu1"></text>
       <text class="info-msg">歌手: <text class="new-avatar" wx:for="{{songInfo.ar || songInfo.artists}}" wx:key="id">{{(index === 0 ? "" : "/") + item.name}}</text><text class="old-avatar-wrap" wx:if="{{songInfo.originCoverType === 2}}">(原唱: <text class="old-avatar" wx:for="{{songInfo.originSongSimpleData['artists']}}" wx:key="id" wx:for-item="artist" wx:for-index="i">{{(i === 0 ? "" : "/") + artist.name}}</text>)</text></text>
     </view>
     <view class="info-item">
-      <text class="iconfont"></text>
+      <text class="iconfont icon-zhuanji-"></text>
       <text class="info-msg">专辑: {{songInfo.al.name}}</text>
     </view>
   </scroll-view>

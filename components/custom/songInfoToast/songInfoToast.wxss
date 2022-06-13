@@ -42,6 +42,17 @@
   display: flex;
   align-items: center;
 }
+.body-msg .info-item .iconfont {
+  color: #333;
+  font-weight: bold;
+}
+.body-msg .info-item .icon-comments,
+.body-msg .info-item .icon-zhuanji- {
+  font-weight: normal;
+}
+.body-msg .icon-love {
+  color: #d81e06!important;
+}
 .body-msg .info-msg {
   flex: 1;
   margin-left: 20rpx;

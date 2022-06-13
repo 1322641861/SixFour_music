@@ -1,5 +1,4 @@
 <view class="login-wrap">
-  <!-- <image class="login-background" src="/static/images/auth/login_background.jpg"></image> -->
   <top-nav isUseCostomCb="{{true}}" titleColor="#333" bindcustomGoBack="closeCurrentPage"></top-nav>
   <view class="login-title">SixFour</view>
   <view class="login-body">
