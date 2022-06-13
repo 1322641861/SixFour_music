@@ -270,14 +270,11 @@ Page({
   enterCaptcha(event) {
     let value = event.detail.value;
     this.setData({captchaNum: value});
+    // if (value.length === 6) {
+    //   this.captchaVerifyApi();
+    // }
     if (value.length === 4) {
       this.captchaVerifyApi();
-      // let {isRegister, isChangePassword} = this.data;
-      // if (isRegister || isChangePassword) {
-      //   this.registerApi();
-      // } else {
-      //   this.captchaVerifyApi();
-      // }
     }
   },
 

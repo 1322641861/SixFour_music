@@ -100,7 +100,7 @@ Page({
     switch (index) {
       case 0:
         wx.navigateTo({
-          url: '/pages/index/recommendSong/recommendSong',
+          url: "/pages2/pages/recommendSong/recommendSong"
         })
         break;
     
@@ -156,7 +156,7 @@ Page({
   navigatePage(event) {
     let musicid = event.currentTarget.dataset.musicid;
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + musicid,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
 

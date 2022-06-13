@@ -1,5 +1,5 @@
-import request from "../../utils/request";
-import {playAllSongSheet, getCurrentMusic, getAmount} from "../../utils/util"
+import request from "../../../utils/request";
+import {playAllSongSheet, getCurrentMusic, getAmount} from "../../../utils/util"
 
 Page({
 
@@ -93,7 +93,7 @@ Page({
     }
     this.setData({index});
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + musicid,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
    /// 播放全部

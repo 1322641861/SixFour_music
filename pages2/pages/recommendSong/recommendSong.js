@@ -87,7 +87,7 @@ Page({
     }
     this.setData({index});
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + musicid,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
 

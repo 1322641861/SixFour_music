@@ -1,16 +1,37 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/auth/login/login",
     "pages/auth/phoneLogin/phoneLogin",
-    "pages/testWx/test",
+    "pages/auth/login/login",
     "pages/profile/profile",
-    "pages/searchPage/search",
-    "pages/index/recommendSong/recommendSong",
-    "pages/songDetail/songDetail",
-    "pages/cloud/cloud",
-    "pages/songSheetPage/songSheet"
+    "pages/cloud/cloud"
   ],
+  "subpackages": [
+    {
+      "root": "pages2",
+      "pages": [
+        "pages/testWx/test",
+        "pages/recommendSong/recommendSong",
+        "pages/songSheetPage/songSheet",
+        "pages/songDetail/songDetail"
+      ]
+    }, {
+      "root": "pages3",
+      "pages": [
+        "pages/searchPage/search"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["pages2"]
+    },
+    "pages/cloud/cloud": {
+      "network": "all",
+      "packages": ["pages3"]
+    }
+  },
   "window": {
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "SixFour",

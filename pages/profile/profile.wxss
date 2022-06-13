@@ -97,7 +97,7 @@
 .my-like .like-img {
   width: 100rpx;
   height: 100rpx;
-  background: #eee;
+  background: #999;
   border-radius: 16rpx;
   position: relative;
   margin-top: 10rpx;

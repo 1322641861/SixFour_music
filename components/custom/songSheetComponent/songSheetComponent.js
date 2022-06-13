@@ -66,7 +66,7 @@ Component({
       if (this.data.musicId !== musicId) {
         this.changeShowMusicContainer();
         wx.navigateTo({
-          url: '/pages/songDetail/songDetail?musicId=' + musicId,
+          url: '/pages2/pages/songDetail/songDetail?musicId=' + musicId,
         })
       }
     },

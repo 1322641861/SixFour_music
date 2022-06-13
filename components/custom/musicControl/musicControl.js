@@ -52,7 +52,7 @@ Component({
       const musicId = this.data.songData.musicId;
       appInstance.globalData.musicId = musicId;
       wx.navigateTo({
-        url: '/pages/songDetail/songDetail?musicId=' + musicId,
+        url: '/pages2/pages/songDetail/songDetail?musicId=' + musicId,
       })
     },
     /// 打开歌单播放列表弹窗

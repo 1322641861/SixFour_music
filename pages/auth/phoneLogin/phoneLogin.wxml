@@ -50,6 +50,12 @@
       <text wx:if="{{!countDownNum}}" class="sent-btn captcha-send" bindtap="sentCaptcha">重新发送</text>
       <text wx:else class="sent-btn">重新发送{{countDownNum}}s</text>
     </view>
+    <!-- <view class="captcha-input">
+      <view class="captcha-num">
+        <text class="num" style="border-bottom-color: {{captchaNum[index] ? '#333' : '#ddd'}}" wx:for="{{[0, 0, 0, 0, 0, 0]}}" wx:key="index" bindtap="getCaptchaFocus">{{captchaNum[index]}}</text>
+      </view>
+      <input type="number" id="captcha" bindinput="enterCaptcha" value="{{captchaNum}}" focus="{{captchaFocus}}" maxlength="6"/>
+    </view> -->
     <view class="captcha-input">
       <view class="captcha-num">
         <text class="num" style="border-bottom-color: {{captchaNum[index] ? '#333' : '#ddd'}}" wx:for="{{[0, 0, 0, 0]}}" wx:key="index" bindtap="getCaptchaFocus">{{captchaNum[index]}}</text>

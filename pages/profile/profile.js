@@ -89,7 +89,7 @@ Page({
   toSongSheetPage(event) {
     let id  = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/songSheetPage/songSheet?id=' + id,
+      url: '/pages2/pages/songSheetPage/songSheet?id=' + id,
     })
   },
   /**

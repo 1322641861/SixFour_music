@@ -4,8 +4,8 @@ function request({url, data = {}, method = 'GET'}) {
   return new Promise((resolve, reject) => {
     let cookies = wx.getStorageSync('cookies');
     wx.request({
-      // url: config.domain + url,
-      url: config.localDomain + url,
+      url: config.domain + url,
+      // url: config.localDomain + url,
       data,
       method,
       header: {

@@ -39,6 +39,7 @@
   position: relative;
   margin-top: 1vh;
   border-radius: 24rpx;
+  background: #ccc;
 }
 
 .song-nav {

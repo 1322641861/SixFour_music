@@ -114,7 +114,7 @@ const playAllSongSheet = function (songList) {
     wx.setStorageSync('currentSongId', songList[0].id);
     Pubsub.publish("changeSheetSong", songList);
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + songList[0].id,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + songList[0].id,
     })
   }
 }

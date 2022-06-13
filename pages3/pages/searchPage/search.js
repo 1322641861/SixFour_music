@@ -1,5 +1,5 @@
-import request from "../../utils/request";
-import {debounce, getCurrentMusic, playAllSongSheet} from "../../utils/util"
+import request from "../../../utils/request";
+import {debounce, getCurrentMusic, playAllSongSheet} from "../../../utils/util"
 const appInstance = getApp();
 
 Page({
@@ -79,7 +79,7 @@ Page({
     }
     this.setData({index});
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?musicId=' + musicid,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + musicid,
     })
   },
   goBack() {

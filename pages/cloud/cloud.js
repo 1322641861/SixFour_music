@@ -213,7 +213,7 @@ Page({
    */
   goSearchPage() {
     wx.navigateTo({
-      url: '/pages/searchPage/search?keyword=' + this.data.keyword,
+      url: '/pages3/pages/searchPage/search?keyword=' + this.data.keyword,
     })
   },
   /**

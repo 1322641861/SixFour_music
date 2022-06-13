@@ -1,6 +1,5 @@
-// pages/songDetail/songDetail.js
-import request from '../../utils/request';
-import {throttle, changeAudioPlayType} from "../../utils/util";
+import request from '../../../utils/request';
+import {throttle, changeAudioPlayType} from "../../../utils/util";
 import PubSub from "pubsub-js";
 import moment from "moment";
 

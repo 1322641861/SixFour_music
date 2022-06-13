@@ -85,6 +85,7 @@
   align-items: center;
 }
 .captcha-num .num {
+  /* width: calc(16vw - 30rpx); */
   width: calc(25vw - 60rpx);
   height: 80rpx;
   border-bottom: 1px solid #ddd;
@@ -93,4 +94,6 @@
 }
 .captcha-input #captcha {
   opacity: 0;
+  caret-color:transparent;
+  color: transparent;
 }
