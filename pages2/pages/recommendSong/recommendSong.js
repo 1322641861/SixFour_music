@@ -34,7 +34,7 @@ Page({
     let recommendDate = wx.getStorageSync('recommendDate');
     recommendDate = recommendDate ? recommendDate : new Date().getDate();
     let currentDate = new Date().getDate();
-    if (recommendList && Number(recommendDate) !== currentDate) {
+    if (recommendList && Number(recommendDate) === currentDate) {
       this.setData({recommendList});
     } else {
       this.initLoad();
