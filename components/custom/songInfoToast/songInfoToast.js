@@ -34,11 +34,7 @@ Component({
     /// 喜欢音乐
     async likeMusic() {
       let {songInfo, isLike} = this.data;
-      wx.showLoading({
-        title: '',
-      })
       let res = await changeLikeMusic(songInfo.id, !isLike);
-      wx.hideLoading();
       if (res && res.code === 200) {
         this.setData({isLike: !isLike});
       }

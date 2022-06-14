@@ -50,7 +50,7 @@ Page({
   async loginCellphoneApi() {
     let {phone, captchaNum} = this.data;
     let res = await request({url: "/login/cellphone", data: {
-      phone, captcha: captchaNum, isLogin: true
+      phone, captcha: captchaNum
     }});
     if (res && res.code === 200) {
       /// 用户数据

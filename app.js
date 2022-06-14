@@ -12,7 +12,7 @@ App({
   onLaunch: function () {
     let songInfo = wx.getStorageSync('songInfo');
     let songData = wx.getStorageSync('songData');
-    let musicId = songData.musicId;
+    let musicId = songData && songData.musicId;
     Object.assign(this.globalData, {songInfo, songData, musicId});
   },
   /**

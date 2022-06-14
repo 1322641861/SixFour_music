@@ -3,6 +3,9 @@ import config from './config';
 function request({url, data = {}, method = 'GET'}) {
   return new Promise((resolve, reject) => {
     let cookies = wx.getStorageSync('cookies');
+    if (!config.hideLoadingApi.includes(url)) {
+      wx.showLoading({title: '加载中...'});
+    }
     wx.request({
       url: config.domain + url,
       // url: config.localDomain + url,
@@ -13,8 +16,11 @@ function request({url, data = {}, method = 'GET'}) {
       },
       success: (res) => {
         /// 登录接口获取cookies
-        if (data['isLogin']) {
+        if (config.loginApi.includes(url)) {
           wx.setStorageSync('cookies', res.cookies);
+        }
+        if (!config.hideLoadingApi.includes(url)) {
+          wx.hideLoading();
         }
         resolve(res.data);
       },

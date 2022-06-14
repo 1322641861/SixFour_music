@@ -74,7 +74,7 @@ Page({
     this.setData({disabled: true});
     request({
       url: '/login/cellphone',
-      data: {phone, password, isLogin: true}
+      data: {phone, password}
     }).then(res => {
       this.setData({disabled: false});
       if (res.code === 200) {

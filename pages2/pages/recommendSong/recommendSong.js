@@ -1,6 +1,7 @@
 import request from '../../../utils/request';
 import { navigateToLogin, getCurrentMusic, playAllSongSheet } from '../../../utils/util';
 const appInstance = getApp();
+import moment from "moment";
 
 Page({
 
@@ -30,7 +31,10 @@ Page({
     });
 
     let recommendList = wx.getStorageSync('recommendList');
-    if (recommendList) {
+    let recommendDate = wx.getStorageSync('recommendDate');
+    recommendDate = recommendDate ? recommendDate : new Date().getDate();
+    let currentDate = new Date().getDate();
+    if (recommendList && Number(recommendDate) !== currentDate) {
       this.setData({recommendList});
     } else {
       this.initLoad();
@@ -61,16 +65,13 @@ Page({
    * 每日推荐歌单
    */
   async getRecommendList() {
-    wx.showLoading({
-      title: '加载中',
-    });
     let res = await request({url: '/recommend/songs'});
-    wx.hideLoading();
     wx.stopPullDownRefresh();
     if (res && res.data) {
       this.setData({
         recommendList: res.data.dailySongs
       })
+      wx.setStorageSync('recommendDate', new Date().getDate());
       wx.setStorageSync('recommendList', res.data.dailySongs);
     }
   },

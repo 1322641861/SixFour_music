@@ -78,7 +78,6 @@ Page({
    * 当前分类所有视频
    *  */ 
   async getCurrentVideoList(videoId, isPullMore=false) {
-    wx.showLoading({title: '加载中'});
     let res = await request({
       url: "/video/group",
       data: {
@@ -86,7 +85,6 @@ Page({
         offset: this.data.offset
       },
     });
-    wx.hideLoading();
     if (res && res.datas) {
       let videoList = res.datas.map(item => {
         item.id = item.data.vid;

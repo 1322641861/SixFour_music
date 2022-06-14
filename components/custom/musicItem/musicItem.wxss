@@ -15,6 +15,9 @@
   justify-content: center;
   align-items: center;
 }
+.recommend-item .avatar-bg {
+  background-color: #eee;
+}
 .recommend-item .avatar .icon-yinpin {
   font-size: 26rpx;
   color: #d81e06;

@@ -11,6 +11,7 @@
 .album-avatar .album-image {
   width: 100%;
   height: 100%;
+  background-color: #eee;
 }
 .album-desc {
   overflow: hidden;

@@ -49,12 +49,8 @@ Page({
    * 获取热搜列表
    */
   async getSearchHotList() {
-    wx.showLoading({
-      title: '加载中...',
-    });
     // let res = await request({url: "/search/hot"});
     let res = await request({url: "/search/hot/detail"});
-    wx.hideLoading();
     if (res && res.code == 200) {
       for (const item of res.data) {
         item['iconWidth'] = this.getIconWidth(item['iconType']);
@@ -210,9 +206,6 @@ Page({
    * type: 搜索类型；默认为 1 即单曲 , 取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音(搜索声音返回字段格式会不一样)
    */
   async getSearchDetail(event) {
-    wx.showLoading({
-      title: '加载中...',
-    })
     let submitValue = event.currentTarget.dataset.submit;
     this.setData({enteredDetail: true, inputValue: submitValue});
     let {inputValue, keyword, historyList} = this.data;
@@ -225,7 +218,6 @@ Page({
       offset: 1
       // type: 1018
     }});
-    wx.hideLoading();
     // console.log('搜索详情', res);
     if (res && res.code == 200 && res.result.songCount) {
       this.setData({searchDetailList: res.result.songs});

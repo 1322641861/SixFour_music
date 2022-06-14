@@ -87,6 +87,7 @@
   width: 100%;
   height: 54vw;
   position: relative;
+  background-color: #eee;
 }
 .cloud-content .iconfont {
   font-size: 33rpx;
