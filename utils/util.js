@@ -110,11 +110,13 @@ const getCurrentMusic = function (that) {
  */
 const playAllSongSheet = function (songList) {
   if (songList && songList.length) {
+    let id = songList[0].id;
+    id = id ? id : songList[0].resourceId
     wx.setStorageSync('currentSongSheet', songList);
-    wx.setStorageSync('currentSongId', songList[0].id);
+    wx.setStorageSync('currentSongId', id);
     Pubsub.publish("changeSheetSong", songList);
     wx.navigateTo({
-      url: '/pages2/pages/songDetail/songDetail?musicId=' + songList[0].id,
+      url: '/pages2/pages/songDetail/songDetail?musicId=' + id,
     })
   }
 }

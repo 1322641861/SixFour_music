@@ -57,7 +57,7 @@
         data-musicId="{{item.id}}"
         bindmusicPlay="navigatePage"
         indexReplaceImg="{{true}}"
-        currentSongId="{{index + 1}}"
+        currentSongIndex="{{index + 1}}"
         music-info="{{item}}"
       >
       </music-item>

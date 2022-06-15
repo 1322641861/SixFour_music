@@ -10,26 +10,43 @@
     {
       "root": "pages2",
       "pages": [
-        "pages/testWx/test",
         "pages/recommendSong/recommendSong",
         "pages/songSheetPage/songSheet",
         "pages/songDetail/songDetail"
       ]
-    }, {
+    },
+    {
       "root": "pages3",
       "pages": [
         "pages/searchPage/search"
+      ]
+    },
+    {
+      "root": "pages4",
+      "pages": [
+        "pages/testWx/test",
+        "pages/singleSheetPage/singleSheet"
       ]
     }
   ],
   "preloadRule": {
     "pages/index/index": {
       "network": "all",
-      "packages": ["pages2"]
+      "packages": [
+        "pages2"
+      ]
     },
     "pages/cloud/cloud": {
       "network": "all",
-      "packages": ["pages3"]
+      "packages": [
+        "pages3"
+      ]
+    },
+    "pages/profile/profile": {
+      "network": "all",
+      "packages": [
+        "pages4"
+      ]
     }
   },
   "window": {

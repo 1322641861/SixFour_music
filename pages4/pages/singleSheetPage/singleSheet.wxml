@@ -1,0 +1,24 @@
+<view class="single-sheet">
+  <view class="search-detail">
+    <view class="play-more" bindtap="playAllSongSheet">
+      <view class="play-left">
+        <text class="iconfont icon-play"></text>
+        <text class="play">播放全部({{total}})</text>
+      </view>
+      <text class="iconfont icon-check"></text>
+    </view>
+    <scroll-view scroll-y class="detail-list" wx:if="{{total}}" style="height: calc(100vh - {{songInfo['id'] && songData['songUrl'] ? '160' : '70'}}rpx);">
+      <music-item wx:for="{{recentList}}" wx:key="resourceId" data-index="{{index}}" data-musicId="{{item.resourceId}}" bindmusicPlay="navigatePage" music-info="{{item.data}}" currentSongId="{{currentSongId}}" indexReplaceImg="{{true}}">
+      </music-item>
+      <view class="border-10">已加载全部</view>
+    </scroll-view >
+    <view wx:else class="recommend-no-data">暂无音乐</view>
+  </view>
+</view>
+<music-control
+  wx:if="{{songInfo['id'] && songData['songUrl']}}"
+  is-play="{{isPlay}}"
+  song-info="{{songInfo}}" 
+  song-data="{{songData}}"
+  >
+</music-control>

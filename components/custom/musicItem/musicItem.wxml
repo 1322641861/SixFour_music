@@ -1,10 +1,10 @@
 <view class="recommend-item" bindtap="musicPlay">
   <image wx:if="{{(imageUrl || musicInfo.al.picUrl) && !indexReplaceImg && musicInfo.id !== currentSongId}}" class="avatar avatar-bg" src="{{imageUrl ? imageUrl : musicInfo.al.picUrl}}"></image>
-  <view wx:elif="{{(imageUrl || musicInfo.al.picUrl) && !indexReplaceImg && musicInfo.id === currentSongId}}" class="avatar avatar-bg">
+  <view wx:elif="{{(imageUrl || musicInfo.al.picUrl) && musicInfo.id === currentSongId}}" class="avatar">
     <text class="iconfont icon-yinpin"></text>
   </view>
-  <view wx:elif="{{indexReplaceImg && currentSongId}}" class="avatar">
-    <text class="index-no">{{currentSongId}}</text>
+  <view wx:elif="{{indexReplaceImg && currentSongIndex}}" class="avatar">
+    <text class="index-no">{{currentSongIndex}}</text>
   </view>
   <view class="item-message">
     <view class="title">

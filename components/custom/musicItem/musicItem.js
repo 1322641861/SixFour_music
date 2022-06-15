@@ -11,6 +11,7 @@ Component({
     arName: {type: String, value: ''},
     alName: {type: String, value: ''},
     currentSongId: {type: Number, value: 0},
+    currentSongIndex: {type: Number, value: 0},
     indexReplaceImg: {type: Boolean, value: false}
   },
 

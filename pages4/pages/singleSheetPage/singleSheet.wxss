@@ -1,0 +1,43 @@
+
+.search-detail .play-more {
+  height: 80rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  /* border-radius: 25rpx 25rpx 0 0; */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  align-items: center;
+}
+.play-more .icon-play {
+  vertical-align: middle;
+  margin-right: 24rpx;
+  font-size: 42rpx;
+  color: #f91473;
+}
+.play-more .play {
+  vertical-align: text-top;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.play-more .icon-check {
+  font-size: 53rpx;
+  color: #333;
+}
+
+.recommend-no-data {
+  text-align: center;
+  margin-top: 30%;
+  color: #999;
+  white-space: pre;
+}
+.border-10 {
+  margin-top: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+}

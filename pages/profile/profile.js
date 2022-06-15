@@ -9,7 +9,7 @@ Page({
    */
   data: {
     actionList: [
-      { icon: 'icon-play', text: '最近播放', name: 'recentlyPlayed' },
+      { icon: 'icon-play', text: '最近播放', name: 'recently' },
       { icon: 'icon-download', text: '本地/下载', name: 'download' },
       { icon: 'icon-cloud', text: '云盘', name: 'cloud' },
       { icon: 'icon-shopping', text: '已购', name: 'purchased' },
@@ -42,9 +42,22 @@ Page({
     })
     await this.getPlayList();
   },
+  navigateToPage(url) {
+    wx.navigateTo({
+      url: url,
+    })
+  },
   actionNavigate(event) {
     let routerName = event.currentTarget.dataset.name;
     console.log(event, routerName);
+    switch (routerName) {
+      case 'recently':
+        this.navigateToPage("/pages4/pages/singleSheetPage/singleSheet");
+        break;
+    
+      default:
+        break;
+    }
   },
   toLogin() {
     wx.navigateTo({
@@ -81,7 +94,6 @@ Page({
         }
       }
     })
-    
   },
   /**
    * 跳转歌单
@@ -121,7 +133,6 @@ Page({
   refresh() {
     this.setData({isLoading: true})
     this.init().then((res, rej) => {
-      console.log(res);
       this.setData({isLoading: false})
     })
   },

@@ -129,7 +129,7 @@ Page({
         return;
       }
       /// 2. 获取歌曲下标, 并找到上/下一首下标
-      let index = currentSongSheet.findIndex(item => item['id'] === currentSongId);
+      let index = currentSongSheet.findIndex(item => item['id'] === currentSongId || item['resourceId'] == currentSongId);
       let lastIndex = currentSongSheet.length - 1;
       if (audioPlayType === 2) {
         let randomIndex = getRandomIndex(lastIndex);
@@ -142,7 +142,7 @@ Page({
         }
       }
       /// 3. 更新数据
-      let id = currentSongSheet[index].id;
+      let id = currentSongSheet[index].id ? currentSongSheet[index].id : currentSongSheet[index].data.id;
       this.setData({index});
       wx.setStorageSync('currentSongId', id);
       appInstance.globalData.musicId = id;
