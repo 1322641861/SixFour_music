@@ -1,6 +1,6 @@
 // pages/cloud/cloud.js
 import request from "../../utils/request";
-import {getCurrentMusic} from '../../utils/util';
+import {getCurrentMusic, navigateToLogin} from '../../utils/util';
 
 Page({
 
@@ -26,6 +26,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) navigateToLogin();
+
     this.getSearchDefault();
     getCurrentMusic(this); 
 

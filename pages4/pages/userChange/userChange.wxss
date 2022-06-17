@@ -1,0 +1,42 @@
+.nickname-wrap {
+  padding: 24rpx;
+}
+.nickname-wrap .nickname {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+  font-size: 28rpx;
+}
+.nickname-wrap .icon-delete1 {
+  color: #999;
+  padding: 16rpx;
+}
+.nickname-wrap .nickname-inp {
+  flex: 1;
+  height: 65rpx;
+  line-height: 65rpx;
+}
+.nickname-wrap .tip {
+  color: #fc3030;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+}
+.nickname-wrap .tip .icon {
+  margin-right: 10rpx;
+}
+.nickname-wrap .nickname-btn {
+  margin-top: 20rpx;
+}
+.nickname-wrap .other-name text {
+  padding: 10rpx 20rpx;
+  background: #eee;
+  border-radius: 30rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+}
+.nickname-wrap .tip-text {
+  color: #999;
+}

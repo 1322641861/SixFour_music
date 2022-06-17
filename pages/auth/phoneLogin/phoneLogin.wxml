@@ -7,7 +7,7 @@
     <view wx:else class="login-title">密码修改</view>
     <!-- <view class="login-tip">未注册手机号登录后将自动创建账号</view> -->
     <view class="phone">
-      <view class="country-number">
+      <view class="country-number" bindtap="changeIntCode">
         <text>+86</text>
         <text class="iconfont icon-xiangxia"></text>
       </view>
@@ -27,7 +27,8 @@
       <button class="login-btn default-button" bindtap="register">下一步</button>
       <view class="bottom-btn">
         <text class="find-account" data-register="{{false}}" bindtap="changeRegisterType">验证码登录</text>
-        <text class="find-account">找回账号</text>
+        <!-- 暂时隐藏 -->
+        <!-- <text class="find-account">找回账号</text> -->
       </view>
     </block>
     <!-- 登录 -->
@@ -35,7 +36,9 @@
       <button class="login-btn default-button" bindtap="loginCellphone">下一步</button>
       <view class="bottom-btn">
         <text class="find-account" data-register="{{true}}" bindtap="changeRegisterType">账号注册</text>
-        <text class="find-account">找回账号</text>
+        <!-- 暂时隐藏 -->
+        <!-- <text class="find-account">找回账号</text> -->
+        <!-- <text class="find-account">找回账号</text> -->
       </view>
     </block>
   </block>

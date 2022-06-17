@@ -7,8 +7,8 @@ function request({url, data = {}, method = 'GET'}) {
       wx.showLoading({title: '加载中...'});
     }
     wx.request({
-      // url: config.domain + url,
-      url: config.localDomain + url,
+      url: config.domain + url,
+      // url: config.localDomain + url,
       data,
       method,
       header: {

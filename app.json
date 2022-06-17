@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/profile/profile",
     "pages/index/index",
     "pages/auth/phoneLogin/phoneLogin",
     "pages/auth/login/login",
-    "pages/profile/profile",
     "pages/cloud/cloud"
   ],
   "subpackages": [
@@ -25,7 +25,9 @@
       "root": "pages4",
       "pages": [
         "pages/testWx/test",
-        "pages/singleSheetPage/singleSheet"
+        "pages/singleSheetPage/singleSheet",
+        "pages/user/user",
+        "pages/userChange/userChange"
       ]
     }
   ],
@@ -89,5 +91,16 @@
     "song-sheet": "/components/custom/songSheetComponent/songSheetComponent",
     "song-info-toast": "/components/custom/songInfoToast/songInfoToast"
   },
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "plugins": {
+    "citySelector": {
+      "version": "1.0.1",
+      "provider": "wx63ffb7b7894e99ae"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  }
 }

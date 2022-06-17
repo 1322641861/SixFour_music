@@ -1,0 +1,22 @@
+<view class="user-change">
+  <top-nav title="{{title}}" titleColor="#333"></top-nav>
+  <view wx:if="{{type === 'nickname'}}" class="nickname-wrap">
+    <view class="nickname">
+      <input type="text" class="nickname-inp" bindinput="handleNickname" placeholder="请输入昵称" value="{{nickname}}"/>
+      <text class="iconfont icon-delete1" bindtap="clearValue"></text>
+    </view>
+    <view class="tip" wx:if="{{tip}}">
+      <icon class="icon" wx:if="{{!checkOk}}" type="warn" size="32rpx"></icon>
+      <icon class="icon" wx:else type="success" size="32rpx"></icon>
+      <text class="{{checkOk ? 'tip-text' : ''}}">{{tip}}</text>
+    </view>
+    <view wx:if="{{candidateNicknames.length}}" class="other-name">
+      <text bindtap="checkOtherName" data-other="{{candidateNicknames[0]}}">{{candidateNicknames[0]}}</text>
+    </view>
+    <button class="nickname-btn" data-name="nickname" bindtap="submit">保存</button>
+  </view>
+
+  <view wx:elif="{{type === 'signature'}}" class="signature-wrap">
+    
+  </view>
+</view>

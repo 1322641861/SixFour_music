@@ -10,9 +10,9 @@
     <view class="profile-avatar">
       <image src="{{userInfo.avatarUrl}}"></image>
     </view>
-    <view class="avatar-name">
+    <view class="avatar-name" bindtap="goToUserPage">
       <text>{{userInfo.nickname}}</text>
-      <!-- <text class="iconfont icon-more"></text> -->
+      <text class="iconfont icon-more"></text>
     </view>
   </view>
 

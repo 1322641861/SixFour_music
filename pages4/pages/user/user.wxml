@@ -1,0 +1,42 @@
+<view class="user-wrap">
+  <view class="border-10"></view>
+  <view class="info">
+    <view class="info-item">
+      <text class="name">头像</text>
+      <image class="avatar-url" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="info-item padding-more" data-type="nickname" bindtap="goToChange">
+      <text class="name">昵称</text>
+      <text class="right-info">{{userInfo.nickname}}</text>
+    </view>
+    <view class="info-item padding-more" style="border: none;">
+      <text class="name">性别</text>
+      <text class="right-info" data-sex="{{userInfo.gender}}">{{genderList[gender]}}</text>
+    </view>
+  </view>
+
+  <view class="border-10"></view>
+  <view class="info">
+    <view class="info-item padding-more">
+      <text class="name">生日</text>
+      <text class="right-info">{{birthday}}</text>
+    </view>
+    <view class="info-item padding-more" bindtap="getCity">
+      <text class="name">地区</text>
+      <text class="right-info" wx:if="{{selectedCity}}">{{selectedProvince.fullname}} {{selectedCity.fullname}}</text>
+      <text class="right-info" wx:else>{{initCity}}</text>
+    </view>
+    <view class="info-item padding-more" style="border: none;" data-type="signature" bindtap="goToChange">
+      <text class="name">简介</text>
+      <text class="right-info">{{signature}}</text>
+    </view>
+  </view>
+</view>
+<!-- key、referer和hotCitys通过组件的属性传入 -->
+<selector-component
+  show="{{selectorVisible}}"
+  key="{{key}}"
+  referer="{{referer}}"
+  hotCitys="{{hotCitys}}"
+  bindselect="onSelectCity"
+></selector-component>

@@ -33,6 +33,28 @@ const navigateToLogin = () => {
 }
 
 /**
+ * 
+ * @param {*} len 
+ */
+const backAndToastLogin = function() {
+  const userInfo = wx.getStorageSync('userInfo');
+  if (!userInfo) {
+    wx.navigateBack({
+      delta: 1,
+    }).then(() => {
+      wx.showToast({
+        title: '请先登陆',
+        icon: "none",
+        duration: 2000
+      });
+    })
+    return false
+  } else {
+    return true
+  }
+}
+
+/**
  * 递归, 避免随机模式时, 出现随机重复同一首歌
  * @param {*} len 歌单长度下标
  */
@@ -154,6 +176,7 @@ const getAmount = function (num) {
 module.exports = {
   formatTime,
   navigateToLogin,
+  backAndToastLogin,
   debounce,
   throttle,
   getRandomIndex,

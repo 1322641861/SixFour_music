@@ -47,6 +47,10 @@ Page({
       url: url,
     })
   },
+  /// 用户详情
+  goToUserPage() {
+    this.navigateToPage("/pages4/pages/user/user");
+  },
   actionNavigate(event) {
     let routerName = event.currentTarget.dataset.name;
     console.log(event, routerName);
@@ -56,6 +60,10 @@ Page({
         break;
     
       default:
+        wx.showToast({
+          title: '暂未开放',
+          icon: "none"
+        })
         break;
     }
   },

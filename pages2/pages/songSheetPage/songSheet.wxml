@@ -23,18 +23,18 @@
   </view>
   
   <view class="song-nav"  style="top: calc({{statusBarHeight}}px + 23vh - 50rpx);">
-    <view class="song-nav-item {{playlist.subscribed || playlist.subscribedCountStr ? '' : 'collection'}}">
+    <view class="song-nav-item {{playlist.subscribed || playlist.subscribedCountStr ? '' : 'collection'}}" bindtap="notSupported">
       <text wx:if="{{playlist.subscribed}}" class="iconfont icon-yuanxingxuanzhong subscribed"></text>
       <text wx:else class="iconfont icon-tianjia1 subscribed"></text>
       <text wx:if="{{!playlist.subscribedCountStr}}" class="nav-msg subscribed">收藏</text>
       <text wx:else class="nav-msg subscribed">{{playlist.subscribedCountStr}}</text>
     </view>
-    <view class="song-nav-item comment">
+    <view class="song-nav-item comment" bindtap="notSupported">
       <text class="iconfont icon-comments"></text>
       <text wx:if="{{!playlist.commentCountStr}}" class="nav-msg">评论</text>
       <text wx:else class="nav-msg">{{playlist.commentCountStr}}</text>
     </view>
-    <view class="song-nav-item share">
+    <view class="song-nav-item share" bindtap="notSupported">
       <text class="iconfont icon-share_light"></text>
       <text wx:if="{{!playlist.shareCountStr}}" class="nav-msg">分享</text>
       <text wx:else class="nav-msg">{{playlist.shareCountStr}}</text>

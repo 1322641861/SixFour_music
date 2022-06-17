@@ -1,6 +1,6 @@
 <view class="re-title">
   <text>{{title}}</text>
-  <text class="more">
+  <text wx:if="{{hasMore}}"class="more">
     <text>更多</text>
     <text class="iconfont icon-more"></text>
   </text>

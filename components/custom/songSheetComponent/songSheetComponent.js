@@ -77,7 +77,6 @@ Component({
 
     pubsubSheetList() {
       Pubsub.subscribe("changeSheetSong", (msg, data) => {
-        console.log('pubsubSheetList', msg, data);
         if (data && data.length) {
           this.setData({currentSongSheet: data});
           Pubsub.unsubscribe("changeSheetSong");

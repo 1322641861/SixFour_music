@@ -119,6 +119,15 @@ Page({
       this.sentCaptcha();
     }
   },
+  /**
+   * 选择国际编码前缀
+   */
+  changeIntCode() {
+    wx.showToast({
+      title: '暂只支持大陆手机',
+      icon: 'none'
+    })
+  },
   /// 随机生成nickname
   getNickname(pre = 'sixfour') {
     let nickname = pre + Math.random().toString().split('.')[1];

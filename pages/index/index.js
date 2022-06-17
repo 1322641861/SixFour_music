@@ -83,12 +83,14 @@ Page({
     let topData = await request({ url: '/topList' });
     while (i < 5) {
       let topRes = await request({url: "/playlist/detail",data: { id: topData.list[i++].id }});
-      topList.push({
-        name: topRes.playlist.name,
-        desc: topRes.playlist.description,
-        list: topRes.playlist.tracks.slice(0, 3)
-      });
-      this.setData({topList})
+      if (topRes && topRes.playlist) {
+        topList.push({
+          name: topRes.playlist.name,
+          desc: topRes.playlist.description,
+          list: topRes.playlist.tracks.slice(0, 3)
+        });
+        this.setData({topList})
+      }
     }
   },
   /**
@@ -105,6 +107,10 @@ Page({
         break;
     
       default:
+        wx.showToast({
+          title: '暂未开放',
+          icon: "none"
+        })
         break;
     }
   },

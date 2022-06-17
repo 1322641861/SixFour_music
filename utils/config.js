@@ -5,7 +5,9 @@ export default {
     '/playlist/detail',
     "/video/url",
     "/song/detail",
-    "/song/url"
+    "/song/url",
+    "/nickname/check"
   ],
   loginApi: ["/login/cellphone"],
+  appName: "sixFour"
 }

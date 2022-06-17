@@ -40,8 +40,9 @@ Page({
     const audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
     let isPlayedMusic = globalData.musicId === musicId;
 
-    this.setData({isPlayedMusic, musicId, audioPlayType});
+    this.setData({isPlayedMusic, musicId, audioPlayType, songInfo});
     globalData.musicId = musicId;
+    console.log(isPlayedMusic, globalData.isPlayMusic, musicId, songData);
     if (isPlayedMusic && globalData.isPlayMusic) {
       this.changePlayMusic(true);
       this.setData(Object.assign(

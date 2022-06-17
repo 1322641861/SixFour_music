@@ -1,5 +1,5 @@
 import request from "../../../utils/request";
-import {playAllSongSheet, getCurrentMusic, getAmount} from "../../../utils/util"
+import {playAllSongSheet, getCurrentMusic, getAmount, backAndToastLogin} from "../../../utils/util"
 
 Page({
 
@@ -22,6 +22,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const login = backAndToastLogin();
+    if (!login) return;
+
     try {
       let systemInfo = wx.getSystemInfoSync();
       this.setData({
@@ -39,6 +42,12 @@ Page({
   goBack() {
     wx.navigateBack({
       delta: 1,
+    })
+  },
+  notSupported() {
+    wx.showToast({
+      title: '暂未开放',
+      icon: "none"
     })
   },
   /**

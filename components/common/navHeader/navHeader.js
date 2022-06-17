@@ -8,6 +8,10 @@ Component({
       type: String,
       value: ""
     },
+    hasMore: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

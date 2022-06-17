@@ -55,6 +55,12 @@ Component({
       let {likeIdList, songInfo} = this.data;
       let isLike = likeIdList.includes(songInfo.id);
       this.setData({isLike});
+    },
+    notSupported() {
+      wx.showToast({
+        title: '暂未开放',
+        icon: "none"
+      })
     }
   },
   lifetimes: {
