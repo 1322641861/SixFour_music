@@ -23,7 +23,7 @@ bind:clickoverlay="changeShowInfoToast"
     </view>
     <view class="info-item">
       <text class="iconfont icon-comments"></text>
-      <text class="info-msg">评论(100)</text>
+      <text class="info-msg">评论({{commentList.totalCount ? commentList.totalCount : 0}})</text>
     </view>
     <view class="info-item">
       <text class="iconfont icon-share_light"></text>

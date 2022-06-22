@@ -14,6 +14,7 @@ Page({
     nickname: "",
     candidateNicknames: [], // 备用昵称
     checkOk: true, // 昵称可用
+    signature: "",
   },
 
   /**
@@ -33,7 +34,7 @@ Page({
       default:
         break;
     }
-    this.setData({title, type: options.type, userInfo, nickname: userInfo.nickname})
+    this.setData({title, type: options.type, userInfo, nickname: userInfo.nickname, signature: userInfo.signature})
   },
 
   clearValue() {
@@ -65,7 +66,7 @@ Page({
 
   checkNicknameExist: debounce(function() {
     this.nicknameExistApi();
-  }, 800),
+  }, 500),
   /**
    * 检测昵称是否重复
    */
@@ -82,16 +83,28 @@ Page({
     console.log(res);
   },
 
+  /**
+   * 监听简介
+   */
+  handleSignature(event) {
+    let signature = event.detail.value
+    this.setData({signature})
+  },
+
   submit(event) {
     let value = event.currentTarget.dataset.name
-    const { userInfo, nickname, checkOk } = this.data;
+    const { userInfo, nickname, checkOk, signature } = this.data;
     if (value === 'nickname' && checkOk) {
       userInfo.nickname = nickname
-      wx.setStorageSync('userInfo', JSON.stringify(userInfo))
-      wx.navigateBack({
-        delta: 1,
-      })
+    } else if (value === 'signature') {
+      userInfo.signature = signature
+    } else {
+      return
     }
+    wx.setStorageSync('userInfo', JSON.stringify(userInfo))
+    wx.navigateBack({
+      delta: 1,
+    })
   },
 
   /**

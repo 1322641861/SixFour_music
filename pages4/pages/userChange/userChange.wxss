@@ -40,3 +40,18 @@
 .nickname-wrap .tip-text {
   color: #999;
 }
+
+#signature {
+  margin: auto;
+  padding: 10rpx;
+  font-size: 30rpx;
+}
+.signature-wrap .surplus {
+  text-align: right;
+  margin-right: 20rpx;
+  font-size: 34rpx;
+  color: #ccc;
+}
+.signature-wrap .nickname-btn {
+  margin-top: 20rpx;
+}

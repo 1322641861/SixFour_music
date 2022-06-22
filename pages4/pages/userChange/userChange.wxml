@@ -17,6 +17,8 @@
   </view>
 
   <view wx:elif="{{type === 'signature'}}" class="signature-wrap">
-    
+    <textarea name="signature" id="signature" cols="30" rows="10" placeholder="一句话简介" value="{{signature}}" number="140" bindinput="handleSignature"></textarea>
+    <view class="surplus">{{140 - signature.length}}</view>
+    <button class="nickname-btn" data-name="signature" bindtap="submit">保存</button>
   </view>
 </view>

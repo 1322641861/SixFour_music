@@ -9,5 +9,6 @@ export default {
     "/nickname/check"
   ],
   loginApi: ["/login/cellphone"],
-  appName: "sixFour"
+  appName: "sixFour",
+  mapKey: "PXZBZ-IYU6K-G7UJJ-ASUPV-W3Y5H-SWFBN", // 腾讯地图key
 }

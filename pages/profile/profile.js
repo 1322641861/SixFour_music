@@ -36,11 +36,14 @@ Page({
   },
   async init() {
     getCurrentMusic(this); 
+    this.getUserInfo()
+    await this.getPlayList();
+  },
+  getUserInfo() {
     let userInfo = wx.getStorageSync("userInfo");
     this.setData({
       userInfo: userInfo ? JSON.parse(userInfo) : {}
     })
-    await this.getPlayList();
   },
   navigateToPage(url) {
     wx.navigateTo({
@@ -161,6 +164,7 @@ Page({
           selected: 2
         })
     }
+    this.getUserInfo()
     getCurrentMusic(this); 
   },
 

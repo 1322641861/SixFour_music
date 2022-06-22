@@ -1,6 +1,6 @@
 import config from './config';
 
-function request({url, data = {}, method = 'GET'}) {
+function request({url, data = {}, method = 'GET', header = {}}) {
   return new Promise((resolve, reject) => {
     let cookies = wx.getStorageSync('cookies');
     if (!config.hideLoadingApi.includes(url)) {
@@ -11,9 +11,9 @@ function request({url, data = {}, method = 'GET'}) {
       // url: config.localDomain + url,
       data,
       method,
-      header: {
+      header: Object.assign(header, {
         cookie: cookies ? cookies.find(item => item.indexOf('MUSIC_U') > -1) : ''
-      },
+      }),
       success: (res) => {
         /// 登录接口获取cookies
         if (config.loginApi.includes(url)) {

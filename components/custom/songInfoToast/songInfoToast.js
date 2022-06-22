@@ -22,6 +22,7 @@ Component({
   data: {
     likeIdList: [],
     isLike: false,
+    commentList: {},
   },
 
   /**
@@ -61,6 +62,16 @@ Component({
         title: '暂未开放',
         icon: "none"
       })
+    },
+    /**
+     * 获取歌曲评论
+     */
+    async getCommentList() {
+      let res = await request({url: "/comment/new", data: {id: this.data.songInfo.id, type: 0}});
+      if (res && res.code === 200) {
+        this.setData({commentList: res.data})
+      }
+      console.log(res, this.data.songInfo);
     }
   },
   lifetimes: {
@@ -74,6 +85,7 @@ Component({
       } else {
         this.getIsLikeType();
       }
+      this.getCommentList()
     }
   }
 })

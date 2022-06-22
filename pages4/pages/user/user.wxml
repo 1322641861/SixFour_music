@@ -1,7 +1,7 @@
 <view class="user-wrap">
   <view class="border-10"></view>
   <view class="info">
-    <view class="info-item">
+    <view class="info-item" bindtap="chooseImage">
       <text class="name">头像</text>
       <image class="avatar-url" src="{{userInfo.avatarUrl}}"></image>
     </view>
@@ -9,7 +9,7 @@
       <text class="name">昵称</text>
       <text class="right-info">{{userInfo.nickname}}</text>
     </view>
-    <view class="info-item padding-more" style="border: none;">
+    <view class="info-item padding-more" style="border: none;" bindtap="showSex">
       <text class="name">性别</text>
       <text class="right-info" data-sex="{{userInfo.gender}}">{{genderList[gender]}}</text>
     </view>
@@ -17,9 +17,11 @@
 
   <view class="border-10"></view>
   <view class="info">
-    <view class="info-item padding-more">
-      <text class="name">生日</text>
-      <text class="right-info">{{birthday}}</text>
+    <view>
+      <picker class="info-item padding-more special-item" mode="date" value="{{birthday}}" start="birthday" end="2017-1-23" bindchange="bindDateChange"> 
+        <text class="name">生日</text>
+        <text class="right-info">{{birthday}}</text>
+      </picker>
     </view>
     <view class="info-item padding-more" bindtap="getCity">
       <text class="name">地区</text>
@@ -31,6 +33,34 @@
       <text class="right-info">{{signature}}</text>
     </view>
   </view>
+
+  <!-- 性别选择 -->
+  <view class="sex-select" bindtap="closeSex" wx:if="{{showSexToast}}">
+    <view class="content">
+      <view class="content-item">
+        <view class="sex-item" data-sex="1" catchtap="selectCurrentSex">
+          <text>男</text>
+          <text wx:if="{{gender === 1}}" class="iconfont icon-xuanzhong"></text>
+        </view>
+        <view class="sex-item" data-sex="2" catchtap="selectCurrentSex">
+          <text>女</text>
+          <text wx:if="{{gender === 2}}" class="iconfont icon-xuanzhong"></text>
+        </view>
+      </view>
+      <view class="close" >
+        <text class="iconfont icon-delete1" bindtap="closeSex"></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class="section">
+    <view class="section__title">省市区选择器</view>
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+      <view class="picker">
+        当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+      </view>
+    </picker>
+  </view> -->
 </view>
 <!-- key、referer和hotCitys通过组件的属性传入 -->
 <selector-component
