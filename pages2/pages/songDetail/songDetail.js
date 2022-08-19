@@ -39,10 +39,10 @@ Page({
     }
     const audioPlayType = wx.getStorageSync('audioPlayType') ? wx.getStorageSync('audioPlayType') : 0;
     let isPlayedMusic = globalData.musicId === musicId;
-
     this.setData({isPlayedMusic, musicId, audioPlayType, songInfo});
     globalData.musicId = musicId;
-    console.log(isPlayedMusic, globalData.isPlayMusic, musicId, songData);
+
+    this.getLyric()
     if (isPlayedMusic && globalData.isPlayMusic) {
       this.changePlayMusic(true);
       this.setData(Object.assign(
@@ -90,6 +90,13 @@ Page({
         durationTime
       });
     }
+  },
+  /**
+   * 获取歌词
+   */
+  async getLyric() {
+    let res = await request({url: '/lyric', data: {id: this.data.musicId}});
+    console.log('getLyric', res);
   },
   /**
    * 获取歌曲url

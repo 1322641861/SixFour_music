@@ -74,7 +74,10 @@ const getRandomIndex = function (len) {
 const debounce = (fn, delay = 800) => {
   let timer1;
   return function () {
-    if (timer1) clearTimeout(timer1);
+    if (timer1) {
+      clearTimeout(timer1);
+      timer1 = null;
+    }
     let that = this;
     let args = arguments;
     timer1 = setTimeout(function () {
@@ -87,10 +90,13 @@ const debounce = (fn, delay = 800) => {
  */
 const throttle1 = (fn, timeLen = 800) => {
   let flag = false;
+  let timer;
   return function () {
     if (!flag) {
       flag = true;
-      setTimeout(() => {
+      timer = setTimeout(() => {
+        clearTimeout(timer);
+        timer = null;
         flag = false;
         fn.apply(this, arguments);
       }, timeLen);
